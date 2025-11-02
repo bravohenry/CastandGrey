@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
-import { PageHeader } from '../components/common/Hero'
+import { motion } from 'framer-motion'
 import { Droplets, Sun, Wind, AlertCircle, Search } from 'lucide-react'
+import { Button } from '../design-system'
 
 /**
  * PlantCare 页面 - 植物护理教育中心
- * 包含植物信息中心和护理指南
+ * 日本美学：留白、克制、精致
+ * 完全使用设计系统
  */
 export function PlantCare() {
   const categories = [
@@ -78,34 +80,66 @@ export function PlantCare() {
   ]
 
   return (
-    <div>
-      <PageHeader
-        title="Plant Care Hub"
-        description="Everything you need to keep your plants healthy and thriving"
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Plant Care' }
-        ]}
-      />
+    <div className="bg-[#FFFEF6]">
+      {/* Page Header - 精致排版 */}
+      <section className="bg-[#FFFEF6] border-b-2 border-[#459361] py-20">
+        <div className="px-[50px] lg:px-[246px]">
+          {/* Breadcrumbs */}
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex items-center gap-2 text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold" style={{ fontFamily: 'Archivo, sans-serif' }}>
+              <li>
+                <Link to="/" className="hover:text-[#459361] transition-colors">Home</Link>
+              </li>
+              <li>/</li>
+              <li className="text-[#111111]">Plant Care</li>
+            </ol>
+          </nav>
+          
+          <h1 
+            className="text-[48px] lg:text-[64px] leading-[1.1] font-bold tracking-[0.72px] text-[#111111] mb-6"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
+            Plant Care Hub
+          </h1>
+          
+          <p 
+            className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
+            Everything you need to keep your plants healthy and thriving
+          </p>
+        </div>
+      </section>
 
-      {/* Search Bar */}
-      <section className="py-8 bg-white border-b border-stone-200">
-        <div className="container mx-auto px-4 lg:px-8 max-w-2xl">
+      {/* Search Bar - 精致输入框 */}
+      <section className="py-12 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] max-w-3xl mx-auto">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" size={20} />
+            <Search 
+              className="absolute left-6 top-1/2 -translate-y-1/2 text-[rgba(69,147,97,0.5)]" 
+              size={20} 
+              strokeWidth={1.5}
+            />
             <input
               type="text"
               placeholder="Search for plant care tips..."
-              className="w-full pl-12 pr-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+              className="w-full pl-16 pr-6 py-5 border-2 border-[#459361] rounded-[12px] focus:outline-none focus:ring-0 bg-[#FFFEF6] text-[14.6px] tracking-[0.6px] text-[#111111] placeholder:text-[rgba(69,147,97,0.5)]"
+              style={{ 
+                fontFamily: 'Archivo, sans-serif',
+                boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)'
+              }}
             />
           </div>
         </div>
       </section>
 
-      {/* Categories */}
-      <section className="py-16 bg-stone-50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl font-bold text-stone-900 mb-12 text-center">
+      {/* Categories - 精致分类卡片 */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-20 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             Browse by Category
           </h2>
 
@@ -113,24 +147,35 @@ export function PlantCare() {
             {categories.map((category, index) => {
               const Icon = category.icon
               return (
-                <div key={index} className="bg-white rounded-lg p-6 border border-stone-200">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="p-2 bg-green-100 rounded-lg">
-                      <Icon size={24} className="text-green-600" />
-                    </div>
-                    <h3 className="font-semibold text-stone-900">{category.title}</h3>
+                <motion.div 
+                  key={index} 
+                  className="bg-[#FFFEF6] border-2 border-[#459361] rounded-[12px] p-8"
+                  style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                >
+                  <div className="flex items-center gap-3 mb-6">
+                    <Icon size={20} className="text-[#459361]" strokeWidth={1.5} />
+                    <h3 
+                      className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111]"
+                      style={{ fontFamily: 'Petrona, serif' }}
+                    >
+                      {category.title}
+                    </h3>
                   </div>
 
-                  <ul className="space-y-2">
+                  <ul className="space-y-3">
                     {category.items.map((item, idx) => (
                       <li key={idx}>
                         <Link
                           to={item.href}
-                          className="text-stone-600 hover:text-green-600 transition-colors flex items-center justify-between group"
+                          className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] hover:text-[#459361] transition-colors flex items-center justify-between group"
+                          style={{ fontFamily: 'Archivo, sans-serif' }}
                         >
                           <span>{item.name}</span>
                           {item.count && (
-                            <span className="text-xs text-stone-400 group-hover:text-green-500">
+                            <span className="text-[13px] text-[rgba(69,147,97,0.5)] group-hover:text-[#459361]">
                               {item.count}
                             </span>
                           )}
@@ -138,21 +183,24 @@ export function PlantCare() {
                       </li>
                     ))}
                   </ul>
-                </div>
+                </motion.div>
               )
             })}
           </div>
         </div>
       </section>
 
-      {/* Popular Guides */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl font-bold text-stone-900 mb-12 text-center">
+      {/* Popular Guides - 精致指南卡片 */}
+      <section className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-20 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             Popular Care Guides
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {popularGuides.map((guide, index) => (
               <GuideCard key={index} guide={guide} />
             ))}
@@ -160,14 +208,17 @@ export function PlantCare() {
         </div>
       </section>
 
-      {/* Quick Tips */}
-      <section className="py-16 bg-green-50">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <h2 className="text-3xl font-bold text-stone-900 mb-8 text-center">
+      {/* Quick Tips - 克制的提示卡片 */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] max-w-5xl mx-auto">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-20 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             Quick Care Tips
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <TipCard
               title="Watering Wisdom"
               tip="Check soil moisture before watering. Stick your finger 2 inches deep – if it's dry, it's time to water!"
@@ -188,25 +239,31 @@ export function PlantCare() {
         </div>
       </section>
 
-      {/* Shop CTA */}
-      <section className="py-16 bg-stone-900 text-white">
-        <div className="container mx-auto px-4 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to Start Your Plant Journey?</h2>
-          <p className="text-stone-300 mb-8 max-w-2xl mx-auto">
+      {/* Shop CTA - 精致的CTA */}
+      <section className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] text-center">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-8"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
+            Ready to Start Your Plant Journey?
+          </h2>
+          <p 
+            className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(255,254,246,0.9)] mb-12 max-w-2xl mx-auto"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
             Browse our collection of easy-care plants perfect for beginners, or explore our full catalog.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <Link
-              to="/shop/easy-care"
-              className="px-8 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-semibold"
-            >
-              Shop Easy-Care Plants
+          <div className="flex flex-wrap gap-6 justify-center">
+            <Link to="/shop/easy-care">
+              <Button variant="secondary" size="lg">
+                SHOP EASY-CARE PLANTS
+              </Button>
             </Link>
-            <Link
-              to="/shop/pet-safe"
-              className="px-8 py-3 bg-white text-stone-900 rounded-md hover:bg-stone-100 transition-colors font-semibold"
-            >
-              Shop Pet-Safe Plants
+            <Link to="/shop/pet-safe">
+              <Button variant="primary" size="lg">
+                SHOP PET-SAFE PLANTS
+              </Button>
             </Link>
           </div>
         </div>
@@ -216,57 +273,85 @@ export function PlantCare() {
 }
 
 /**
- * GuideCard 组件 - 指南卡片
+ * GuideCard 组件 - 指南卡片，设计系统样式
  */
 function GuideCard({ guide }) {
   const difficultyColors = {
-    Beginner: 'bg-green-100 text-green-700',
-    Intermediate: 'bg-yellow-100 text-yellow-700',
-    Advanced: 'bg-red-100 text-red-700'
+    Beginner: 'bg-[rgba(69,147,97,0.1)] text-[#459361]',
+    Intermediate: 'bg-[rgba(255,193,7,0.1)] text-[#ff9800]',
+    Advanced: 'bg-[rgba(244,67,54,0.1)] text-[#f44336]'
   }
 
   return (
     <Link
       to={guide.href}
-      className="group bg-white rounded-lg border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow"
+      className="group bg-[#FFFEF6] border-2 border-[#FFFEF6] rounded-[12px] overflow-hidden hover:border-[#FFFEF6] transition-all"
+      style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
     >
-      <div className="aspect-video bg-stone-100 overflow-hidden">
+      <div className="aspect-video bg-[rgba(69,147,97,0.1)] overflow-hidden">
         {guide.image ? (
           <img
             src={guide.image}
             alt={guide.title}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+            className="w-full h-full object-cover"
           />
         ) : (
-          <div className="w-full h-full flex items-center justify-center text-stone-400">
+          <div 
+            className="w-full h-full flex items-center justify-center text-[13px] tracking-[0.6px] text-[rgba(69,147,97,0.4)]"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
             Guide Image
           </div>
         )}
       </div>
 
-      <div className="p-4">
-        <div className="mb-2">
-          <span className={`text-xs px-2 py-1 rounded-full ${difficultyColors[guide.difficulty]}`}>
+      <div className="p-6">
+        <div className="mb-3">
+          <span 
+            className={`text-[11px] leading-[18px] tracking-[0.7px] px-3 py-1 rounded-full ${difficultyColors[guide.difficulty]} uppercase font-bold`}
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
             {guide.difficulty}
           </span>
         </div>
-        <h3 className="font-semibold text-stone-900 mb-2 group-hover:text-green-700 transition-colors">
+        <h3 
+          className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-2 group-hover:text-[#459361] transition-colors"
+          style={{ fontFamily: 'Petrona, serif' }}
+        >
           {guide.title}
         </h3>
-        <p className="text-sm text-stone-600 line-clamp-2">{guide.description}</p>
+        <p 
+          className="text-[14.6px] leading-[24px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] line-clamp-2"
+          style={{ fontFamily: 'Archivo, sans-serif' }}
+        >
+          {guide.description}
+        </p>
       </div>
     </Link>
   )
 }
 
 /**
- * TipCard 组件 - 快速提示卡片
+ * TipCard 组件 - 快速提示卡片，设计系统样式
  */
 function TipCard({ title, tip }) {
   return (
-    <div className="bg-white rounded-lg p-6 border border-stone-200">
-      <h3 className="font-semibold text-stone-900 mb-3">{title}</h3>
-      <p className="text-stone-600">{tip}</p>
+    <div 
+      className="bg-[#FFFEF6] border-2 border-[#459361] rounded-[12px] p-8"
+      style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
+    >
+      <h3 
+        className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-4"
+        style={{ fontFamily: 'Petrona, serif' }}
+      >
+        {title}
+      </h3>
+      <p 
+        className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+        style={{ fontFamily: 'Archivo, sans-serif' }}
+      >
+        {tip}
+      </p>
     </div>
   )
 }

@@ -1,11 +1,13 @@
-import { PageHeader } from '../components/common/Hero'
+import { motion } from 'framer-motion'
 import { ServiceCard } from '../components/common/ProductCard'
 import { ReviewGrid } from '../components/common/ReviewCarousel'
 import { Link } from 'react-router-dom'
+import { Button } from '../design-system'
 
 /**
  * Services 页面 - 服务列表页
- * 展示所有可预订的服务
+ * 日本美学：留白、克制、精致
+ * 完全使用设计系统
  */
 export function Services() {
   const services = [
@@ -72,55 +74,106 @@ export function Services() {
   ]
 
   return (
-    <div>
-      <PageHeader
-        title="Plant Care Services"
-        description="Professional plant care and consultation services tailored to your needs"
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Services' }
-        ]}
-      />
-
-      {/* Services Grid */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <ServiceCard key={index} service={service} />
-            ))}
-          </div>
+    <div className="bg-[#FFFEF6]">
+      {/* Page Header - 精致排版 */}
+      <section className="bg-[#FFFEF6] border-b-2 border-[#459361] py-20">
+        <div className="px-[50px] lg:px-[246px]">
+          {/* Breadcrumbs */}
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex items-center gap-2 text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold" style={{ fontFamily: 'Archivo, sans-serif' }}>
+              <li>
+                <Link to="/" className="hover:text-[#459361] transition-colors">Home</Link>
+              </li>
+              <li>/</li>
+              <li className="text-[#111111]">Services</li>
+            </ol>
+          </nav>
+          
+          <h1 
+            className="text-[48px] lg:text-[64px] leading-[1.1] font-bold tracking-[0.72px] text-[#111111] mb-6"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
+            Plant Care Services
+          </h1>
+          
+          <p 
+            className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
+            Professional plant care and consultation services tailored to your needs
+          </p>
         </div>
       </section>
 
-      {/* Features */}
-      <section className="py-16 bg-green-50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl font-bold text-stone-900 mb-12 text-center">
+      {/* Services Grid - 大量留白 */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <motion.div 
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+          >
+            {services.map((service, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+              >
+                <ServiceCard service={service} />
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Features - 精致卡片 */}
+      <section className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-20 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             Why Book With Us
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {features.map((feature, index) => (
-              <div key={index} className="bg-white rounded-lg p-6 text-center">
-                <h3 className="text-xl font-semibold text-stone-900 mb-3">
+              <div 
+                key={index} 
+                className="bg-[#FFFEF6] border-2 border-[#FFFEF6] rounded-[12px] p-8 text-center"
+                style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
+              >
+                <h3 
+                  className="text-[19.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-4"
+                  style={{ fontFamily: 'Petrona, serif' }}
+                >
                   {feature.title}
                 </h3>
-                <p className="text-stone-600">{feature.description}</p>
+                <p 
+                  className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                  style={{ fontFamily: 'Archivo, sans-serif' }}
+                >
+                  {feature.description}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* How It Works */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <h2 className="text-3xl font-bold text-stone-900 mb-12 text-center">
+      {/* How It Works - 克制的流程 */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] max-w-4xl mx-auto">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-20 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             How It Works
           </h2>
 
-          <div className="space-y-8">
+          <div className="space-y-12">
             <Step
               number="1"
               title="Choose Your Service"
@@ -138,21 +191,23 @@ export function Services() {
             />
           </div>
 
-          <div className="mt-12 text-center">
-            <Link
-              to="/contact"
-              className="inline-block px-8 py-4 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-semibold text-lg"
-            >
-              Book a Service Now
+          <div className="mt-20 text-center">
+            <Link to="/contact">
+              <Button variant="primary" size="lg">
+                BOOK A SERVICE NOW
+              </Button>
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Reviews */}
-      <section className="py-16 bg-stone-50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl font-bold text-stone-900 mb-12 text-center">
+      {/* Reviews - 精致排版 */}
+      <section className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-20 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             Customer Reviews
           </h2>
 
@@ -160,14 +215,17 @@ export function Services() {
         </div>
       </section>
 
-      {/* FAQs Preview */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
-          <h2 className="text-3xl font-bold text-stone-900 mb-8 text-center">
+      {/* FAQs Preview - 克制的FAQ */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] max-w-4xl mx-auto">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-16 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             Common Questions
           </h2>
 
-          <div className="space-y-4">
+          <div className="space-y-6">
             <FAQItem
               question="Do I need to be home for delivery?"
               answer="For delivery services, yes. For in-store services, no appointment needed – just walk in during business hours!"
@@ -182,12 +240,13 @@ export function Services() {
             />
           </div>
 
-          <div className="mt-8 text-center">
+          <div className="mt-12 text-center">
             <Link
               to="/faqs"
-              className="text-green-600 hover:text-green-700 font-semibold"
+              className="inline-block text-[13.6px] leading-[18.2px] tracking-[0.6px] font-bold text-[rgba(69,147,97,0.75)] hover:text-[#459361] transition-colors border-b-2 border-[rgba(69,147,97,0.3)] hover:border-[#459361]"
+              style={{ fontFamily: 'Archivo, sans-serif' }}
             >
-              View All FAQs →
+              VIEW ALL FAQS
             </Link>
           </div>
         </div>
@@ -197,30 +256,59 @@ export function Services() {
 }
 
 /**
- * Step 组件 - 流程步骤
+ * Step 组件 - 流程步骤，精致设计
  */
 function Step({ number, title, description }) {
   return (
-    <div className="flex gap-6">
-      <div className="flex-shrink-0 w-12 h-12 bg-green-600 text-white rounded-full flex items-center justify-center font-bold text-lg">
+    <div className="flex gap-8">
+      <div 
+        className="flex-shrink-0 w-16 h-16 bg-[#459361] text-[#FFFEF6] border-2 border-[#FFFEF6] rounded-full flex items-center justify-center font-bold text-[28.8px]"
+        style={{ 
+          fontFamily: 'Petrona, serif',
+          boxShadow: '0px 4px 0px rgba(132, 132, 132, 0.9)'
+        }}
+      >
         {number}
       </div>
       <div>
-        <h3 className="text-xl font-semibold text-stone-900 mb-2">{title}</h3>
-        <p className="text-stone-600">{description}</p>
+        <h3 
+          className="text-[19.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-3"
+          style={{ fontFamily: 'Petrona, serif' }}
+        >
+          {title}
+        </h3>
+        <p 
+          className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+          style={{ fontFamily: 'Archivo, sans-serif' }}
+        >
+          {description}
+        </p>
       </div>
     </div>
   )
 }
 
 /**
- * FAQItem 组件 - FAQ 条目
+ * FAQItem 组件 - FAQ 条目，设计系统样式
  */
 function FAQItem({ question, answer }) {
   return (
-    <div className="bg-stone-50 rounded-lg p-6">
-      <h3 className="font-semibold text-stone-900 mb-2">{question}</h3>
-      <p className="text-stone-600">{answer}</p>
+    <div 
+      className="bg-[#FFFEF6] border-2 border-[#459361] rounded-[12px] p-8"
+      style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
+    >
+      <h3 
+        className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-3"
+        style={{ fontFamily: 'Petrona, serif' }}
+      >
+        {question}
+      </h3>
+      <p 
+        className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+        style={{ fontFamily: 'Archivo, sans-serif' }}
+      >
+        {answer}
+      </p>
     </div>
   )
 }

@@ -1,10 +1,12 @@
 import { useState } from 'react'
-import { PageHeader } from '../components/common/Hero'
+import { Link } from 'react-router-dom'
 import { Search } from 'lucide-react'
+import { Button } from '../design-system'
 
 /**
  * FAQs 页面 - 常见问题
- * 集中展示所有常见问题
+ * 日本美学：留白、克制、精致
+ * 完全使用设计系统
  */
 export function FAQs() {
   const [searchTerm, setSearchTerm] = useState('')
@@ -134,44 +136,76 @@ export function FAQs() {
   })).filter((cat) => cat.questions.length > 0)
 
   return (
-    <div>
-      <PageHeader
-        title="Frequently Asked Questions"
-        description="Find answers to common questions about our products and services"
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'FAQs' }
-        ]}
-      />
+    <div className="bg-[#FFFEF6]">
+      {/* Page Header - 精致排版 */}
+      <section className="bg-[#FFFEF6] border-b-2 border-[#459361] py-20">
+        <div className="px-[50px] lg:px-[246px]">
+          {/* Breadcrumbs */}
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex items-center gap-2 text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold" style={{ fontFamily: 'Archivo, sans-serif' }}>
+              <li>
+                <Link to="/" className="hover:text-[#459361] transition-colors">Home</Link>
+              </li>
+              <li>/</li>
+              <li className="text-[#111111]">FAQs</li>
+            </ol>
+          </nav>
+          
+          <h1 
+            className="text-[48px] lg:text-[64px] leading-[1.1] font-bold tracking-[0.72px] text-[#111111] mb-6"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
+            Frequently Asked Questions
+          </h1>
+          
+          <p 
+            className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
+            Find answers to common questions about our products and services
+          </p>
+        </div>
+      </section>
 
-      {/* Search */}
-      <section className="py-8 bg-white border-b border-stone-200">
-        <div className="container mx-auto px-4 lg:px-8 max-w-2xl">
+      {/* Search - 精致的搜索框 */}
+      <section className="py-12 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] max-w-3xl mx-auto">
           <div className="relative">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" size={20} />
+            <Search 
+              className="absolute left-6 top-1/2 -translate-y-1/2 text-[rgba(69,147,97,0.5)]" 
+              size={20} 
+              strokeWidth={1.5}
+            />
             <input
               type="text"
               placeholder="Search FAQs..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-12 pr-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+              className="w-full pl-16 pr-6 py-5 border-2 border-[#459361] rounded-[12px] focus:outline-none focus:ring-0 bg-[#FFFEF6] text-[14.6px] tracking-[0.6px] text-[#111111] placeholder:text-[rgba(69,147,97,0.5)]"
+              style={{ 
+                fontFamily: 'Archivo, sans-serif',
+                boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)'
+              }}
             />
           </div>
         </div>
       </section>
 
-      {/* FAQs by Category */}
-      <section className="py-16 bg-stone-50">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
+      {/* FAQs by Category - 克制的布局 */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] max-w-5xl mx-auto">
           {filteredCategories.length > 0 ? (
-            <div className="space-y-12">
+            <div className="space-y-20">
               {filteredCategories.map((category, catIndex) => (
                 <div key={catIndex}>
-                  <h2 className="text-2xl font-bold text-stone-900 mb-6">
+                  <h2 
+                    className="text-[28.8px] leading-[36px] font-bold tracking-[0.72px] text-[#111111] mb-8"
+                    style={{ fontFamily: 'Petrona, serif' }}
+                  >
                     {category.category}
                   </h2>
 
-                  <div className="space-y-4">
+                  <div className="space-y-6">
                     {category.questions.map((faq, qIndex) => {
                       const globalIndex = `${catIndex}-${qIndex}`
                       return (
@@ -189,40 +223,46 @@ export function FAQs() {
               ))}
             </div>
           ) : (
-            <div className="text-center py-12">
-              <p className="text-xl text-stone-600 mb-4">No results found</p>
-              <button
-                onClick={() => setSearchTerm('')}
-                className="text-green-600 hover:text-green-700 font-semibold"
+            <div className="text-center py-20">
+              <p 
+                className="text-[28.8px] leading-[36px] font-bold tracking-[0.72px] text-[#111111] mb-6"
+                style={{ fontFamily: 'Petrona, serif' }}
               >
-                Clear search
-              </button>
+                No results found
+              </p>
+              <Button variant="primary" size="default" onClick={() => setSearchTerm('')}>
+                CLEAR SEARCH
+              </Button>
             </div>
           )}
         </div>
       </section>
 
-      {/* Contact CTA */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8 text-center max-w-2xl">
-          <h2 className="text-2xl font-bold text-stone-900 mb-4">
+      {/* Contact CTA - 精致的CTA */}
+      <section className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] text-center max-w-3xl mx-auto">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-6"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             Still Have Questions?
           </h2>
-          <p className="text-stone-600 mb-8">
+          <p 
+            className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(255,254,246,0.9)] mb-12"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
             Can't find what you're looking for? Our team is here to help.
           </p>
-          <div className="flex flex-wrap gap-4 justify-center">
-            <a
-              href="/contact"
-              className="px-8 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-semibold"
-            >
-              Contact Us
-            </a>
-            <a
-              href="tel:(555)123-4567"
-              className="px-8 py-3 border border-stone-300 text-stone-700 rounded-md hover:bg-stone-50 transition-colors font-semibold"
-            >
-              Call Us: (555) 123-4567
+          <div className="flex flex-wrap gap-6 justify-center">
+            <Link to="/contact">
+              <Button variant="secondary" size="lg">
+                CONTACT US
+              </Button>
+            </Link>
+            <a href="tel:(555)123-4567">
+              <Button variant="primary" size="lg">
+                CALL US: (555) 123-4567
+              </Button>
             </a>
           </div>
         </div>
@@ -232,27 +272,39 @@ export function FAQs() {
 }
 
 /**
- * FAQItem 组件 - 单个 FAQ 条目
+ * FAQItem 组件 - 单个 FAQ 条目，设计系统样式
  */
 function FAQItem({ question, answer, isOpen, onToggle }) {
   return (
-    <div className="bg-white rounded-lg border border-stone-200 overflow-hidden">
+    <div 
+      className="bg-[#FFFEF6] border-2 border-[#459361] rounded-[12px] overflow-hidden"
+      style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
+    >
       <button
         onClick={onToggle}
-        className="w-full flex items-center justify-between p-6 text-left hover:bg-stone-50 transition-colors"
+        className="w-full flex items-center justify-between p-8 text-left hover:bg-[rgba(69,147,97,0.02)] transition-colors"
       >
-        <h3 className="font-semibold text-stone-900 pr-4">{question}</h3>
-        <span className="text-green-600 text-2xl flex-shrink-0">
+        <h3 
+          className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] pr-6"
+          style={{ fontFamily: 'Petrona, serif' }}
+        >
+          {question}
+        </h3>
+        <span className="text-[#459361] text-[32px] flex-shrink-0 leading-none">
           {isOpen ? '−' : '+'}
         </span>
       </button>
 
       {isOpen && (
-        <div className="px-6 pb-6 border-t border-stone-100">
-          <p className="text-stone-600 pt-4">{answer}</p>
+        <div className="px-8 pb-8 border-t-2 border-[rgba(69,147,97,0.1)]">
+          <p 
+            className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] pt-6"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
+            {answer}
+          </p>
         </div>
       )}
     </div>
   )
 }
-

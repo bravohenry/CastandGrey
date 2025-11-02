@@ -1,11 +1,14 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import { PageHeader } from '../components/common/Hero'
 import { ProductCard } from '../components/common/ProductCard'
 import { FilterBar } from '../components/common/FilterBar'
+import { Button } from '../design-system'
 
 /**
  * Shop 页面 - 产品列表页
- * 展示所有产品，支持筛选和排序
+ * 日本美学：留白、网格、克制
+ * 完全使用设计系统
  */
 export function Shop() {
   // 模拟产品数据
@@ -213,16 +216,39 @@ export function Shop() {
   })
 
   return (
-    <div>
-      <PageHeader
-        title="Shop"
-        description="Discover our curated collection of plants, tools, and accessories"
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Shop' }
-        ]}
-      />
+    <div className="bg-[#FFFEF6]">
+      {/* Page Header - 精致排版 */}
+      <section className="bg-[#FFFEF6] border-b-2 border-[#459361] py-20">
+        <div className="px-[50px] lg:px-[246px]">
+          {/* Breadcrumbs - 克制的导航 */}
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex items-center gap-2 text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold" style={{ fontFamily: 'Archivo, sans-serif' }}>
+              <li>
+                <a href="/" className="hover:text-[#459361] transition-colors">Home</a>
+              </li>
+              <li>/</li>
+              <li className="text-[#111111]">Shop</li>
+            </ol>
+          </nav>
+          
+          {/* Title - 大标题，充足留白 */}
+          <h1 
+            className="text-[48px] lg:text-[64px] leading-[1.1] font-bold tracking-[0.72px] text-[#111111] mb-6"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
+            Shop
+          </h1>
+          
+          <p 
+            className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
+            Discover our curated collection of plants, tools, and accessories
+          </p>
+        </div>
+      </section>
 
+      {/* Filter Bar - 使用设计系统样式 */}
       <FilterBar
         filters={filters}
         activeFilters={activeFilters}
@@ -233,47 +259,75 @@ export function Shop() {
         onSortChange={setActiveSort}
       />
 
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="mb-6 flex items-center justify-between">
-            <p className="text-stone-600">
-              Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'product' : 'products'}
+      {/* Product Grid - 大量留白 */}
+      <section className="py-24 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          {/* Results Count - 精致的小标签 */}
+          <div className="mb-12 flex items-center justify-between">
+            <p 
+              className="text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold"
+              style={{ fontFamily: 'Archivo, sans-serif' }}
+            >
+              Showing {filteredProducts.length} {filteredProducts.length === 1 ? 'Product' : 'Products'}
             </p>
           </div>
 
           {filteredProducts.length > 0 ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
-                <ProductCard key={product.handle} product={product} />
+            <motion.div 
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.4 }}
+            >
+              {filteredProducts.map((product, index) => (
+                <motion.div
+                  key={product.handle}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.05, duration: 0.4 }}
+                >
+                  <ProductCard product={product} />
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           ) : (
-            <div className="text-center py-16">
-              <p className="text-xl text-stone-600 mb-4">No products found</p>
-              <button
-                onClick={handleClearAll}
-                className="text-green-600 hover:text-green-700 font-semibold"
+            <div className="text-center py-32">
+              <p 
+                className="text-[28.8px] leading-[36px] font-bold tracking-[0.72px] text-[#111111] mb-6"
+                style={{ fontFamily: 'Petrona, serif' }}
               >
-                Clear all filters
-              </button>
+                No products found
+              </p>
+              <Button variant="primary" size="default" onClick={handleClearAll}>
+                CLEAR ALL FILTERS
+              </Button>
             </div>
           )}
         </div>
       </section>
 
-      {/* SEO Text Block */}
-      <section className="py-12 bg-stone-50 border-t border-stone-200">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <h2 className="text-2xl font-bold text-stone-900 mb-4">
+      {/* SEO Text Block - 精致排版 */}
+      <section className="py-24 bg-[#459361] border-t-2 border-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] max-w-4xl mx-auto text-center">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-8"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             Premium Plants & Botanical Accessories
           </h2>
-          <div className="prose prose-stone max-w-none text-stone-600">
-            <p>
+          <div className="space-y-6">
+            <p 
+              className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(255,254,246,0.9)]"
+              style={{ fontFamily: 'Archivo, sans-serif' }}
+            >
               Welcome to Cast & Grey's curated plant shop. We specialize in bringing the beauty of
               nature into urban spaces with our carefully selected collection of indoor plants,
               planters, tools, and accessories.
             </p>
-            <p>
+            <p 
+              className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(255,254,246,0.9)]"
+              style={{ fontFamily: 'Archivo, sans-serif' }}
+            >
               Every plant in our collection is hand-selected for quality and comes with detailed
               care instructions. Whether you're a seasoned plant parent or just starting your
               botanical journey, we have something perfect for your space.

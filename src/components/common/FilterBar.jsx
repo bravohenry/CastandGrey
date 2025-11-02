@@ -1,30 +1,34 @@
 import { useState } from 'react'
 import { ChevronDown, X, SlidersHorizontal } from 'lucide-react'
 import { motion, AnimatePresence } from 'framer-motion'
+import { Button } from '../../design-system'
 
 /**
  * FilterBar 组件 - 过滤和排序栏
- * 用于 Shop 页面的产品筛选
+ * 日本美学：极简、克制、精致
+ * 完全使用设计系统
  */
 export function FilterBar({ filters, activeFilters, onFilterChange, onClearAll, sortOptions, activeSort, onSortChange }) {
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false)
 
   return (
-    <div className="bg-white border-b border-stone-200 sticky top-20 z-40">
-      <div className="container mx-auto px-4 lg:px-8 py-4">
-        <div className="flex items-center justify-between gap-4">
+    <div className="bg-[#FFFEF6] border-b-2 border-[#459361] sticky top-20 z-40">
+      <div className="px-[50px] lg:px-[246px] py-6">
+        <div className="flex items-center justify-between gap-6">
           {/* Mobile Filter Toggle */}
           <button
             onClick={() => setMobileFiltersOpen(!mobileFiltersOpen)}
-            className="lg:hidden flex items-center gap-2 px-4 py-2 border border-stone-300 rounded-md hover:bg-stone-50 transition-colors"
+            className="lg:hidden"
           >
-            <SlidersHorizontal size={18} />
-            <span>Filters</span>
-            {Object.keys(activeFilters).length > 0 && (
-              <span className="bg-green-600 text-white text-xs rounded-full px-2 py-0.5">
-                {Object.keys(activeFilters).length}
+            <Button variant="secondary" size="sm">
+              <span className="flex items-center gap-2">
+                <SlidersHorizontal size={16} />
+                FILTERS
+                {Object.keys(activeFilters).length > 0 && (
+                  <span className="ml-1">({Object.keys(activeFilters).length})</span>
+                )}
               </span>
-            )}
+            </Button>
           </button>
 
           {/* Desktop Filters */}
@@ -41,21 +45,28 @@ export function FilterBar({ filters, activeFilters, onFilterChange, onClearAll, 
 
           {/* Active Filters Display */}
           {Object.keys(activeFilters).length > 0 && (
-            <div className="hidden lg:flex items-center gap-2">
-              <span className="text-sm text-stone-600">Active:</span>
+            <div className="hidden lg:flex items-center gap-3">
+              <span 
+                className="text-[11px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold"
+                style={{ fontFamily: 'Archivo, sans-serif' }}
+              >
+                Active:
+              </span>
               {Object.entries(activeFilters).map(([key, value]) => (
                 <button
                   key={key}
                   onClick={() => onFilterChange(key, null)}
-                  className="flex items-center gap-1 px-3 py-1 bg-green-100 text-green-800 rounded-full text-sm hover:bg-green-200 transition-colors"
+                  className="flex items-center gap-2 px-3 py-1 bg-[#459361] text-[#FFFEF6] rounded-[42px] text-[11px] font-bold uppercase tracking-[0.7px] hover:opacity-80 transition-opacity border-2 border-[#FFFEF6]"
+                  style={{ fontFamily: 'Archivo, sans-serif' }}
                 >
                   {value}
-                  <X size={14} />
+                  <X size={12} strokeWidth={3} />
                 </button>
               ))}
               <button
                 onClick={onClearAll}
-                className="text-sm text-red-600 hover:text-red-700 ml-2"
+                className="text-[11px] leading-[18px] tracking-[0.7px] text-[#E85C41] hover:opacity-80 ml-2 font-bold uppercase"
+                style={{ fontFamily: 'Archivo, sans-serif' }}
               >
                 Clear All
               </button>
@@ -63,15 +74,20 @@ export function FilterBar({ filters, activeFilters, onFilterChange, onClearAll, 
           )}
 
           {/* Sort Dropdown */}
-          <div className="flex items-center gap-2">
-            <label htmlFor="sort" className="text-sm text-stone-600 whitespace-nowrap">
-              Sort by:
+          <div className="flex items-center gap-3">
+            <label 
+              htmlFor="sort" 
+              className="text-[11px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] whitespace-nowrap font-bold uppercase"
+              style={{ fontFamily: 'Archivo, sans-serif' }}
+            >
+              Sort By:
             </label>
             <select
               id="sort"
               value={activeSort}
               onChange={(e) => onSortChange(e.target.value)}
-              className="px-3 py-2 border border-stone-300 rounded-md text-sm focus:outline-none focus:ring-2 focus:ring-green-600"
+              className="px-3 py-2 bg-white border border-[#ABB0B2] rounded-[3px] text-[14px] leading-[16px] transition-all duration-200 focus:outline-none focus:border-[#459361] focus:ring-1 focus:ring-[#459361]"
+              style={{ fontFamily: 'Helvetica, sans-serif' }}
             >
               {sortOptions.map((option) => (
                 <option key={option.value} value={option.value}>
@@ -117,20 +133,18 @@ export function FilterBar({ filters, activeFilters, onFilterChange, onClearAll, 
                   </div>
                 ))}
 
-                <div className="flex gap-2 pt-4">
-                  <button
-                    onClick={onClearAll}
-                    className="flex-1 px-4 py-2 border border-stone-300 rounded-md text-stone-700 hover:bg-stone-50"
-                  >
-                    Clear All
-                  </button>
-                  <button
-                    onClick={() => setMobileFiltersOpen(false)}
-                    className="flex-1 px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700"
-                  >
-                    Apply Filters
-                  </button>
-                </div>
+                  <div className="flex gap-3 pt-4">
+                    <div className="flex-1">
+                      <Button variant="secondary" size="default" onClick={onClearAll} className="w-full">
+                        CLEAR ALL
+                      </Button>
+                    </div>
+                    <div className="flex-1">
+                      <Button variant="primary" size="default" onClick={() => setMobileFiltersOpen(false)} className="w-full">
+                        APPLY
+                      </Button>
+                    </div>
+                  </div>
               </div>
             </motion.div>
           )}
@@ -151,15 +165,16 @@ function FilterDropdown({ filter, activeValue, onChange }) {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className={`
-          flex items-center gap-2 px-4 py-2 border rounded-md transition-colors
+          flex items-center gap-2 px-4 py-2 border-2 rounded-[42px] transition-all font-bold uppercase tracking-[0.6px] text-[13.6px]
           ${activeValue
-            ? 'border-green-600 bg-green-50 text-green-900'
-            : 'border-stone-300 hover:bg-stone-50 text-stone-700'
+            ? 'border-[#459361] bg-[#459361] text-[#FFFEF6]'
+            : 'border-[#459361] bg-[#FFFEF6] text-[rgba(69,147,97,0.75)] hover:shadow-[2px_2px_0px_#848484]'
           }
         `}
+        style={{ fontFamily: 'Archivo, sans-serif' }}
       >
         {activeValue || filter.label}
-        <ChevronDown size={16} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
+        <ChevronDown size={14} className={`transition-transform ${isOpen ? 'rotate-180' : ''}`} />
       </button>
 
       <AnimatePresence>
@@ -169,33 +184,34 @@ function FilterDropdown({ filter, activeValue, onChange }) {
               className="fixed inset-0 z-10"
               onClick={() => setIsOpen(false)}
             />
-            <motion.div
-              initial={{ opacity: 0, y: -10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              className="absolute top-full left-0 mt-2 w-56 bg-white border border-stone-200 rounded-lg shadow-xl z-20 overflow-hidden"
-            >
-              <div className="max-h-80 overflow-y-auto p-2">
-                {filter.options.map((option) => (
-                  <button
-                    key={option.value}
-                    onClick={() => {
-                      onChange(option.value)
-                      setIsOpen(false)
-                    }}
-                    className={`
-                      w-full text-left px-3 py-2 rounded-md transition-colors
-                      ${activeValue === option.value
-                        ? 'bg-green-100 text-green-900'
-                        : 'hover:bg-stone-50 text-stone-700'
-                      }
-                    `}
-                  >
-                    {option.label}
-                  </button>
-                ))}
-              </div>
-            </motion.div>
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -10 }}
+                className="absolute top-full left-0 mt-2 w-56 bg-[#FFFEF6] border-2 border-[#459361] rounded-[12px] shadow-[0px_6px_0px_#848484] z-20 overflow-hidden"
+              >
+                <div className="max-h-80 overflow-y-auto p-2">
+                  {filter.options.map((option) => (
+                    <button
+                      key={option.value}
+                      onClick={() => {
+                        onChange(option.value)
+                        setIsOpen(false)
+                      }}
+                      className={`
+                        w-full text-left px-3 py-2 rounded-md transition-colors text-[13px] font-bold tracking-[0.6px]
+                        ${activeValue === option.value
+                          ? 'bg-[rgba(69,147,97,0.1)] text-[#459361]'
+                          : 'hover:bg-[rgba(69,147,97,0.05)] text-[rgba(69,147,97,0.75)]'
+                        }
+                      `}
+                      style={{ fontFamily: 'Archivo, sans-serif' }}
+                    >
+                      {option.label}
+                    </button>
+                  ))}
+                </div>
+              </motion.div>
           </>
         )}
       </AnimatePresence>

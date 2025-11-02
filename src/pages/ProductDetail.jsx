@@ -1,13 +1,15 @@
 import { useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { PageHeader } from '../components/common/Hero'
+import { motion } from 'framer-motion'
 import { ProductCard } from '../components/common/ProductCard'
 import { ReviewGrid } from '../components/common/ReviewCarousel'
 import { Heart, ShoppingCart, Share2, Droplets, Sun, Wind, Shield } from 'lucide-react'
+import { Button } from '../design-system'
 
 /**
  * ProductDetail 页面 - 产品详情页
- * 展示单个产品的详细信息
+ * 日本美学：留白、克制、精致
+ * 完全使用设计系统
  */
 export function ProductDetail() {
   const { handle } = useParams()
@@ -93,23 +95,44 @@ export function ProductDetail() {
   ]
 
   return (
-    <div>
-      <PageHeader
-        title={product.name}
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Shop', href: '/shop' },
-          { label: 'Plants', href: '/shop/plants' },
-          { label: product.name }
-        ]}
-      />
+    <div className="bg-[#FFFEF6]">
+      {/* Page Header - 精致排版 */}
+      <section className="bg-[#FFFEF6] border-b-2 border-[#459361] py-20">
+        <div className="px-[50px] lg:px-[246px]">
+          {/* Breadcrumbs */}
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex items-center gap-2 text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold" style={{ fontFamily: 'Archivo, sans-serif' }}>
+              <li>
+                <Link to="/" className="hover:text-[#459361] transition-colors">Home</Link>
+              </li>
+              <li>/</li>
+              <li>
+                <Link to="/shop" className="hover:text-[#459361] transition-colors">Shop</Link>
+              </li>
+              <li>/</li>
+              <li>
+                <Link to="/shop/plants" className="hover:text-[#459361] transition-colors">Plants</Link>
+              </li>
+              <li>/</li>
+              <li className="text-[#111111]">{product.name}</li>
+            </ol>
+          </nav>
+        </div>
+      </section>
 
-      <section className="py-12 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      {/* Product Main Section - 克制的布局 */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
             {/* Product Images */}
             <div>
-              <div className="aspect-square bg-stone-100 rounded-lg overflow-hidden mb-4">
+              <motion.div 
+                className="aspect-square bg-[rgba(69,147,97,0.05)] rounded-[12px] overflow-hidden mb-6"
+                style={{ boxShadow: '0px 8px 0px rgba(132, 132, 132, 0.9)' }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+              >
                 {product.images[selectedImage] ? (
                   <img
                     src={product.images[selectedImage]}
@@ -117,11 +140,14 @@ export function ProductDetail() {
                     className="w-full h-full object-cover"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center text-stone-400">
+                  <div 
+                    className="w-full h-full flex items-center justify-center text-[14.6px] tracking-[0.6px] text-[rgba(69,147,97,0.4)]"
+                    style={{ fontFamily: 'Archivo, sans-serif' }}
+                  >
                     Product Image
                   </div>
                 )}
-              </div>
+              </motion.div>
 
               {/* Thumbnail Gallery */}
               <div className="grid grid-cols-4 gap-4">
@@ -129,14 +155,18 @@ export function ProductDetail() {
                   <button
                     key={index}
                     onClick={() => setSelectedImage(index)}
-                    className={`aspect-square bg-stone-100 rounded-md overflow-hidden border-2 transition-colors ${
-                      selectedImage === index ? 'border-green-600' : 'border-transparent'
+                    className={`aspect-square bg-[rgba(69,147,97,0.05)] rounded-[12px] overflow-hidden border-2 transition-all ${
+                      selectedImage === index ? 'border-[#459361]' : 'border-transparent'
                     }`}
+                    style={{ boxShadow: selectedImage === index ? '0px 4px 0px rgba(132, 132, 132, 0.9)' : 'none' }}
                   >
                     {img ? (
                       <img src={img} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />
                     ) : (
-                      <div className="w-full h-full flex items-center justify-center text-stone-400 text-xs">
+                      <div 
+                        className="w-full h-full flex items-center justify-center text-[13px] tracking-[0.6px] text-[rgba(69,147,97,0.4)] font-bold"
+                        style={{ fontFamily: 'Archivo, sans-serif' }}
+                      >
                         {index + 1}
                       </div>
                     )}
@@ -149,11 +179,12 @@ export function ProductDetail() {
             <div>
               {/* Badges */}
               {product.badges && (
-                <div className="flex gap-2 mb-4">
+                <div className="flex gap-2 mb-6">
                   {product.badges.map((badge, index) => (
                     <span
                       key={index}
-                      className="px-3 py-1 bg-green-100 text-green-700 rounded-full text-sm font-semibold"
+                      className="px-4 py-2 bg-[rgba(69,147,97,0.1)] text-[#459361] rounded-full text-[11px] leading-[18px] tracking-[0.7px] uppercase font-bold"
+                      style={{ fontFamily: 'Archivo, sans-serif' }}
                     >
                       {badge.label}
                     </span>
@@ -161,111 +192,183 @@ export function ProductDetail() {
                 </div>
               )}
 
-              <h1 className="text-3xl md:text-4xl font-bold text-stone-900 mb-2">
+              <h1 
+                className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-3"
+                style={{ fontFamily: 'Petrona, serif' }}
+              >
                 {product.name}
               </h1>
 
-              <p className="text-lg text-stone-600 italic mb-4">{product.scientificName}</p>
+              <p 
+                className="text-[15.6px] leading-[24.5px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] italic mb-6"
+                style={{ fontFamily: 'Archivo, sans-serif' }}
+              >
+                {product.scientificName}
+              </p>
 
               {/* Rating */}
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-4 mb-8">
                 <div className="flex gap-1">
                   {[...Array(5)].map((_, i) => (
-                    <span key={i} className={i < Math.floor(product.rating) ? 'text-yellow-500' : 'text-stone-300'}>
+                    <span key={i} className={`text-[20px] ${i < Math.floor(product.rating) ? 'text-[#ff9800]' : 'text-[rgba(69,147,97,0.2)]'}`}>
                       ★
                     </span>
                   ))}
                 </div>
-                <span className="text-stone-600">
+                <span 
+                  className="text-[14.6px] leading-[24px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                  style={{ fontFamily: 'Archivo, sans-serif' }}
+                >
                   {product.rating} ({product.reviewCount} reviews)
                 </span>
               </div>
 
               {/* Price */}
-              <div className="mb-6">
+              <div className="mb-8">
                 {product.compareAtPrice ? (
-                  <div className="flex items-center gap-3">
-                    <span className="text-3xl font-bold text-red-600">${product.price}</span>
-                    <span className="text-xl text-stone-500 line-through">${product.compareAtPrice}</span>
+                  <div className="flex items-center gap-4">
+                    <span 
+                      className="text-[40px] leading-[1.2] font-bold tracking-[0.72px] text-[#f44336]"
+                      style={{ fontFamily: 'Petrona, serif' }}
+                    >
+                      ${product.price}
+                    </span>
+                    <span 
+                      className="text-[28.8px] leading-[1.2] tracking-[0.72px] text-[rgba(69,147,97,0.5)] line-through"
+                      style={{ fontFamily: 'Petrona, serif' }}
+                    >
+                      ${product.compareAtPrice}
+                    </span>
                   </div>
                 ) : (
-                  <span className="text-3xl font-bold text-stone-900">${product.price}</span>
+                  <span 
+                    className="text-[40px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111]"
+                    style={{ fontFamily: 'Petrona, serif' }}
+                  >
+                    ${product.price}
+                  </span>
                 )}
               </div>
 
               {/* Description */}
-              <p className="text-stone-700 mb-6 leading-relaxed">{product.description}</p>
+              <p 
+                className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] mb-8"
+                style={{ fontFamily: 'Archivo, sans-serif' }}
+              >
+                {product.description}
+              </p>
 
               {/* Size Info */}
-              <div className="bg-stone-50 rounded-lg p-4 mb-6">
-                <h3 className="font-semibold text-stone-900 mb-2">Size Information</h3>
-                <div className="flex gap-6 text-sm text-stone-600">
+              <div 
+                className="bg-[rgba(69,147,97,0.05)] border-2 border-[rgba(69,147,97,0.1)] rounded-[12px] p-6 mb-8"
+              >
+                <h3 
+                  className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-3"
+                  style={{ fontFamily: 'Petrona, serif' }}
+                >
+                  Size Information
+                </h3>
+                <div 
+                  className="flex gap-8 text-[14.6px] leading-[24px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                  style={{ fontFamily: 'Archivo, sans-serif' }}
+                >
                   <div>
-                    <span className="font-medium">Pot Size:</span> {product.size.pot}
+                    <span className="font-bold">Pot Size:</span> {product.size.pot}
                   </div>
                   <div>
-                    <span className="font-medium">Plant Height:</span> {product.size.height}
+                    <span className="font-bold">Plant Height:</span> {product.size.height}
                   </div>
                 </div>
               </div>
 
               {/* Quantity & Add to Cart */}
-              <div className="flex gap-4 mb-6">
-                <div className="flex items-center border border-stone-300 rounded-md">
+              <div className="flex gap-4 mb-8">
+                <div 
+                  className="flex items-center border-2 border-[#459361] rounded-[12px] overflow-hidden"
+                  style={{ boxShadow: '0px 4px 0px rgba(132, 132, 132, 0.9)' }}
+                >
                   <button
                     onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                    className="px-4 py-3 hover:bg-stone-50 transition-colors"
+                    className="px-5 py-4 hover:bg-[rgba(69,147,97,0.05)] transition-colors text-[20px] font-bold text-[#459361]"
                   >
                     −
                   </button>
-                  <span className="px-6 py-3 border-x border-stone-300">{quantity}</span>
+                  <span 
+                    className="px-8 py-4 border-x-2 border-[#459361] text-[15.6px] tracking-[0.6px] font-bold"
+                    style={{ fontFamily: 'Archivo, sans-serif' }}
+                  >
+                    {quantity}
+                  </span>
                   <button
                     onClick={() => setQuantity(quantity + 1)}
-                    className="px-4 py-3 hover:bg-stone-50 transition-colors"
+                    className="px-5 py-4 hover:bg-[rgba(69,147,97,0.05)] transition-colors text-[20px] font-bold text-[#459361]"
                   >
                     +
                   </button>
                 </div>
 
-                <button className="flex-1 flex items-center justify-center gap-2 bg-green-600 text-white px-8 py-3 rounded-md hover:bg-green-700 transition-colors font-semibold">
-                  <ShoppingCart size={20} />
-                  Add to Cart
+                <button 
+                  className="flex-1 flex items-center justify-center gap-3 bg-[#459361] text-[#FFFEF6] border-2 border-[#459361] px-8 py-4 rounded-[12px] hover:bg-[#3a7a51] transition-colors text-[13.6px] leading-[18.2px] tracking-[0.6px] font-bold uppercase"
+                  style={{ 
+                    fontFamily: 'Archivo, sans-serif',
+                    boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)'
+                  }}
+                >
+                  <ShoppingCart size={20} strokeWidth={1.5} />
+                  ADD TO CART
                 </button>
 
                 <button
                   onClick={() => setIsLiked(!isLiked)}
-                  className="p-3 border border-stone-300 rounded-md hover:bg-stone-50 transition-colors"
+                  className="p-4 border-2 border-[#459361] rounded-[12px] hover:bg-[rgba(69,147,97,0.05)] transition-colors"
+                  style={{ boxShadow: '0px 4px 0px rgba(132, 132, 132, 0.9)' }}
                 >
-                  <Heart size={20} className={isLiked ? 'fill-red-500 text-red-500' : 'text-stone-600'} />
+                  <Heart size={20} className={isLiked ? 'fill-[#f44336] text-[#f44336]' : 'text-[#459361]'} strokeWidth={1.5} />
                 </button>
 
-                <button className="p-3 border border-stone-300 rounded-md hover:bg-stone-50 transition-colors">
-                  <Share2 size={20} className="text-stone-600" />
+                <button 
+                  className="p-4 border-2 border-[#459361] rounded-[12px] hover:bg-[rgba(69,147,97,0.05)] transition-colors"
+                  style={{ boxShadow: '0px 4px 0px rgba(132, 132, 132, 0.9)' }}
+                >
+                  <Share2 size={20} className="text-[#459361]" strokeWidth={1.5} />
                 </button>
               </div>
 
               {/* Local Delivery Info */}
-              <div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-6">
-                <p className="text-green-800">
-                  <span className="font-semibold">Free local delivery</span> on orders over $100 • Same-day available
+              <div 
+                className="bg-[rgba(69,147,97,0.1)] border-2 border-[#459361] rounded-[12px] p-6 mb-8"
+              >
+                <p 
+                  className="text-[14.6px] leading-[24px] tracking-[0.6px] text-[#459361]"
+                  style={{ fontFamily: 'Archivo, sans-serif' }}
+                >
+                  <span className="font-bold">Free local delivery</span> on orders over $100 • Same-day available
                 </p>
               </div>
 
               {/* SKU & Stock */}
-              <div className="text-sm text-stone-600 space-y-1">
+              <div 
+                className="text-[14.6px] leading-[24px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] space-y-1"
+                style={{ fontFamily: 'Archivo, sans-serif' }}
+              >
                 <p>SKU: {product.sku}</p>
-                <p className={product.inStock ? 'text-green-600' : 'text-red-600'}>
+                <p className={product.inStock ? 'text-[#459361] font-bold' : 'text-[#f44336] font-bold'}>
                   {product.inStock ? '✓ In Stock' : '✗ Out of Stock'}
                 </p>
               </div>
             </div>
           </div>
 
-          {/* Care Traits */}
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-stone-900 mb-8">Care Requirements</h2>
+          {/* Care Traits - 精致的护理卡片 */}
+          <div className="mt-32">
+            <h2 
+              className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-16 text-center"
+              style={{ fontFamily: 'Petrona, serif' }}
+            >
+              Care Requirements
+            </h2>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               <CareTraitCard
                 icon={Sun}
                 title="Light"
@@ -294,38 +397,61 @@ export function ProductDetail() {
             </div>
           </div>
 
-          {/* Detailed Description */}
-          <div className="mt-16 max-w-4xl">
-            <h2 className="text-2xl font-bold text-stone-900 mb-4">About This Plant</h2>
-            <p className="text-stone-700 leading-relaxed">{product.longDescription}</p>
+          {/* Detailed Description - 克制的排版 */}
+          <div className="mt-32 max-w-4xl mx-auto">
+            <h2 
+              className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-8 text-center"
+              style={{ fontFamily: 'Petrona, serif' }}
+            >
+              About This Plant
+            </h2>
+            <p 
+              className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] text-center"
+              style={{ fontFamily: 'Archivo, sans-serif' }}
+            >
+              {product.longDescription}
+            </p>
           </div>
 
           {/* Related Care Articles */}
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-stone-900 mb-6">Learn More</h2>
-            <div className="flex flex-wrap gap-4">
+          <div className="mt-32">
+            <h2 
+              className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-12 text-center"
+              style={{ fontFamily: 'Petrona, serif' }}
+            >
+              Learn More
+            </h2>
+            <div className="flex flex-wrap gap-6 justify-center">
               {careArticles.map((article, index) => (
-                <Link
-                  key={index}
-                  to={article.href}
-                  className="px-6 py-3 bg-green-50 text-green-700 rounded-md hover:bg-green-100 transition-colors font-medium"
-                >
-                  {article.title} →
+                <Link key={index} to={article.href}>
+                  <Button variant="primary" size="default">
+                    {article.title.toUpperCase()}
+                  </Button>
                 </Link>
               ))}
             </div>
           </div>
 
           {/* Reviews */}
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-stone-900 mb-8">Customer Reviews</h2>
+          <div className="mt-32">
+            <h2 
+              className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-16 text-center"
+              style={{ fontFamily: 'Petrona, serif' }}
+            >
+              Customer Reviews
+            </h2>
             <ReviewGrid reviews={reviews} columns={3} />
           </div>
 
           {/* Related Products */}
-          <div className="mt-16">
-            <h2 className="text-2xl font-bold text-stone-900 mb-8">You May Also Like</h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="mt-32">
+            <h2 
+              className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-16 text-center"
+              style={{ fontFamily: 'Petrona, serif' }}
+            >
+              You May Also Like
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
               {relatedProducts.map((relatedProduct) => (
                 <ProductCard key={relatedProduct.handle} product={relatedProduct} />
               ))}
@@ -338,18 +464,39 @@ export function ProductDetail() {
 }
 
 /**
- * CareTraitCard 组件 - 护理特征卡片
+ * CareTraitCard 组件 - 护理特征卡片，设计系统样式
  */
 function CareTraitCard({ icon: Icon, title, value, detail, warning }) {
   return (
-    <div className={`rounded-lg p-6 ${warning ? 'bg-red-50 border border-red-200' : 'bg-stone-50 border border-stone-200'}`}>
-      <div className={`inline-flex p-3 rounded-lg mb-4 ${warning ? 'bg-red-100' : 'bg-white'}`}>
-        <Icon size={24} className={warning ? 'text-red-600' : 'text-green-600'} />
+    <div 
+      className={`rounded-[12px] p-8 ${
+        warning 
+          ? 'bg-[rgba(244,67,54,0.05)] border-2 border-[rgba(244,67,54,0.3)]' 
+          : 'bg-[#FFFEF6] border-2 border-[#459361]'
+      }`}
+      style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
+    >
+      <div className={`inline-flex p-3 rounded-[12px] mb-6 ${warning ? 'bg-[rgba(244,67,54,0.1)]' : 'bg-[rgba(69,147,97,0.1)]'}`}>
+        <Icon size={24} className={warning ? 'text-[#f44336]' : 'text-[#459361]'} strokeWidth={1.5} />
       </div>
-      <h3 className="font-semibold text-stone-900 mb-2">{title}</h3>
-      <p className="font-medium text-stone-700 mb-2">{value}</p>
-      <p className="text-sm text-stone-600">{detail}</p>
+      <h3 
+        className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-2"
+        style={{ fontFamily: 'Petrona, serif' }}
+      >
+        {title}
+      </h3>
+      <p 
+        className="text-[14.6px] leading-[24px] tracking-[0.6px] text-[#111111] font-bold mb-3"
+        style={{ fontFamily: 'Archivo, sans-serif' }}
+      >
+        {value}
+      </p>
+      <p 
+        className="text-[14.6px] leading-[24px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+        style={{ fontFamily: 'Archivo, sans-serif' }}
+      >
+        {detail}
+      </p>
     </div>
   )
 }
-

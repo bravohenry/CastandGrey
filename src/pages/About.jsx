@@ -1,11 +1,14 @@
-import { PageHeader } from '../components/common/Hero'
+import { motion } from 'framer-motion'
 import { ReviewGrid } from '../components/common/ReviewCarousel'
 import { Award, Heart, Users, Leaf } from 'lucide-react'
+import { Link } from 'react-router-dom'
+import { Button } from '../design-system'
 import storePhoto from '../assets/Cast & Grey Botanical Bkg_files/storepicture.jpg'
 
 /**
  * About 页面 - 关于我们
- * 展示品牌故事、使命、愿景和社会证明
+ * 日本美学：留白、克制、精致
+ * 完全使用设计系统
  */
 export function About() {
   const values = [
@@ -89,67 +92,132 @@ export function About() {
   ]
 
   return (
-    <div>
-      <PageHeader
-        title="About Cast & Grey"
-        description="Bringing nature into urban life with premium plants and expert care"
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'About' }
-        ]}
-      />
+    <div className="bg-[#FFFEF6]">
+      {/* Page Header - 精致排版 */}
+      <section className="bg-[#FFFEF6] border-b-2 border-[#459361] py-20">
+        <div className="px-[50px] lg:px-[246px]">
+          {/* Breadcrumbs */}
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex items-center gap-2 text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold" style={{ fontFamily: 'Archivo, sans-serif' }}>
+              <li>
+                <Link to="/" className="hover:text-[#459361] transition-colors">Home</Link>
+              </li>
+              <li>/</li>
+              <li className="text-[#111111]">About</li>
+            </ol>
+          </nav>
+          
+          <h1 
+            className="text-[48px] lg:text-[64px] leading-[1.1] font-bold tracking-[0.72px] text-[#111111] mb-6"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
+            About Cast & Grey
+          </h1>
+          
+          <p 
+            className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
+            Bringing nature into urban life with premium plants and expert care
+          </p>
+        </div>
+      </section>
 
-      {/* Story Section with Parallax Effect */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="aspect-[4/3] bg-stone-100 rounded-lg overflow-hidden">
+      {/* Story Section - 克制的布局 */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+            <motion.div 
+              className="aspect-[4/3] rounded-[12px] overflow-hidden"
+              style={{ boxShadow: '0px 8px 0px rgba(132, 132, 132, 0.9)' }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+            >
               <img
                 src={storePhoto}
                 alt="Cast & Grey Store"
                 className="w-full h-full object-cover"
               />
-            </div>
+            </motion.div>
 
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-6">
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <h2 
+                className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-8"
+                style={{ fontFamily: 'Petrona, serif' }}
+              >
                 Our Story
               </h2>
-              <div className="space-y-4 text-stone-700 leading-relaxed">
-                <p>
+              <div className="space-y-6">
+                <p 
+                  className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                  style={{ fontFamily: 'Archivo, sans-serif' }}
+                >
                   Cast & Grey began in 2020 with a simple mission: to make high-quality plants and
                   expert botanical knowledge accessible to everyone in our urban community.
                 </p>
-                <p>
+                <p 
+                  className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                  style={{ fontFamily: 'Archivo, sans-serif' }}
+                >
                   What started as a small corner shop has grown into a beloved destination for plant
                   enthusiasts, beginners, and everyone in between. We've helped thousands of people
                   bring the joy and benefits of plants into their homes and offices.
                 </p>
-                <p>
+                <p 
+                  className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                  style={{ fontFamily: 'Archivo, sans-serif' }}
+                >
                   Today, we're proud to offer not just plants, but a complete plant care experience –
                   from our carefully curated selection to our expert services and educational resources.
                 </p>
               </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Mission & Vision */}
-      <section className="py-16 bg-green-50">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
+      {/* Mission & Vision - 精致卡片 */}
+      <section className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="bg-white rounded-lg p-8">
-              <h2 className="text-2xl font-bold text-stone-900 mb-4">Our Mission</h2>
-              <p className="text-stone-700 leading-relaxed">
+            <div 
+              className="bg-[#FFFEF6] border-2 border-[#FFFEF6] rounded-[12px] p-12"
+              style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
+            >
+              <h2 
+                className="text-[28.8px] leading-[36px] font-bold tracking-[0.72px] text-[#111111] mb-6"
+                style={{ fontFamily: 'Petrona, serif' }}
+              >
+                Our Mission
+              </h2>
+              <p 
+                className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                style={{ fontFamily: 'Archivo, sans-serif' }}
+              >
                 To inspire and enable people to live greener, healthier lives by providing
                 exceptional plants, expert guidance, and sustainable practices.
               </p>
             </div>
 
-            <div className="bg-white rounded-lg p-8">
-              <h2 className="text-2xl font-bold text-stone-900 mb-4">Our Vision</h2>
-              <p className="text-stone-700 leading-relaxed">
+            <div 
+              className="bg-[#FFFEF6] border-2 border-[#FFFEF6] rounded-[12px] p-12"
+              style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
+            >
+              <h2 
+                className="text-[28.8px] leading-[36px] font-bold tracking-[0.72px] text-[#111111] mb-6"
+                style={{ fontFamily: 'Petrona, serif' }}
+              >
+                Our Vision
+              </h2>
+              <p 
+                className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                style={{ fontFamily: 'Archivo, sans-serif' }}
+              >
                 To become the most trusted botanical partner for urban dwellers, creating a
                 world where everyone has access to the beauty and benefits of plants.
               </p>
@@ -158,10 +226,13 @@ export function About() {
         </div>
       </section>
 
-      {/* Core Values / USP */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl font-bold text-stone-900 mb-12 text-center">
+      {/* Core Values - 克制的排版 */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-20 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             What Makes Us Different
           </h2>
 
@@ -169,25 +240,42 @@ export function About() {
             {values.map((value, index) => {
               const Icon = value.icon
               return (
-                <div key={index} className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                    <Icon size={28} className="text-green-600" />
+                <motion.div 
+                  key={index} 
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                >
+                  <div className="inline-flex items-center justify-center w-20 h-20 bg-[rgba(69,147,97,0.1)] rounded-full mb-6">
+                    <Icon size={28} className="text-[#459361]" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-lg font-semibold text-stone-900 mb-2">
+                  <h3 
+                    className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-4"
+                    style={{ fontFamily: 'Petrona, serif' }}
+                  >
                     {value.title}
                   </h3>
-                  <p className="text-stone-600">{value.description}</p>
-                </div>
+                  <p 
+                    className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                    style={{ fontFamily: 'Archivo, sans-serif' }}
+                  >
+                    {value.description}
+                  </p>
+                </motion.div>
               )
             })}
           </div>
         </div>
       </section>
 
-      {/* Awards & Nominations */}
-      <section id="nominations" className="py-16 bg-stone-50">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <h2 className="text-3xl font-bold text-stone-900 mb-12 text-center">
+      {/* Awards - 精致的奖项卡片 */}
+      <section id="nominations" className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] max-w-5xl mx-auto">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-20 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             Awards & Recognition
           </h2>
 
@@ -195,15 +283,31 @@ export function About() {
             {awards.map((award, index) => (
               <div
                 key={index}
-                className="bg-white rounded-lg p-6 border border-stone-200 flex items-center gap-6"
+                className="bg-[#FFFEF6] border-2 border-[#FFFEF6] rounded-[12px] p-8 flex items-center gap-8"
+                style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
               >
-                <div className="flex-shrink-0 w-16 h-16 bg-yellow-100 rounded-full flex items-center justify-center">
-                  <Award size={28} className="text-yellow-600" />
+                <div className="flex-shrink-0 w-16 h-16 bg-[rgba(255,193,7,0.15)] rounded-full flex items-center justify-center">
+                  <Award size={28} className="text-[#ff9800]" strokeWidth={1.5} />
                 </div>
                 <div>
-                  <div className="text-sm text-stone-500 mb-1">{award.year}</div>
-                  <h3 className="font-semibold text-stone-900 mb-1">{award.title}</h3>
-                  <p className="text-stone-600">{award.organization}</p>
+                  <div 
+                    className="text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold mb-2"
+                    style={{ fontFamily: 'Archivo, sans-serif' }}
+                  >
+                    {award.year}
+                  </div>
+                  <h3 
+                    className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-1"
+                    style={{ fontFamily: 'Petrona, serif' }}
+                  >
+                    {award.title}
+                  </h3>
+                  <p 
+                    className="text-[14.6px] leading-[24px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                    style={{ fontFamily: 'Archivo, sans-serif' }}
+                  >
+                    {award.organization}
+                  </p>
                 </div>
               </div>
             ))}
@@ -211,29 +315,50 @@ export function About() {
         </div>
       </section>
 
-      {/* Press Features */}
-      <section id="reviews" className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <h2 className="text-3xl font-bold text-stone-900 mb-12 text-center">
+      {/* Press Features - 克制的布局 */}
+      <section id="reviews" className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] max-w-5xl mx-auto">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-20 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             In the Press
           </h2>
 
           <div className="space-y-6">
             {pressFeatures.map((press, index) => (
-              <div key={index} className="border-l-4 border-green-600 pl-6 py-2">
-                <p className="text-sm text-green-600 font-semibold mb-1">{press.outlet}</p>
-                <h3 className="font-semibold text-stone-900 mb-1">{press.headline}</h3>
-                <p className="text-sm text-stone-500">{press.date}</p>
+              <div key={index} className="border-l-4 border-[#459361] pl-8 py-4">
+                <p 
+                  className="text-[13px] leading-[18px] tracking-[0.7px] text-[#459361] uppercase font-bold mb-2"
+                  style={{ fontFamily: 'Archivo, sans-serif' }}
+                >
+                  {press.outlet}
+                </p>
+                <h3 
+                  className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-2"
+                  style={{ fontFamily: 'Petrona, serif' }}
+                >
+                  {press.headline}
+                </h3>
+                <p 
+                  className="text-[14.6px] leading-[24px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                  style={{ fontFamily: 'Archivo, sans-serif' }}
+                >
+                  {press.date}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Customer Reviews */}
-      <section className="py-16 bg-green-50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl font-bold text-stone-900 mb-12 text-center">
+      {/* Customer Reviews - 精致排版 */}
+      <section className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-20 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             What Our Customers Say
           </h2>
 
@@ -241,23 +366,29 @@ export function About() {
         </div>
       </section>
 
-      {/* Team CTA */}
-      <section className="py-16 bg-stone-900 text-white">
-        <div className="container mx-auto px-4 lg:px-8 text-center max-w-3xl">
-          <h2 className="text-3xl font-bold mb-4">Visit Us Today</h2>
-          <p className="text-stone-300 mb-8">
+      {/* Visit CTA - 精致的CTA */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px] text-center max-w-4xl mx-auto">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-8"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
+            Visit Us Today
+          </h2>
+          <p 
+            className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] mb-12 max-w-2xl mx-auto"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
             Experience the Cast & Grey difference in person. Our knowledgeable team is ready to help
             you find the perfect plants for your space.
           </p>
-          <a
-            href="/contact"
-            className="inline-block px-8 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-semibold"
-          >
-            Get Directions
-          </a>
+          <Link to="/contact">
+            <Button variant="primary" size="lg">
+              GET DIRECTIONS
+            </Button>
+          </Link>
         </div>
       </section>
     </div>
   )
 }
-

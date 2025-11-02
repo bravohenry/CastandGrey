@@ -1,12 +1,14 @@
 import { useState } from 'react'
-import { PageHeader } from '../components/common/Hero'
+import { motion } from 'framer-motion'
 import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { Link } from 'react-router-dom'
 import { ContactForm } from '../components/common/ContactForm'
 import storePhoto from '../assets/Cast & Grey Botanical Bkg_files/storepicture.jpg'
 
 /**
  * Contact 页面 - 联系我们
- * 包含商店位置、联系方式、地图和联系表单
+ * 日本美学：留白、克制、精致
+ * 完全使用设计系统
  */
 export function Contact() {
   const storeInfo = {
@@ -40,91 +42,151 @@ export function Contact() {
   ]
 
   return (
-    <div>
-      <PageHeader
-        title="Contact Us"
-        description="We'd love to hear from you. Visit us, call, or send us a message."
-        breadcrumbs={[
-          { label: 'Home', href: '/' },
-          { label: 'Contact' }
-        ]}
-      />
+    <div className="bg-[#FFFEF6]">
+      {/* Page Header - 精致排版 */}
+      <section className="bg-[#FFFEF6] border-b-2 border-[#459361] py-20">
+        <div className="px-[50px] lg:px-[246px]">
+          {/* Breadcrumbs */}
+          <nav aria-label="Breadcrumb" className="mb-6">
+            <ol className="flex items-center gap-2 text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold" style={{ fontFamily: 'Archivo, sans-serif' }}>
+              <li>
+                <Link to="/" className="hover:text-[#459361] transition-colors">Home</Link>
+              </li>
+              <li>/</li>
+              <li className="text-[#111111]">Contact</li>
+            </ol>
+          </nav>
+          
+          <h1 
+            className="text-[48px] lg:text-[64px] leading-[1.1] font-bold tracking-[0.72px] text-[#111111] mb-6"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
+            Contact Us
+          </h1>
+          
+          <p 
+            className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
+            We'd love to hear from you. Visit us, call, or send us a message.
+          </p>
+        </div>
+      </section>
 
-      {/* Store Hero Image */}
-      <section className="py-0">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="aspect-[21/9] bg-stone-100 rounded-lg overflow-hidden">
+      {/* Store Hero Image - 克制的展示 */}
+      <section className="py-20 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <motion.div 
+            className="aspect-[21/9] rounded-[12px] overflow-hidden"
+            style={{ boxShadow: '0px 8px 0px rgba(132, 132, 132, 0.9)' }}
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
             <img
               src={storePhoto}
               alt="Cast & Grey Storefront"
               className="w-full h-full object-cover"
             />
-          </div>
+          </motion.div>
         </div>
       </section>
 
-      {/* Contact Info & Map */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+      {/* Contact Info & Map - 精致的排版 */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 max-w-7xl mx-auto">
             {/* Contact Information */}
             <div>
-              <h2 className="text-3xl font-bold text-stone-900 mb-8">Visit Our Store</h2>
+              <h2 
+                className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-12"
+                style={{ fontFamily: 'Petrona, serif' }}
+              >
+                Visit Our Store
+              </h2>
 
-              <div className="space-y-6">
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <MapPin size={24} className="text-green-600" />
+              <div className="space-y-8">
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0 w-14 h-14 bg-[rgba(69,147,97,0.1)] rounded-[12px] flex items-center justify-center">
+                    <MapPin size={24} className="text-[#459361]" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-stone-900 mb-1">Address</h3>
-                    <address className="not-italic text-stone-600">
+                    <h3 
+                      className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-2"
+                      style={{ fontFamily: 'Petrona, serif' }}
+                    >
+                      Address
+                    </h3>
+                    <address 
+                      className="not-italic text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                      style={{ fontFamily: 'Archivo, sans-serif' }}
+                    >
                       {storeInfo.address}
                     </address>
                   </div>
                 </div>
 
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Phone size={24} className="text-green-600" />
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0 w-14 h-14 bg-[rgba(69,147,97,0.1)] rounded-[12px] flex items-center justify-center">
+                    <Phone size={24} className="text-[#459361]" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-stone-900 mb-1">Phone</h3>
+                    <h3 
+                      className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-2"
+                      style={{ fontFamily: 'Petrona, serif' }}
+                    >
+                      Phone
+                    </h3>
                     <a
                       href={`tel:${storeInfo.phone}`}
-                      className="text-stone-600 hover:text-green-600 transition-colors"
+                      className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] hover:text-[#459361] transition-colors"
+                      style={{ fontFamily: 'Archivo, sans-serif' }}
                     >
                       {storeInfo.phone}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Mail size={24} className="text-green-600" />
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0 w-14 h-14 bg-[rgba(69,147,97,0.1)] rounded-[12px] flex items-center justify-center">
+                    <Mail size={24} className="text-[#459361]" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-stone-900 mb-1">Email</h3>
+                    <h3 
+                      className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-2"
+                      style={{ fontFamily: 'Petrona, serif' }}
+                    >
+                      Email
+                    </h3>
                     <a
                       href={`mailto:${storeInfo.email}`}
-                      className="text-stone-600 hover:text-green-600 transition-colors"
+                      className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] hover:text-[#459361] transition-colors"
+                      style={{ fontFamily: 'Archivo, sans-serif' }}
                     >
                       {storeInfo.email}
                     </a>
                   </div>
                 </div>
 
-                <div className="flex gap-4">
-                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
-                    <Clock size={24} className="text-green-600" />
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0 w-14 h-14 bg-[rgba(69,147,97,0.1)] rounded-[12px] flex items-center justify-center">
+                    <Clock size={24} className="text-[#459361]" strokeWidth={1.5} />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-stone-900 mb-2">Store Hours</h3>
-                    <ul className="space-y-1 text-stone-600">
+                    <h3 
+                      className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-3"
+                      style={{ fontFamily: 'Petrona, serif' }}
+                    >
+                      Store Hours
+                    </h3>
+                    <ul 
+                      className="space-y-2 text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                      style={{ fontFamily: 'Archivo, sans-serif' }}
+                    >
                       {storeInfo.hours.map((schedule, index) => (
                         <li key={index} className="flex justify-between">
                           <span>{schedule.days}</span>
-                          <span className="font-medium ml-4">{schedule.time}</span>
+                          <span className="font-bold ml-4">{schedule.time}</span>
                         </li>
                       ))}
                     </ul>
@@ -135,14 +197,31 @@ export function Contact() {
 
             {/* Interactive Map */}
             <div>
-              <h2 className="text-3xl font-bold text-stone-900 mb-8">Find Us</h2>
-              <div className="aspect-square bg-stone-200 rounded-lg overflow-hidden">
-                {/* Placeholder for map - In production, integrate Google Maps or similar */}
-                <div className="w-full h-full flex items-center justify-center text-stone-500">
+              <h2 
+                className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-12"
+                style={{ fontFamily: 'Petrona, serif' }}
+              >
+                Find Us
+              </h2>
+              <div 
+                className="aspect-square bg-[rgba(69,147,97,0.05)] border-2 border-[#459361] rounded-[12px] overflow-hidden"
+                style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
+              >
+                <div className="w-full h-full flex items-center justify-center">
                   <div className="text-center">
-                    <MapPin size={48} className="mx-auto mb-4 text-stone-400" />
-                    <p>Interactive Map</p>
-                    <p className="text-sm mt-2">123 Botanical Avenue</p>
+                    <MapPin size={48} className="mx-auto mb-6 text-[#459361]" strokeWidth={1.5} />
+                    <p 
+                      className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-2"
+                      style={{ fontFamily: 'Petrona, serif' }}
+                    >
+                      Interactive Map
+                    </p>
+                    <p 
+                      className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                      style={{ fontFamily: 'Archivo, sans-serif' }}
+                    >
+                      123 Botanical Avenue
+                    </p>
                   </div>
                 </div>
               </div>
@@ -150,50 +229,68 @@ export function Contact() {
                 href="https://maps.google.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="block mt-4 text-center px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-semibold"
+                className="block mt-6 text-center px-8 py-4 bg-[#459361] text-[#FFFEF6] border-2 border-[#459361] rounded-[12px] hover:bg-[#3a7a51] transition-colors text-[13.6px] leading-[18.2px] tracking-[0.6px] font-bold uppercase"
+                style={{ 
+                  fontFamily: 'Archivo, sans-serif',
+                  boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)'
+                }}
               >
-                Get Directions
+                GET DIRECTIONS
               </a>
             </div>
           </div>
         </div>
       </section>
 
-      {/* FAQs Preview */}
-      <section className="py-16 bg-stone-50">
-        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
-          <h2 className="text-3xl font-bold text-stone-900 mb-8 text-center">
-            Frequently Asked Questions
-          </h2>
-
-          <div className="space-y-4">
-            {faqs.map((faq, index) => (
-              <FAQAccordion key={index} question={faq.question} answer={faq.answer} />
-            ))}
-          </div>
-
-          <div className="mt-8 text-center">
-            <a
-              href="/faqs"
-              className="text-green-600 hover:text-green-700 font-semibold"
+      {/* FAQs Preview - 克制的FAQ */}
+      <section className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <div className="max-w-4xl mx-auto">
+            <h2
+              className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-16 text-center"
+              style={{ fontFamily: 'Petrona, serif' }}
             >
-              View All FAQs →
-            </a>
+              Frequently Asked Questions
+            </h2>
+
+            <div className="space-y-6">
+              {faqs.map((faq, index) => (
+                <FAQAccordion key={index} question={faq.question} answer={faq.answer} />
+              ))}
+            </div>
+
+            <div className="mt-12 text-center">
+              <Link
+                to="/faqs"
+                className="inline-block text-[13.6px] leading-[18.2px] tracking-[0.6px] font-bold text-[rgba(255,254,246,0.9)] hover:text-[#FFFEF6] transition-colors border-b-2 border-[rgba(255,254,246,0.3)] hover:border-[#FFFEF6]"
+                style={{ fontFamily: 'Archivo, sans-serif' }}
+              >
+                VIEW ALL FAQS
+              </Link>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Contact Form */}
-      <section id="form" className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8 max-w-2xl">
-          <h2 className="text-3xl font-bold text-stone-900 mb-4 text-center">
-            Send Us a Message
-          </h2>
-          <p className="text-stone-600 mb-8 text-center">
-            Have a question? We typically respond within 24 hours.
-          </p>
+      {/* Contact Form - 精致的表单 */}
+      <section id="form" className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <div className="max-w-3xl mx-auto">
+            <h2
+              className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-6 text-center"
+              style={{ fontFamily: 'Petrona, serif' }}
+            >
+              Send Us a Message
+            </h2>
+            <p
+              className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] mb-12 text-center"
+              style={{ fontFamily: 'Archivo, sans-serif' }}
+            >
+              Have a question? We typically respond within 24 hours.
+            </p>
 
-          <ContactForm />
+            <ContactForm />
+          </div>
         </div>
       </section>
     </div>
@@ -201,29 +298,41 @@ export function Contact() {
 }
 
 /**
- * FAQAccordion 组件 - FAQ 手风琴
+ * FAQAccordion 组件 - FAQ 手风琴，设计系统样式
  */
 function FAQAccordion({ question, answer }) {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className="bg-white rounded-lg border border-stone-200 overflow-hidden">
+    <div 
+      className="bg-[#FFFEF6] border-2 border-[#FFFEF6] rounded-[12px] overflow-hidden"
+      style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
+    >
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="w-full flex items-center justify-between p-6 text-left hover:bg-stone-50 transition-colors"
+        className="w-full flex items-center justify-between p-8 text-left hover:bg-[rgba(69,147,97,0.02)] transition-colors"
       >
-        <h3 className="font-semibold text-stone-900 pr-4">{question}</h3>
-        <span className="text-green-600 text-2xl flex-shrink-0">
+        <h3 
+          className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] pr-6"
+          style={{ fontFamily: 'Petrona, serif' }}
+        >
+          {question}
+        </h3>
+        <span className="text-[#459361] text-[32px] flex-shrink-0 leading-none">
           {isOpen ? '−' : '+'}
         </span>
       </button>
 
       {isOpen && (
-        <div className="px-6 pb-6">
-          <p className="text-stone-600">{answer}</p>
+        <div className="px-8 pb-8 border-t-2 border-[rgba(69,147,97,0.1)]">
+          <p 
+            className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] pt-6"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
+            {answer}
+          </p>
         </div>
       )}
     </div>
   )
 }
-

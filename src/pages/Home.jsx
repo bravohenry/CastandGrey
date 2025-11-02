@@ -1,14 +1,17 @@
 import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion'
 import { Hero } from '../components/common/Hero'
 import { ProductCard } from '../components/common/ProductCard'
 import { ReviewCarousel } from '../components/common/ReviewCarousel'
+import { Button } from '../design-system'
 import { Truck, Heart, Shield, Leaf } from 'lucide-react'
-import photo2633 from '../assets/Cast & Grey Botanical Bkg_files/photo-2633.jpg'
+import storepicture from '../assets/Cast & Grey Botanical Bkg_files/storepicture.jpg'
 import photo2634 from '../assets/Cast & Grey Botanical Bkg_files/photo-2634.jpg'
 
 /**
  * Home 页面 - 主页/着陆页
- * 介绍品牌并提供快速访问入口
+ * 日本美学：留白、克制、精致、呼吸感
+ * 完全使用设计系统
  */
 export function Home() {
   // 模拟数据
@@ -107,124 +110,202 @@ export function Home() {
   ]
 
   return (
-    <div>
-      {/* Hero Section */}
-      <Hero
-        title="Bring Nature Home"
-        subtitle="Premium plants, expert care, and personalized service for urban plant lovers"
-        image={photo2633}
-        height="large"
-        overlay="dark"
-        cta={[
-          { label: 'Shop Plants', href: '/shop/plants' },
-          { label: 'Book a Service', href: '/services', variant: 'secondary' }
-        ]}
-      />
+    <div className="bg-[#FFFEF6]">
+      {/* Hero Section - 简洁克制，强调留白 */}
+      <section className="relative min-h-[85vh] flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0">
+          <img
+            src={storepicture}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
+        </div>
 
-      {/* Quick Access Tiles */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* Content - 精致排版 */}
+        <div className="relative z-10 px-[50px] lg:px-[246px] text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, ease: 'easeOut' }}
+          >
+            <h1 
+              className="text-[56px] lg:text-[72px] leading-[1.1] font-bold tracking-[0.72px] text-[#FFFEF6] mb-8"
+              style={{ fontFamily: 'Petrona, serif' }}
+            >
+              Bring Nature Home
+            </h1>
+            <p 
+              className="text-[16px] leading-[32px] tracking-[0.8px] text-[#FFFEF6] max-w-2xl mx-auto mb-16 opacity-90"
+              style={{ fontFamily: 'Archivo, sans-serif' }}
+            >
+              Premium plants, expert care, and personalized service for urban plant lovers
+            </p>
+            
+            {/* CTA Buttons - 使用设计系统 */}
+            <div className="flex flex-wrap gap-6 justify-center">
+              <Link to="/shop/plants">
+                <Button variant="onDark" size="lg">
+                  SHOP PLANTS
+                </Button>
+              </Link>
+              <Link to="/services">
+                <Button variant="secondary" size="lg">
+                  BOOK A SERVICE
+                </Button>
+              </Link>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Quick Access - 极简网格，大量留白 */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <QuickAccessTile
               title="Shop Plants"
               description="Explore our curated collection"
               href="/shop/plants"
-              image={null}
             />
             <QuickAccessTile
               title="Book Services"
               description="Professional plant care"
               href="/services"
-              image={null}
             />
             <QuickAccessTile
               title="Plant Care"
               description="Learn from our guides"
               href="/plant-care"
-              image={null}
             />
             <QuickAccessTile
               title="Gift Cards"
               description="Perfect for plant lovers"
               href="/gift-cards"
-              image={null}
             />
           </div>
         </div>
       </section>
 
-      {/* Best Sellers */}
-      <section className="py-16 bg-stone-50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="flex items-end justify-between mb-8">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-2">
-                Best Sellers
-              </h2>
-              <p className="text-stone-600">Our most loved plants</p>
-            </div>
-            <Link
-              to="/shop/best-sellers"
-              className="text-green-600 hover:text-green-700 font-semibold"
+      {/* Best Sellers - 简洁标题，克制排版 */}
+      <section className="py-32 bg-[#FFFEF6] border-t-2 border-[#459361]">
+        <div className="px-[50px] lg:px-[246px]">
+          {/* 标题区域 - 精致排版 */}
+          <div className="max-w-4xl mx-auto text-center mb-20">
+            <h2 
+              className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-4"
+              style={{ fontFamily: 'Petrona, serif' }}
             >
-              View All →
-            </Link>
+              Best Sellers
+            </h2>
+            <p 
+              className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+              style={{ fontFamily: 'Archivo, sans-serif' }}
+            >
+              Our most loved plants
+            </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* 产品网格 - 留白充足 */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
             {bestSellers.map((product) => (
               <ProductCard key={product.handle} product={product} />
             ))}
           </div>
+
+          {/* View All Link - 克制的交互 */}
+          <div className="text-center">
+            <Link 
+              to="/shop/best-sellers"
+              className="inline-block text-[13.6px] leading-[18.2px] tracking-[0.6px] font-bold text-[rgba(69,147,97,0.75)] hover:text-[#459361] transition-colors border-b-2 border-[rgba(69,147,97,0.3)] hover:border-[#459361]"
+              style={{ fontFamily: 'Archivo, sans-serif' }}
+            >
+              VIEW ALL
+            </Link>
+          </div>
         </div>
       </section>
 
-      {/* Local Highlights */}
-      <section className="py-16 bg-white">
-        <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-12 text-center">
+      {/* Features - 极简图标，精致排版 */}
+      <section className="py-32 bg-[#459361]">
+        <div className="px-[50px] lg:px-[246px]">
+          <h2 
+            className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-20 text-center"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
             Why Choose Cast & Grey
           </h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
             {features.map((feature, index) => {
               const Icon = feature.icon
               return (
-                <div key={index} className="text-center">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                    <Icon size={28} className="text-green-600" />
+                <motion.div 
+                  key={index} 
+                  className="text-center"
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1, duration: 0.6 }}
+                  viewport={{ once: true }}
+                >
+                  {/* 极简图标 - 仅线条 */}
+                  <div className="mb-6">
+                    <Icon size={40} className="mx-auto text-[#FFFEF6] opacity-90" strokeWidth={1.5} />
                   </div>
-                  <h3 className="text-lg font-semibold text-stone-900 mb-2">
+                  
+                  {/* 标题 */}
+                  <h3 
+                    className="text-[19.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#FFFEF6] mb-3"
+                    style={{ fontFamily: 'Petrona, serif' }}
+                  >
                     {feature.title}
                   </h3>
-                  <p className="text-stone-600">{feature.description}</p>
-                </div>
+                  
+                  {/* 描述 */}
+                  <p 
+                    className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(255,254,246,0.75)]"
+                    style={{ fontFamily: 'Archivo, sans-serif' }}
+                  >
+                    {feature.description}
+                  </p>
+                </motion.div>
               )
             })}
           </div>
         </div>
       </section>
 
-      {/* Customer Reviews */}
-      <section className="py-16 bg-green-50">
-        <div className="container mx-auto px-4 lg:px-8">
-          <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-4 text-center">
-            What Our Customers Say
-          </h2>
-          <p className="text-stone-600 text-center mb-12">
-            Rated 4.9/5 from over 500 reviews
-          </p>
+      {/* Customer Reviews - 留白充足，精致排版 */}
+      <section className="py-32 bg-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          {/* 标题区域 */}
+          <div className="max-w-3xl mx-auto text-center mb-20">
+            <h2 
+              className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-4"
+              style={{ fontFamily: 'Petrona, serif' }}
+            >
+              What Our Customers Say
+            </h2>
+            <p 
+              className="text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold"
+              style={{ fontFamily: 'Archivo, sans-serif' }}
+            >
+              Rated 4.9/5 from over 500 reviews
+            </p>
+          </div>
 
+          {/* 评论轮播 */}
           <div className="max-w-4xl mx-auto">
             <ReviewCarousel reviews={reviews} />
           </div>
         </div>
       </section>
 
-      {/* CTA Row */}
-      <section className="py-16 bg-stone-900">
-        <div className="container mx-auto px-4 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {/* CTA Row - 极简三栏，精致边框 */}
+      <section className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
+        <div className="px-[50px] lg:px-[246px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <CTABlock
               title="Shop Now"
               description="Browse our full collection of plants and accessories"
@@ -251,47 +332,71 @@ export function Home() {
 }
 
 /**
- * QuickAccessTile 组件 - 快速访问瓷砖
+ * QuickAccessTile 组件 - 极简卡片，精致边框
  */
-function QuickAccessTile({ title, description, href, image }) {
+function QuickAccessTile({ title, description, href }) {
   return (
     <Link
       to={href}
-      className="group relative aspect-square rounded-lg overflow-hidden bg-stone-100 hover:shadow-xl transition-shadow"
+      className="group relative block"
     >
-      {image ? (
-        <img
-          src={image}
-          alt={title}
-          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-        />
-      ) : (
-        <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-green-200" />
-      )}
+      {/* 卡片容器 - 使用设计系统的边框和阴影 */}
+      <motion.div
+        className="relative aspect-square bg-[#459361] border-2 border-[#FFFEF6] rounded-[12px] overflow-hidden"
+        style={{
+          boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)'
+        }}
+        whileHover={{ 
+          boxShadow: '0px 3px 0px rgba(132, 132, 132, 0.9)',
+          y: 3
+        }}
+        transition={{ duration: 0.2 }}
+      >
+        {/* 内容 - 居中排版 */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
+          <h3 
+            className="text-[28.8px] leading-[36px] font-bold tracking-[0.72px] text-[#FFFEF6] mb-3"
+            style={{ fontFamily: 'Petrona, serif' }}
+          >
+            {title}
+          </h3>
+          <p 
+            className="text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(255,254,246,0.75)] uppercase font-bold"
+            style={{ fontFamily: 'Archivo, sans-serif' }}
+          >
+            {description}
+          </p>
+        </div>
 
-      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
-
-      <div className="relative h-full flex flex-col justify-end p-6 text-white">
-        <h3 className="text-2xl font-bold mb-1">{title}</h3>
-        <p className="text-white/90">{description}</p>
-      </div>
+        {/* Hover 装饰线 */}
+        <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#FFFEF6] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+      </motion.div>
     </Link>
   )
 }
 
 /**
- * CTABlock 组件 - CTA 区块
+ * CTABlock 组件 - 极简 CTA，精致排版
  */
 function CTABlock({ title, description, href, buttonText }) {
   return (
-    <div className="bg-stone-800 rounded-lg p-8 text-center">
-      <h3 className="text-2xl font-bold text-white mb-3">{title}</h3>
-      <p className="text-stone-300 mb-6">{description}</p>
-      <Link
-        to={href}
-        className="inline-block px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-semibold"
+    <div className="text-center py-12 border-2 border-[#FFFEF6] rounded-[12px] px-8">
+      <h3 
+        className="text-[28.8px] leading-[36px] font-bold tracking-[0.72px] text-[#FFFEF6] mb-4"
+        style={{ fontFamily: 'Petrona, serif' }}
       >
-        {buttonText}
+        {title}
+      </h3>
+      <p 
+        className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(255,254,246,0.75)] mb-8 min-h-[58px]"
+        style={{ fontFamily: 'Archivo, sans-serif' }}
+      >
+        {description}
+      </p>
+      <Link to={href}>
+        <Button variant="onDark" size="default">
+          {buttonText.toUpperCase()}
+        </Button>
       </Link>
     </div>
   )
