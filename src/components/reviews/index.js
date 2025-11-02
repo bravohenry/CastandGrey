@@ -1,2 +1,0 @@
-export { ReviewCarousel } from './ReviewCarousel'
-

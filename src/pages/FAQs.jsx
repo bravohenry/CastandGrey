@@ -1,138 +1,257 @@
 import { useState } from 'react'
-import { ChevronDown } from 'lucide-react'
+import { PageHeader } from '../components/common/Hero'
+import { Search } from 'lucide-react'
 
 /**
- * FAQs Page - Centralized FAQ system
+ * FAQs 页面 - 常见问题
+ * 集中展示所有常见问题
  */
-export const FAQs = () => {
+export function FAQs() {
+  const [searchTerm, setSearchTerm] = useState('')
   const [openIndex, setOpenIndex] = useState(null)
 
-  const faqs = [
+  const faqCategories = [
     {
-      id: 'shipping',
-      category: 'Shipping & Delivery',
+      category: 'Orders & Delivery',
       questions: [
         {
-          q: 'What are your shipping options?',
-          a: 'We offer local delivery within 30 km radius. Delivery typically takes 24-48 hours. We also offer in-store pickup.',
+          question: 'Do you offer same-day delivery?',
+          answer: 'Yes! For orders placed before 2 PM, we offer same-day local delivery within a 10-mile radius. Orders placed after 2 PM will be delivered the next business day.'
         },
         {
-          q: 'How much does delivery cost?',
-          a: 'Local delivery is $20. Free delivery on orders over $100.',
+          question: 'What are the delivery fees?',
+          answer: 'Delivery fees vary based on distance: $10 for orders within 5 miles, $15 for 5-10 miles, and $20 for 10-15 miles. Free delivery on orders over $100.'
         },
-      ],
+        {
+          question: 'Can I pick up my order in-store?',
+          answer: 'Absolutely! Select "Store Pickup" at checkout. We\'ll notify you when your order is ready, typically within 2 hours during business hours.'
+        },
+        {
+          question: 'Do you ship nationwide?',
+          answer: 'Currently, we only offer local delivery and in-store pickup. We\'re working on expanding our shipping options in the future.'
+        }
+      ]
     },
     {
-      id: 'pickup',
-      category: 'Pickup & Store',
+      category: 'Returns & Guarantees',
       questions: [
         {
-          q: 'Can I pick up my order in-store?',
-          a: 'Yes, in-store pickup is available. You will receive an email when your order is ready.',
+          question: 'What is your return policy?',
+          answer: 'We offer a 30-day plant health guarantee. If your plant isn\'t thriving despite following our care instructions, bring it back with the original receipt and packaging for a replacement or full refund.'
         },
         {
-          q: 'What are your store hours?',
-          a: 'Monday-Friday: 9 AM - 6 PM, Saturday: 10 AM - 5 PM, Sunday: 11 AM - 4 PM.',
+          question: 'What if my plant arrives damaged?',
+          answer: 'Please contact us within 24 hours with photos. We\'ll arrange for a replacement or full refund immediately, including any delivery fees.'
         },
-      ],
+        {
+          question: 'Can I return planters or tools?',
+          answer: 'Yes, unused planters, tools, and accessories can be returned within 30 days with receipt for a full refund or exchange.'
+        }
+      ]
     },
     {
-      id: 'returns',
-      category: 'Returns & Exchanges',
-      questions: [
-        {
-          q: 'What is your return policy?',
-          a: 'We offer a 14-day return policy for unopened products. Plants must be returned in healthy condition.',
-        },
-        {
-          q: 'Do you offer plant health guarantees?',
-          a: 'Yes, we offer a 30-day health guarantee on all plants. If your plant shows signs of distress within 30 days, contact us.',
-        },
-      ],
-    },
-    {
-      id: 'plant-care',
       category: 'Plant Care',
       questions: [
         {
-          q: 'How do I know what size pot to use?',
-          a: 'Generally, choose a pot that is 2-4 inches larger in diameter than the current pot. Our staff can help you choose the right size.',
+          question: 'How do I know how much to water my plant?',
+          answer: 'Each plant comes with specific care instructions. Generally, check the soil moisture by inserting your finger 2 inches deep. If it\'s dry, it\'s time to water. Visit our Plant Care Hub for detailed guides.'
         },
         {
-          q: 'Which plants are pet-safe?',
-          a: 'We have a wide selection of pet-safe plants. Look for the "Pet-Safe" badge on products or visit our Plant Care section for a complete list.',
+          question: 'What should I do if my plant has yellow leaves?',
+          answer: 'Yellow leaves can indicate overwatering, underwatering, or nutrient deficiency. Check our troubleshooting guide or bring your plant to our store for a free consultation.'
         },
-      ],
+        {
+          question: 'Do you offer plant care consultations?',
+          answer: 'Yes! Every purchase includes a free 15-minute consultation. We also offer in-home consultations starting at $75. Book online or call us to schedule.'
+        }
+      ]
     },
+    {
+      category: 'Services',
+      questions: [
+        {
+          question: 'What in-store services do you offer?',
+          answer: 'We offer repotting ($15-30), pot drilling ($10), plant health checks (free), and consultations. No appointment needed for quick services.'
+        },
+        {
+          question: 'How does the in-home consultation work?',
+          answer: 'Our expert will visit your space to assess lighting, humidity, and your lifestyle. We\'ll recommend perfect plants and placement. Consultations start at $75 for up to 2 hours.'
+        },
+        {
+          question: 'Can I cancel or reschedule a service?',
+          answer: 'Yes! Cancel or reschedule up to 24 hours before your appointment for no charge. Cancellations within 24 hours are subject to a 50% fee.'
+        }
+      ]
+    },
+    {
+      category: 'Products',
+      questions: [
+        {
+          question: 'How do I know if a plant is pet-safe?',
+          answer: 'All our plants are clearly labeled. Look for the "Pet Safe" badge online or ask our staff in-store. We also have a dedicated Pet-Safe Collection.'
+        },
+        {
+          question: 'What sizes do your plants come in?',
+          answer: 'We offer plants in various pot sizes from 4" to 14". Product descriptions include both pot diameter and approximate plant height.'
+        },
+        {
+          question: 'Do you sell gift cards?',
+          answer: 'Yes! Physical and digital gift cards are available in any amount from $25 to $500. They never expire and can be used for products or services.'
+        },
+        {
+          question: 'Can I request a specific plant variety?',
+          answer: 'Absolutely! Contact us with your request. While we can\'t guarantee availability, we\'ll do our best to source it for you.'
+        }
+      ]
+    },
+    {
+      category: 'Account & Payments',
+      questions: [
+        {
+          question: 'What payment methods do you accept?',
+          answer: 'We accept Visa, Mastercard, American Express, Discover, PayPal, Apple Pay, and Google Pay. In-store, we also accept cash.'
+        },
+        {
+          question: 'Do I need an account to shop?',
+          answer: 'No, you can checkout as a guest. However, creating an account lets you track orders, save favorites, and earn rewards points.'
+        },
+        {
+          question: 'Is my payment information secure?',
+          answer: 'Yes, we use industry-standard encryption and never store your full credit card information. All transactions are processed through secure payment gateways.'
+        }
+      ]
+    }
   ]
 
-  const toggleQuestion = (categoryIndex, questionIndex) => {
-    const key = `${categoryIndex}-${questionIndex}`
-    setOpenIndex(openIndex === key ? null : key)
-  }
+  // 过滤 FAQs
+  const filteredCategories = faqCategories.map((cat) => ({
+    ...cat,
+    questions: cat.questions.filter(
+      (q) =>
+        q.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        q.answer.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+  })).filter((cat) => cat.questions.length > 0)
 
   return (
-    <div className="min-h-screen bg-[#FFFEF6] py-12 md:py-16">
-      <div className="max-w-4xl mx-auto px-5 md:px-10">
-        <h1
-          className="text-4xl md:text-5xl font-bold text-[#459361] mb-12 text-center"
-          style={{ fontFamily: 'Petrona, serif' }}
-        >
-          Frequently Asked Questions
-        </h1>
+    <div>
+      <PageHeader
+        title="Frequently Asked Questions"
+        description="Find answers to common questions about our products and services"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'FAQs' }
+        ]}
+      />
 
-        <div className="space-y-8">
-          {faqs.map((section, categoryIndex) => (
-            <div key={section.id}>
-              <h2
-                className="text-2xl font-bold text-[#459361] mb-4"
-                style={{ fontFamily: 'Petrona, serif' }}
-              >
-                {section.category}
-              </h2>
-              <div className="space-y-3">
-                {section.questions.map((item, questionIndex) => {
-                  const key = `${categoryIndex}-${questionIndex}`
-                  const isOpen = openIndex === key
-
-                  return (
-                    <div
-                      key={questionIndex}
-                      className="bg-[#FFFEF6] border-2 border-[#459361] rounded-lg overflow-hidden"
-                    >
-                      <button
-                        onClick={() => toggleQuestion(categoryIndex, questionIndex)}
-                        className="w-full flex justify-between items-center p-4 text-left"
-                        style={{ fontFamily: 'Archivo, sans-serif' }}
-                      >
-                        <span className="font-bold text-[#111111] text-[14.6px] pr-4">
-                          {item.q}
-                        </span>
-                        <ChevronDown
-                          className={`text-[#459361] flex-shrink-0 transition-transform ${
-                            isOpen ? 'rotate-180' : ''
-                          }`}
-                          size={20}
-                        />
-                      </button>
-                      {isOpen && (
-                        <div className="p-4 pt-0">
-                          <p
-                            className="text-[14.6px] text-[rgba(69,147,97,0.75)] leading-relaxed"
-                            style={{ fontFamily: 'Archivo, sans-serif' }}
-                          >
-                            {item.a}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  )
-                })}
-              </div>
-            </div>
-          ))}
+      {/* Search */}
+      <section className="py-8 bg-white border-b border-stone-200">
+        <div className="container mx-auto px-4 lg:px-8 max-w-2xl">
+          <div className="relative">
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" size={20} />
+            <input
+              type="text"
+              placeholder="Search FAQs..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="w-full pl-12 pr-4 py-3 border border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600"
+            />
+          </div>
         </div>
-      </div>
+      </section>
+
+      {/* FAQs by Category */}
+      <section className="py-16 bg-stone-50">
+        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
+          {filteredCategories.length > 0 ? (
+            <div className="space-y-12">
+              {filteredCategories.map((category, catIndex) => (
+                <div key={catIndex}>
+                  <h2 className="text-2xl font-bold text-stone-900 mb-6">
+                    {category.category}
+                  </h2>
+
+                  <div className="space-y-4">
+                    {category.questions.map((faq, qIndex) => {
+                      const globalIndex = `${catIndex}-${qIndex}`
+                      return (
+                        <FAQItem
+                          key={qIndex}
+                          question={faq.question}
+                          answer={faq.answer}
+                          isOpen={openIndex === globalIndex}
+                          onToggle={() => setOpenIndex(openIndex === globalIndex ? null : globalIndex)}
+                        />
+                      )
+                    })}
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <div className="text-center py-12">
+              <p className="text-xl text-stone-600 mb-4">No results found</p>
+              <button
+                onClick={() => setSearchTerm('')}
+                className="text-green-600 hover:text-green-700 font-semibold"
+              >
+                Clear search
+              </button>
+            </div>
+          )}
+        </div>
+      </section>
+
+      {/* Contact CTA */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8 text-center max-w-2xl">
+          <h2 className="text-2xl font-bold text-stone-900 mb-4">
+            Still Have Questions?
+          </h2>
+          <p className="text-stone-600 mb-8">
+            Can't find what you're looking for? Our team is here to help.
+          </p>
+          <div className="flex flex-wrap gap-4 justify-center">
+            <a
+              href="/contact"
+              className="px-8 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-semibold"
+            >
+              Contact Us
+            </a>
+            <a
+              href="tel:(555)123-4567"
+              className="px-8 py-3 border border-stone-300 text-stone-700 rounded-md hover:bg-stone-50 transition-colors font-semibold"
+            >
+              Call Us: (555) 123-4567
+            </a>
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/**
+ * FAQItem 组件 - 单个 FAQ 条目
+ */
+function FAQItem({ question, answer, isOpen, onToggle }) {
+  return (
+    <div className="bg-white rounded-lg border border-stone-200 overflow-hidden">
+      <button
+        onClick={onToggle}
+        className="w-full flex items-center justify-between p-6 text-left hover:bg-stone-50 transition-colors"
+      >
+        <h3 className="font-semibold text-stone-900 pr-4">{question}</h3>
+        <span className="text-green-600 text-2xl flex-shrink-0">
+          {isOpen ? '−' : '+'}
+        </span>
+      </button>
+
+      {isOpen && (
+        <div className="px-6 pb-6 border-t border-stone-100">
+          <p className="text-stone-600 pt-4">{answer}</p>
+        </div>
+      )}
     </div>
   )
 }

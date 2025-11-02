@@ -1,5 +1,7 @@
+/**
+ * Layout Components 索引文件 - 便于统一导入
+ */
 export { Header } from './Header'
 export { Footer } from './Footer'
-export { Navigation } from './Navigation'
-export { Layout } from './Layout'
+export { MainLayout } from './MainLayout'
 

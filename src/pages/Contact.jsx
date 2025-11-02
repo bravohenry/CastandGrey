@@ -1,92 +1,228 @@
-import { Hero } from '../components/hero/Hero'
-import { MapEmbed } from '../components/common/MapEmbed'
+import { useState } from 'react'
+import { PageHeader } from '../components/common/Hero'
+import { MapPin, Phone, Mail, Clock } from 'lucide-react'
 import { ContactForm } from '../components/common/ContactForm'
+import storePhoto from '../assets/Cast & Grey Botanical Bkg_files/storepicture.jpg'
 
 /**
- * Contact Page - Store info, map, FAQs, and contact form
+ * Contact 页面 - 联系我们
+ * 包含商店位置、联系方式、地图和联系表单
  */
-export const Contact = () => {
+export function Contact() {
+  const storeInfo = {
+    address: '123 Botanical Avenue, Green District, CA 90210',
+    phone: '(555) 123-4567',
+    email: 'hello@castandgrey.com',
+    hours: [
+      { days: 'Monday - Friday', time: '9:00 AM - 7:00 PM' },
+      { days: 'Saturday', time: '10:00 AM - 6:00 PM' },
+      { days: 'Sunday', time: '11:00 AM - 5:00 PM' }
+    ]
+  }
+
+  const faqs = [
+    {
+      question: 'Do you offer same-day delivery?',
+      answer: 'Yes! For orders placed before 2 PM, we offer same-day local delivery within a 10-mile radius.'
+    },
+    {
+      question: 'What is your return policy?',
+      answer: 'We offer a 30-day plant health guarantee. If your plant isn\'t thriving, bring it back with the original receipt for a replacement or refund.'
+    },
+    {
+      question: 'Do I need an appointment for in-store services?',
+      answer: 'Walk-ins are welcome for quick services like repotting. For in-home consultations, please book an appointment online or call us.'
+    },
+    {
+      question: 'Are all your plants pet-safe?',
+      answer: 'We carry both pet-safe and non-pet-safe plants. All plants are clearly labeled in-store and online. Check out our Pet-Safe Collection for safe options.'
+    }
+  ]
+
   return (
-    <div className="min-h-screen bg-[#FFFEF6]">
-      {/* Hero with storefront image */}
-      <Hero
-        title="Get in Touch"
-        subtitle="We'd love to hear from you"
+    <div>
+      <PageHeader
+        title="Contact Us"
+        description="We'd love to hear from you. Visit us, call, or send us a message."
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Contact' }
+        ]}
       />
 
-      <div className="max-w-7xl mx-auto px-5 md:px-10 py-12 md:py-16">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
-          {/* Left: Map and Store Info */}
-          <div>
-            <MapEmbed />
-            <div className="bg-[#FFFEF6] border-2 border-[#459361] rounded-lg p-6">
-              <h2
-                className="text-2xl font-bold text-[#459361] mb-4"
-                style={{ fontFamily: 'Petrona, serif' }}
-              >
-                Store Information
-              </h2>
-              <address
-                className="text-[14.6px] leading-relaxed not-italic"
-                style={{ fontFamily: 'Archivo, sans-serif' }}
-              >
-                <p className="mb-2 font-bold">Cast & Grey Botanical</p>
-                <p className="mb-2">123 Plant Street</p>
-                <p className="mb-2">Botanical District</p>
-                <p className="mb-4">City, State 12345</p>
-                <p className="mb-2">
-                  <strong>Phone:</strong>{' '}
-                  <a href="tel:+1234567890" className="hover:underline">
-                    (123) 456-7890
-                  </a>
-                </p>
-                <p>
-                  <strong>Email:</strong>{' '}
-                  <a href="mailto:info@castandgrey.com" className="hover:underline">
-                    info@castandgrey.com
-                  </a>
-                </p>
-              </address>
-              <div className="mt-6 pt-6 border-t border-[#848484]/30">
-                <h3
-                  className="font-bold text-[#459361] mb-2"
-                  style={{ fontFamily: 'Petrona, serif' }}
-                >
-                  Business Hours
-                </h3>
-                <dl
-                  className="text-[14.6px] space-y-1"
-                  style={{ fontFamily: 'Archivo, sans-serif' }}
-                >
-                  <div className="flex justify-between">
-                    <dt>Mon - Fri:</dt>
-                    <dd>9:00 AM - 6:00 PM</dd>
-                  </div>
-                  <div className="flex justify-between">
-                    <dt>Saturday:</dt>
-                    <dd>10:00 AM - 5:00 PM</dd>
-                  </div>
-                  <div className="flex justify-between">
-                    <dt>Sunday:</dt>
-                    <dd>11:00 AM - 4:00 PM</dd>
-                  </div>
-                </dl>
-              </div>
-            </div>
-          </div>
-
-          {/* Right: Contact Form */}
-          <div>
-            <h2
-              className="text-2xl font-bold text-[#459361] mb-6"
-              style={{ fontFamily: 'Petrona, serif' }}
-            >
-              Send Us a Message
-            </h2>
-            <ContactForm />
+      {/* Store Hero Image */}
+      <section className="py-0">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="aspect-[21/9] bg-stone-100 rounded-lg overflow-hidden">
+            <img
+              src={storePhoto}
+              alt="Cast & Grey Storefront"
+              className="w-full h-full object-cover"
+            />
           </div>
         </div>
-      </div>
+      </section>
+
+      {/* Contact Info & Map */}
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            {/* Contact Information */}
+            <div>
+              <h2 className="text-3xl font-bold text-stone-900 mb-8">Visit Our Store</h2>
+
+              <div className="space-y-6">
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <MapPin size={24} className="text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-stone-900 mb-1">Address</h3>
+                    <address className="not-italic text-stone-600">
+                      {storeInfo.address}
+                    </address>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <Phone size={24} className="text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-stone-900 mb-1">Phone</h3>
+                    <a
+                      href={`tel:${storeInfo.phone}`}
+                      className="text-stone-600 hover:text-green-600 transition-colors"
+                    >
+                      {storeInfo.phone}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <Mail size={24} className="text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-stone-900 mb-1">Email</h3>
+                    <a
+                      href={`mailto:${storeInfo.email}`}
+                      className="text-stone-600 hover:text-green-600 transition-colors"
+                    >
+                      {storeInfo.email}
+                    </a>
+                  </div>
+                </div>
+
+                <div className="flex gap-4">
+                  <div className="flex-shrink-0 w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+                    <Clock size={24} className="text-green-600" />
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-stone-900 mb-2">Store Hours</h3>
+                    <ul className="space-y-1 text-stone-600">
+                      {storeInfo.hours.map((schedule, index) => (
+                        <li key={index} className="flex justify-between">
+                          <span>{schedule.days}</span>
+                          <span className="font-medium ml-4">{schedule.time}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Interactive Map */}
+            <div>
+              <h2 className="text-3xl font-bold text-stone-900 mb-8">Find Us</h2>
+              <div className="aspect-square bg-stone-200 rounded-lg overflow-hidden">
+                {/* Placeholder for map - In production, integrate Google Maps or similar */}
+                <div className="w-full h-full flex items-center justify-center text-stone-500">
+                  <div className="text-center">
+                    <MapPin size={48} className="mx-auto mb-4 text-stone-400" />
+                    <p>Interactive Map</p>
+                    <p className="text-sm mt-2">123 Botanical Avenue</p>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="https://maps.google.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block mt-4 text-center px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-semibold"
+              >
+                Get Directions
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQs Preview */}
+      <section className="py-16 bg-stone-50">
+        <div className="container mx-auto px-4 lg:px-8 max-w-4xl">
+          <h2 className="text-3xl font-bold text-stone-900 mb-8 text-center">
+            Frequently Asked Questions
+          </h2>
+
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <FAQAccordion key={index} question={faq.question} answer={faq.answer} />
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
+            <a
+              href="/faqs"
+              className="text-green-600 hover:text-green-700 font-semibold"
+            >
+              View All FAQs →
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form */}
+      <section id="form" className="py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8 max-w-2xl">
+          <h2 className="text-3xl font-bold text-stone-900 mb-4 text-center">
+            Send Us a Message
+          </h2>
+          <p className="text-stone-600 mb-8 text-center">
+            Have a question? We typically respond within 24 hours.
+          </p>
+
+          <ContactForm />
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/**
+ * FAQAccordion 组件 - FAQ 手风琴
+ */
+function FAQAccordion({ question, answer }) {
+  const [isOpen, setIsOpen] = useState(false)
+
+  return (
+    <div className="bg-white rounded-lg border border-stone-200 overflow-hidden">
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-6 text-left hover:bg-stone-50 transition-colors"
+      >
+        <h3 className="font-semibold text-stone-900 pr-4">{question}</h3>
+        <span className="text-green-600 text-2xl flex-shrink-0">
+          {isOpen ? '−' : '+'}
+        </span>
+      </button>
+
+      {isOpen && (
+        <div className="px-6 pb-6">
+          <p className="text-stone-600">{answer}</p>
+        </div>
+      )}
     </div>
   )
 }

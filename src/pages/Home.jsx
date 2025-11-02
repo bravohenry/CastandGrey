@@ -1,147 +1,298 @@
 import { Link } from 'react-router-dom'
-import { Hero } from '../components/hero/Hero'
-import { Card, CardContent, CardTitle, CardDescription } from '../design-system'
-import { ReviewCarousel } from '../components/reviews/ReviewCarousel'
-import { ProductGrid } from '../components/shop/ProductGrid'
-import { Button } from '../design-system'
-import { products } from '../data/products'
-import { getGeneralReviews } from '../data/reviews'
+import { Hero } from '../components/common/Hero'
+import { ProductCard } from '../components/common/ProductCard'
+import { ReviewCarousel } from '../components/common/ReviewCarousel'
+import { Truck, Heart, Shield, Leaf } from 'lucide-react'
+import photo2633 from '../assets/Cast & Grey Botanical Bkg_files/photo-2633.jpg'
+import photo2634 from '../assets/Cast & Grey Botanical Bkg_files/photo-2634.jpg'
 
 /**
- * Home / Landing Page
+ * Home 页面 - 主页/着陆页
+ * 介绍品牌并提供快速访问入口
  */
-export const Home = () => {
-  const bestSellers = products.filter(p => p.badges?.includes('Best Seller')).slice(0, 4)
-  const reviews = getGeneralReviews(3)
+export function Home() {
+  // 模拟数据
+  const bestSellers = [
+    {
+      handle: 'monstera-deliciosa',
+      name: 'Monstera Deliciosa',
+      scientificName: 'Monstera deliciosa',
+      price: 45,
+      image: null,
+      badges: [{ label: 'Best Seller', type: 'new' }],
+      careTraits: { light: 'Bright Indirect', water: 'Weekly' },
+      rating: 4.8,
+      reviewCount: 124
+    },
+    {
+      handle: 'snake-plant',
+      name: 'Snake Plant',
+      scientificName: 'Sansevieria trifasciata',
+      price: 28,
+      image: null,
+      badges: [{ label: 'Pet Safe', type: 'pet-safe' }],
+      careTraits: { light: 'Low Light', water: 'Bi-weekly' },
+      rating: 4.9,
+      reviewCount: 98
+    },
+    {
+      handle: 'fiddle-leaf-fig',
+      name: 'Fiddle Leaf Fig',
+      scientificName: 'Ficus lyrata',
+      price: 65,
+      image: null,
+      badges: [{ label: 'Popular', type: 'new' }],
+      careTraits: { light: 'Bright Indirect', water: 'Weekly' },
+      rating: 4.6,
+      reviewCount: 87
+    },
+    {
+      handle: 'pothos-golden',
+      name: 'Golden Pothos',
+      scientificName: 'Epipremnum aureum',
+      price: 22,
+      image: null,
+      badges: [{ label: 'Low Maintenance', type: 'new' }],
+      careTraits: { light: 'Low-Medium', water: 'Weekly' },
+      rating: 4.9,
+      reviewCount: 156
+    }
+  ]
+
+  const reviews = [
+    {
+      rating: 5,
+      comment: 'Absolutely love my new Monstera! It arrived in perfect condition and the care instructions were so helpful. The team at Cast & Grey really knows their plants.',
+      author: 'Sarah Martinez',
+      verified: true,
+      date: 'October 2025'
+    },
+    {
+      rating: 5,
+      comment: 'The in-home consultation service was amazing. They helped me choose the perfect plants for my apartment and even potted them for me. Highly recommend!',
+      author: 'Michael Chen',
+      verified: true,
+      date: 'October 2025'
+    },
+    {
+      rating: 5,
+      comment: 'Best plant shop in the city! The staff is knowledgeable, the selection is incredible, and the prices are fair. My apartment has never looked better.',
+      author: 'Emma Johnson',
+      verified: true,
+      date: 'September 2025'
+    }
+  ]
+
+  const features = [
+    {
+      icon: Truck,
+      title: 'Local Delivery',
+      description: 'Fast and careful delivery to your doorstep'
+    },
+    {
+      icon: Leaf,
+      title: 'Plant Health Guarantee',
+      description: '30-day guarantee on all plants'
+    },
+    {
+      icon: Heart,
+      title: 'Pet-Safe Options',
+      description: 'Curated selection of pet-friendly plants'
+    },
+    {
+      icon: Shield,
+      title: 'Expert Care Support',
+      description: 'Free consultation with every purchase'
+    }
+  ]
 
   return (
-    <div className="min-h-screen bg-[#FFFEF6]">
-      {/* Hero Banner */}
+    <div>
+      {/* Hero Section */}
       <Hero
-        title="Welcome to Cast & Grey Botanical"
-        subtitle="Your favorite community indoor plant boutique"
-        ctaText="Shop Now"
-        ctaLink="/shop"
+        title="Bring Nature Home"
+        subtitle="Premium plants, expert care, and personalized service for urban plant lovers"
+        image={photo2633}
+        height="large"
+        overlay="dark"
+        cta={[
+          { label: 'Shop Plants', href: '/shop/plants' },
+          { label: 'Book a Service', href: '/services', variant: 'secondary' }
+        ]}
       />
 
       {/* Quick Access Tiles */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-5 md:px-10">
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <Link to="/shop">
-              <Card variant="info" padding="lg" className="h-full text-center hover:scale-105 transition-transform">
-                <CardContent>
-                  <div className="text-4xl mb-4">🛍️</div>
-                  <CardTitle variant="info">Shop</CardTitle>
-                  <CardDescription>Browse our plant collection</CardDescription>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/services">
-              <Card variant="info" padding="lg" className="h-full text-center hover:scale-105 transition-transform">
-                <CardContent>
-                  <div className="text-4xl mb-4">🌱</div>
-                  <CardTitle variant="info">Services</CardTitle>
-                  <CardDescription>Book professional plant care</CardDescription>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/plant-care">
-              <Card variant="info" padding="lg" className="h-full text-center hover:scale-105 transition-transform">
-                <CardContent>
-                  <div className="text-4xl mb-4">📚</div>
-                  <CardTitle variant="info">Plant Care</CardTitle>
-                  <CardDescription>Learn plant care tips</CardDescription>
-                </CardContent>
-              </Card>
-            </Link>
-            <Link to="/shop?category=gift-cards">
-              <Card variant="info" padding="lg" className="h-full text-center hover:scale-105 transition-transform">
-                <CardContent>
-                  <div className="text-4xl mb-4">🎁</div>
-                  <CardTitle variant="info">Gift Cards</CardTitle>
-                  <CardDescription>Perfect plant gift</CardDescription>
-                </CardContent>
-              </Card>
-            </Link>
+            <QuickAccessTile
+              title="Shop Plants"
+              description="Explore our curated collection"
+              href="/shop/plants"
+              image={null}
+            />
+            <QuickAccessTile
+              title="Book Services"
+              description="Professional plant care"
+              href="/services"
+              image={null}
+            />
+            <QuickAccessTile
+              title="Plant Care"
+              description="Learn from our guides"
+              href="/plant-care"
+              image={null}
+            />
+            <QuickAccessTile
+              title="Gift Cards"
+              description="Perfect for plant lovers"
+              href="/gift-cards"
+              image={null}
+            />
           </div>
         </div>
       </section>
 
       {/* Best Sellers */}
-      <section className="py-12 md:py-16 bg-[#FFFEF6]">
-        <div className="max-w-7xl mx-auto px-5 md:px-10">
-          <h2
-            className="text-3xl md:text-4xl font-bold text-[#459361] mb-8 text-center"
-            style={{ fontFamily: 'Petrona, serif' }}
-          >
-            Best Sellers
-          </h2>
-          <ProductGrid products={bestSellers} />
-          <div className="text-center mt-8">
-            <Link to="/shop">
-              <Button variant="secondary" size="lg">
-                Shop All Products
-              </Button>
+      <section className="py-16 bg-stone-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="flex items-end justify-between mb-8">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-2">
+                Best Sellers
+              </h2>
+              <p className="text-stone-600">Our most loved plants</p>
+            </div>
+            <Link
+              to="/shop/best-sellers"
+              className="text-green-600 hover:text-green-700 font-semibold"
+            >
+              View All →
             </Link>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {bestSellers.map((product) => (
+              <ProductCard key={product.handle} product={product} />
+            ))}
           </div>
         </div>
       </section>
 
       {/* Local Highlights */}
-      <section className="py-12 md:py-16 bg-[#459361] text-[#FFFEF6]">
-        <div className="max-w-7xl mx-auto px-5 md:px-10">
-          <h2
-            className="text-3xl font-bold mb-8 text-center"
-            style={{ fontFamily: 'Petrona, serif' }}
-          >
-            Local Highlights
+      <section className="py-16 bg-white">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-12 text-center">
+            Why Choose Cast & Grey
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
-            <div>
-              <div className="text-4xl mb-4">🚗</div>
-              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Petrona, serif' }}>Pickup</h3>
-              <p style={{ fontFamily: 'Archivo, sans-serif' }}>In-store pickup available</p>
-            </div>
-            <div>
-              <div className="text-4xl mb-4">📦</div>
-              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Petrona, serif' }}>Delivery</h3>
-              <p style={{ fontFamily: 'Archivo, sans-serif' }}>Local delivery service</p>
-            </div>
-            <div>
-              <div className="text-4xl mb-4">🐾</div>
-              <h3 className="text-xl font-bold mb-2" style={{ fontFamily: 'Petrona, serif' }}>Pet-Safe</h3>
-              <p style={{ fontFamily: 'Archivo, sans-serif' }}>Pet-safe plant selection</p>
-            </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {features.map((feature, index) => {
+              const Icon = feature.icon
+              return (
+                <div key={index} className="text-center">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                    <Icon size={28} className="text-green-600" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-stone-900 mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-stone-600">{feature.description}</p>
+                </div>
+              )
+            })}
           </div>
         </div>
       </section>
 
       {/* Customer Reviews */}
-      {reviews.length > 0 && <ReviewCarousel reviews={reviews} />}
+      <section className="py-16 bg-green-50">
+        <div className="container mx-auto px-4 lg:px-8">
+          <h2 className="text-3xl md:text-4xl font-bold text-stone-900 mb-4 text-center">
+            What Our Customers Say
+          </h2>
+          <p className="text-stone-600 text-center mb-12">
+            Rated 4.9/5 from over 500 reviews
+          </p>
 
-      {/* Final CTA Row */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-4xl mx-auto px-5 md:px-10 text-center">
-          <div className="flex flex-col md:flex-row gap-4 justify-center">
-            <Link to="/shop">
-              <Button variant="primary" size="lg">
-                Shop Now
-              </Button>
-            </Link>
-            <Link to="/services">
-              <Button variant="secondary" size="lg">
-                Book Service
-              </Button>
-            </Link>
-            <Link to="/plant-care">
-              <Button variant="secondary" size="lg">
-                Learn Plant Care
-              </Button>
-            </Link>
+          <div className="max-w-4xl mx-auto">
+            <ReviewCarousel reviews={reviews} />
           </div>
         </div>
       </section>
+
+      {/* CTA Row */}
+      <section className="py-16 bg-stone-900">
+        <div className="container mx-auto px-4 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <CTABlock
+              title="Shop Now"
+              description="Browse our full collection of plants and accessories"
+              href="/shop"
+              buttonText="Explore Shop"
+            />
+            <CTABlock
+              title="Book Service"
+              description="Get professional help with plant care and installation"
+              href="/services"
+              buttonText="View Services"
+            />
+            <CTABlock
+              title="Learn Plant Care"
+              description="Access our comprehensive plant care guides"
+              href="/plant-care"
+              buttonText="Read Guides"
+            />
+          </div>
+        </div>
+      </section>
+    </div>
+  )
+}
+
+/**
+ * QuickAccessTile 组件 - 快速访问瓷砖
+ */
+function QuickAccessTile({ title, description, href, image }) {
+  return (
+    <Link
+      to={href}
+      className="group relative aspect-square rounded-lg overflow-hidden bg-stone-100 hover:shadow-xl transition-shadow"
+    >
+      {image ? (
+        <img
+          src={image}
+          alt={title}
+          className="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
+      ) : (
+        <div className="absolute inset-0 bg-gradient-to-br from-green-100 to-green-200" />
+      )}
+
+      <div className="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition-colors" />
+
+      <div className="relative h-full flex flex-col justify-end p-6 text-white">
+        <h3 className="text-2xl font-bold mb-1">{title}</h3>
+        <p className="text-white/90">{description}</p>
+      </div>
+    </Link>
+  )
+}
+
+/**
+ * CTABlock 组件 - CTA 区块
+ */
+function CTABlock({ title, description, href, buttonText }) {
+  return (
+    <div className="bg-stone-800 rounded-lg p-8 text-center">
+      <h3 className="text-2xl font-bold text-white mb-3">{title}</h3>
+      <p className="text-stone-300 mb-6">{description}</p>
+      <Link
+        to={href}
+        className="inline-block px-6 py-3 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-semibold"
+      >
+        {buttonText}
+      </Link>
     </div>
   )
 }

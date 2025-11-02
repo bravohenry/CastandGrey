@@ -1,145 +1,148 @@
 import { useState } from 'react'
-import { Input, Form, FormGroup, Button } from '../../design-system'
 
 /**
- * ContactForm Component - Contact form with subject dropdown, name, email, and comment
+ * ContactForm 组件 - 联系表单
+ * 用于 Contact 页面和其他需要联系功能的地方
  */
-export const ContactForm = () => {
+export function ContactForm() {
   const [formData, setFormData] = useState({
     subject: '',
     name: '',
     email: '',
-    comment: '',
+    message: ''
   })
-  const [errors, setErrors] = useState({})
+
   const [submitted, setSubmitted] = useState(false)
+
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value
+    }))
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    const newErrors = {}
-
-    if (!formData.subject) newErrors.subject = 'Please select a subject'
-    if (!formData.name) newErrors.name = 'Name is required'
-    if (!formData.email) newErrors.email = 'Email is required'
-    else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = 'Email is invalid'
-    }
-    if (!formData.comment) newErrors.comment = 'Comment is required'
-
-    if (Object.keys(newErrors).length > 0) {
-      setErrors(newErrors)
-      return
-    }
-
-    // Handle form submission
+    // 表单提交逻辑
     console.log('Form submitted:', formData)
     setSubmitted(true)
-    setErrors({})
+    
+    // 重置表单
+    setTimeout(() => {
+      setFormData({
+        subject: '',
+        name: '',
+        email: '',
+        message: ''
+      })
+      setSubmitted(false)
+    }, 3000)
   }
 
   if (submitted) {
     return (
-      <div className="bg-[#459361] text-[#FFFEF6] p-8 rounded-lg text-center">
-        <p className="text-lg font-bold mb-2" style={{ fontFamily: 'Petrona, serif' }}>
-          Thank you for your message!
-        </p>
-        <p style={{ fontFamily: 'Archivo, sans-serif' }}>
-          We'll get back to you within 24-48 hours.
+      <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
+        <div className="text-green-600 text-5xl mb-4">✓</div>
+        <h3 className="text-2xl font-bold text-stone-900 mb-2">
+          Message Sent!
+        </h3>
+        <p className="text-stone-600">
+          We'll get back to you within 24 hours.
         </p>
       </div>
     )
   }
 
   return (
-    <Form onSubmit={handleSubmit}>
-      <FormGroup>
-        <label
-          htmlFor="subject"
-          className="block text-[14.6px] font-bold text-[#111111] mb-1"
-          style={{ fontFamily: 'Archivo, sans-serif' }}
-        >
-          Subject <span className="text-[#E85C41]">*</span>
+    <form onSubmit={handleSubmit} className="bg-white rounded-lg border border-stone-200 p-6 md:p-8">
+      {/* Subject */}
+      <div className="mb-6">
+        <label htmlFor="subject" className="block text-sm font-semibold text-stone-900 mb-2">
+          Subject *
         </label>
         <select
           id="subject"
+          name="subject"
           value={formData.subject}
-          onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-          className={`w-full px-3 py-2 border rounded-lg text-[14.6px] text-[#111111] focus:outline-none ${
-            errors.subject ? 'border-[#E85C41]' : 'border-[#848484] focus:border-[#459361]'
-          }`}
-          style={{ fontFamily: 'Archivo, sans-serif' }}
+          onChange={handleChange}
+          required
+          className="w-full px-4 py-3 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
         >
           <option value="">Select a subject</option>
           <option value="general">General Inquiry</option>
-          <option value="product">Product Question</option>
-          <option value="service">Service Inquiry</option>
-          <option value="support">Customer Support</option>
+          <option value="order">Order Question</option>
+          <option value="service">Service Booking</option>
+          <option value="plant-care">Plant Care Help</option>
+          <option value="feedback">Feedback</option>
+          <option value="other">Other</option>
         </select>
-        {errors.subject && (
-          <p className="text-[#E85C41] text-sm mt-1">{errors.subject}</p>
-        )}
-      </FormGroup>
-
-      <FormGroup>
-        <Input
-          label="Name"
-          type="text"
-          required
-          value={formData.name}
-          onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          error={!!errors.name}
-          errorMessage={errors.name}
-        />
-      </FormGroup>
-
-      <FormGroup>
-        <Input
-          label="Email"
-          type="email"
-          required
-          value={formData.email}
-          onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          error={!!errors.email}
-          errorMessage={errors.email}
-        />
-      </FormGroup>
-
-      <FormGroup>
-        <label
-          htmlFor="comment"
-          className="block text-[14.6px] font-bold text-[#111111] mb-1"
-          style={{ fontFamily: 'Archivo, sans-serif' }}
-        >
-          Comment <span className="text-[#E85C41]">*</span>
-        </label>
-        <textarea
-          id="comment"
-          value={formData.comment}
-          onChange={(e) => setFormData({ ...formData, comment: e.target.value })}
-          rows={5}
-          className={`w-full px-3 py-2 border rounded-lg text-[14.6px] text-[#111111] focus:outline-none ${
-            errors.comment ? 'border-[#E85C41]' : 'border-[#848484] focus:border-[#459361]'
-          }`}
-          style={{ fontFamily: 'Archivo, sans-serif' }}
-        />
-        {errors.comment && (
-          <p className="text-[#E85C41] text-sm mt-1">{errors.comment}</p>
-        )}
-      </FormGroup>
-
-      <div className="mt-6">
-        <Button type="submit" variant="primary" size="lg" className="w-full md:w-auto">
-          Send Message
-        </Button>
       </div>
 
-      <p
-        className="mt-4 text-sm text-[rgba(69,147,97,0.75)]"
-        style={{ fontFamily: 'Archivo, sans-serif' }}
+      {/* Name */}
+      <div className="mb-6">
+        <label htmlFor="name" className="block text-sm font-semibold text-stone-900 mb-2">
+          Name *
+        </label>
+        <input
+          type="text"
+          id="name"
+          name="name"
+          value={formData.name}
+          onChange={handleChange}
+          required
+          placeholder="Your full name"
+          className="w-full px-4 py-3 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
+        />
+      </div>
+
+      {/* Email */}
+      <div className="mb-6">
+        <label htmlFor="email" className="block text-sm font-semibold text-stone-900 mb-2">
+          Email *
+        </label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          value={formData.email}
+          onChange={handleChange}
+          required
+          placeholder="your.email@example.com"
+          className="w-full px-4 py-3 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
+        />
+      </div>
+
+      {/* Message */}
+      <div className="mb-6">
+        <label htmlFor="message" className="block text-sm font-semibold text-stone-900 mb-2">
+          Message *
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          value={formData.message}
+          onChange={handleChange}
+          required
+          rows={6}
+          placeholder="Tell us how we can help you..."
+          className="w-full px-4 py-3 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent resize-none"
+        />
+      </div>
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="w-full bg-green-600 text-white px-8 py-4 rounded-md hover:bg-green-700 transition-colors font-semibold text-lg"
       >
-        We typically respond within 24-48 hours.
+        Send Message
+      </button>
+
+      {/* Response Policy */}
+      <p className="text-sm text-stone-600 mt-4 text-center">
+        We typically respond within 24 hours during business days.
       </p>
-    </Form>
+    </form>
   )
 }
 

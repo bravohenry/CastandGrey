@@ -1,170 +1,215 @@
-import { useSearchParams } from 'react-router-dom'
+import { useState } from 'react'
+import { PageHeader } from '../components/common/Hero'
+import { ProductCard } from '../components/common/ProductCard'
 import { Link } from 'react-router-dom'
-import { ProductGrid } from '../components/shop/ProductGrid'
-import { Card, CardContent, CardTitle, CardDescription } from '../design-system'
-import { products } from '../data/products'
-import { services } from '../data/services'
-import { articles } from '../data/articles'
+import { Search as SearchIcon, X } from 'lucide-react'
 
 /**
- * Search Results Page - Smart search across products, services, and articles
+ * Search 页面 - 搜索结果页
+ * 展示跨产品、服务和文章的搜索结果
  */
-export const Search = () => {
-  const [searchParams] = useSearchParams()
-  const query = searchParams.get('q') || ''
+export function Search() {
+  const [searchQuery, setSearchQuery] = useState('')
+  const [activeTab, setActiveTab] = useState('all')
 
-  if (!query.trim()) {
-    return (
-      <div className="min-h-screen bg-[#FFFEF6] py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-5 md:px-10">
-          <h1
-            className="text-4xl font-bold text-[#459361] mb-6"
-            style={{ fontFamily: 'Petrona, serif' }}
-          >
-            Search
-          </h1>
-          <p
-            className="text-lg text-[rgba(69,147,97,0.75)]"
-            style={{ fontFamily: 'Archivo, sans-serif' }}
-          >
-            Enter a search term to find products, services, or articles.
-          </p>
-        </div>
-      </div>
-    )
+  // 模拟搜索结果
+  const searchResults = {
+    products: [
+      {
+        handle: 'monstera-deliciosa',
+        name: 'Monstera Deliciosa',
+        price: 45,
+        image: null,
+        rating: 4.8,
+        reviewCount: 124
+      },
+      {
+        handle: 'snake-plant',
+        name: 'Snake Plant',
+        price: 28,
+        image: null,
+        badges: [{ label: 'Pet Safe', type: 'pet-safe' }],
+        rating: 4.9,
+        reviewCount: 98
+      }
+    ],
+    services: [
+      {
+        name: 'In-Home Consultation',
+        description: 'Professional consultation at your home or office',
+        price: 'From $75',
+        href: '/services/in-home'
+      }
+    ],
+    articles: [
+      {
+        title: 'Complete Monstera Care Guide',
+        excerpt: 'Learn everything about caring for your Monstera Deliciosa...',
+        category: 'Plant Care',
+        href: '/plant-care/monstera-guide'
+      },
+      {
+        title: 'Pet-Safe Plant List',
+        excerpt: 'A comprehensive guide to plants that are safe for cats and dogs...',
+        category: 'Plant Care',
+        href: '/plant-care/pet-safe'
+      }
+    ]
   }
 
-  // Simple search - filter by name, description, title
-  const searchLower = query.toLowerCase()
-  
-  const productResults = products.filter(p => 
-    p.name.toLowerCase().includes(searchLower) ||
-    p.description?.toLowerCase().includes(searchLower)
-  )
+  const tabs = [
+    { id: 'all', label: 'All Results', count: 5 },
+    { id: 'products', label: 'Products', count: 2 },
+    { id: 'services', label: 'Services', count: 1 },
+    { id: 'articles', label: 'Articles', count: 2 }
+  ]
 
-  const serviceResults = services.filter(s =>
-    s.title.toLowerCase().includes(searchLower) ||
-    s.description?.toLowerCase().includes(searchLower)
-  )
-
-  const articleResults = articles.filter(a =>
-    a.title.toLowerCase().includes(searchLower) ||
-    a.overview?.toLowerCase().includes(searchLower)
-  )
-
-  const hasResults = productResults.length > 0 || serviceResults.length > 0 || articleResults.length > 0
+  const filteredResults = activeTab === 'all' ? searchResults : { [activeTab]: searchResults[activeTab] }
 
   return (
-    <div className="min-h-screen bg-[#FFFEF6] py-12 md:py-16">
-      <div className="max-w-7xl mx-auto px-5 md:px-10">
-        <h1
-          className="text-4xl md:text-5xl font-bold text-[#459361] mb-2"
-          style={{ fontFamily: 'Petrona, serif' }}
-        >
-          Search Results
-        </h1>
-        <p
-          className="text-lg text-[rgba(69,147,97,0.75)] mb-8"
-          style={{ fontFamily: 'Archivo, sans-serif' }}
-        >
-          Results for: <strong>"{query}"</strong>
-        </p>
+    <div>
+      <PageHeader
+        title="Search"
+        breadcrumbs={[
+          { label: 'Home', href: '/' },
+          { label: 'Search' }
+        ]}
+      />
 
-        {!hasResults ? (
-          <div className="text-center py-12">
-            <p
-              className="text-lg text-[rgba(69,147,97,0.75)]"
-              style={{ fontFamily: 'Archivo, sans-serif' }}
-            >
-              No results found for "{query}". Try a different search term.
-            </p>
+      {/* Search Bar */}
+      <section className="py-8 bg-white border-b border-stone-200">
+        <div className="container mx-auto px-4 lg:px-8 max-w-3xl">
+          <div className="relative">
+            <SearchIcon className="absolute left-4 top-1/2 -translate-y-1/2 text-stone-400" size={20} />
+            <input
+              type="text"
+              placeholder="Search for plants, services, or care guides..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="w-full pl-12 pr-12 py-4 border-2 border-stone-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent text-lg"
+              autoFocus
+            />
+            {searchQuery && (
+              <button
+                onClick={() => setSearchQuery('')}
+                className="absolute right-4 top-1/2 -translate-y-1/2 text-stone-400 hover:text-stone-600"
+              >
+                <X size={20} />
+              </button>
+            )}
           </div>
-        ) : (
-          <>
-            {/* Products */}
-            {productResults.length > 0 && (
-              <section className="mb-12">
-                <h2
-                  className="text-2xl font-bold text-[#459361] mb-6"
-                  style={{ fontFamily: 'Petrona, serif' }}
-                >
-                  Products ({productResults.length})
-                </h2>
-                <ProductGrid products={productResults} />
-              </section>
-            )}
 
-            {/* Services */}
-            {serviceResults.length > 0 && (
-              <section className="mb-12">
-                <h2
-                  className="text-2xl font-bold text-[#459361] mb-6"
-                  style={{ fontFamily: 'Petrona, serif' }}
-                >
-                  Services ({serviceResults.length})
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {serviceResults.map((service) => (
-                    <Link key={service.id} to={`/services/${service.type}/${service.id}`}>
-                      <Card variant="info" padding="md" className="h-full hover:scale-105 transition-transform">
-                        <CardContent>
-                          <CardTitle variant="info">{service.title}</CardTitle>
-                          <CardDescription>{service.description}</CardDescription>
-                          <div className="mt-4 flex justify-between items-center">
-                            <span
-                              className="text-[#459361] font-bold"
-                              style={{ fontFamily: 'Petrona, serif' }}
-                            >
-                              ${service.price.toFixed(2)}
-                            </span>
-                            <span
-                              className="text-sm text-[rgba(69,147,97,0.75)]"
-                              style={{ fontFamily: 'Archivo, sans-serif' }}
-                            >
-                              {service.duration}
-                            </span>
-                          </div>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  ))}
-                </div>
-              </section>
-            )}
+          {/* Popular Searches */}
+          {!searchQuery && (
+            <div className="mt-4">
+              <p className="text-sm text-stone-600 mb-2">Popular searches:</p>
+              <div className="flex flex-wrap gap-2">
+                {['Monstera', 'Pet-safe plants', 'Low light', 'Repotting guide'].map((term) => (
+                  <button
+                    key={term}
+                    onClick={() => setSearchQuery(term)}
+                    className="px-3 py-1 bg-stone-100 text-stone-700 rounded-full text-sm hover:bg-stone-200 transition-colors"
+                  >
+                    {term}
+                  </button>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </section>
 
-            {/* Articles */}
-            {articleResults.length > 0 && (
-              <section className="mb-12">
-                <h2
-                  className="text-2xl font-bold text-[#459361] mb-6"
-                  style={{ fontFamily: 'Petrona, serif' }}
-                >
-                  Articles ({articleResults.length})
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {articleResults.map((article) => (
-                    <Link key={article.id} to={`/plant-care/${article.category}/${article.handle}`}>
-                      <Card variant="info" padding="md" className="h-full hover:scale-105 transition-transform">
-                        <CardContent>
-                          <div className="flex items-center gap-2 mb-2">
-                            {article.petSafe && (
-                              <span className="px-2 py-1 bg-[#459361] text-[#FFFEF6] text-xs font-bold rounded">
-                                Pet-Safe
-                              </span>
-                            )}
-                          </div>
-                          <CardTitle variant="info">{article.title}</CardTitle>
-                          <CardDescription>{article.overview}</CardDescription>
-                        </CardContent>
-                      </Card>
-                    </Link>
-                  ))}
-                </div>
-              </section>
-            )}
-          </>
-        )}
-      </div>
+      {searchQuery && (
+        <>
+          {/* Tabs */}
+          <section className="bg-white border-b border-stone-200">
+            <div className="container mx-auto px-4 lg:px-8">
+              <nav className="flex gap-8 overflow-x-auto">
+                {tabs.map((tab) => (
+                  <button
+                    key={tab.id}
+                    onClick={() => setActiveTab(tab.id)}
+                    className={`
+                      py-4 px-2 border-b-2 whitespace-nowrap transition-colors
+                      ${activeTab === tab.id
+                        ? 'border-green-600 text-green-600 font-semibold'
+                        : 'border-transparent text-stone-600 hover:text-stone-900'
+                      }
+                    `}
+                  >
+                    {tab.label} <span className="text-sm">({tab.count})</span>
+                  </button>
+                ))}
+              </nav>
+            </div>
+          </section>
+
+          {/* Results */}
+          <section className="py-12 bg-stone-50">
+            <div className="container mx-auto px-4 lg:px-8">
+              <p className="text-stone-600 mb-8">
+                Showing results for "<span className="font-semibold">{searchQuery}</span>"
+              </p>
+
+              <div className="space-y-12">
+                {/* Products */}
+                {(activeTab === 'all' || activeTab === 'products') && filteredResults.products && (
+                  <div>
+                    <h2 className="text-2xl font-bold text-stone-900 mb-6">Products</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                      {filteredResults.products.map((product) => (
+                        <ProductCard key={product.handle} product={product} />
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Services */}
+                {(activeTab === 'all' || activeTab === 'services') && filteredResults.services && (
+                  <div>
+                    <h2 className="text-2xl font-bold text-stone-900 mb-6">Services</h2>
+                    <div className="space-y-4">
+                      {filteredResults.services.map((service, index) => (
+                        <Link
+                          key={index}
+                          to={service.href}
+                          className="block bg-white rounded-lg p-6 border border-stone-200 hover:shadow-lg transition-shadow"
+                        >
+                          <h3 className="font-semibold text-stone-900 mb-2">{service.name}</h3>
+                          <p className="text-stone-600 mb-3">{service.description}</p>
+                          <p className="text-green-600 font-semibold">{service.price}</p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Articles */}
+                {(activeTab === 'all' || activeTab === 'articles') && filteredResults.articles && (
+                  <div>
+                    <h2 className="text-2xl font-bold text-stone-900 mb-6">Articles & Guides</h2>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {filteredResults.articles.map((article, index) => (
+                        <Link
+                          key={index}
+                          to={article.href}
+                          className="block bg-white rounded-lg p-6 border border-stone-200 hover:shadow-lg transition-shadow"
+                        >
+                          <span className="inline-block px-2 py-1 bg-green-100 text-green-700 text-xs rounded mb-3">
+                            {article.category}
+                          </span>
+                          <h3 className="font-semibold text-stone-900 mb-2">{article.title}</h3>
+                          <p className="text-stone-600 text-sm">{article.excerpt}</p>
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
+          </section>
+        </>
+      )}
     </div>
   )
 }
