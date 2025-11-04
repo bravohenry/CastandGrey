@@ -1,0 +1,58 @@
+{
+  "current": "Default",
+  "presets": {
+    "Default": {
+      "sections": {
+        "header": {
+          "type": "header",
+          "settings": {
+            "logo_text": "Cast & Grey"
+          }
+        },
+        "footer": {
+          "type": "footer",
+          "settings": {
+            "copyright_text": "© 2025 Cast & Grey Botanical. All rights reserved."
+          }
+        }
+      },
+      "content_for_index": [
+        {
+          "type": "hero",
+          "settings": {
+            "title": "Bring Nature Home",
+            "subtitle": "Premium plants, expert care, and personalized service for urban plant lovers",
+            "primary_button_text": "SHOP PLANTS",
+            "secondary_button_text": "BOOK A SERVICE"
+          }
+        },
+        {
+          "type": "quick-access"
+        },
+        {
+          "type": "best-sellers",
+          "settings": {
+            "title": "Best Sellers",
+            "subtitle": "Our most loved plants"
+          }
+        },
+        {
+          "type": "features",
+          "settings": {
+            "title": "Why Choose Cast & Grey"
+          }
+        },
+        {
+          "type": "reviews",
+          "settings": {
+            "title": "What Our Customers Say",
+            "subtitle": "Rated 4.9/5 from over 500 reviews"
+          }
+        },
+        {
+          "type": "cta-blocks"
+        }
+      ]
+    }
+  }
+}

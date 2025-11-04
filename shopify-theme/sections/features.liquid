@@ -1,0 +1,233 @@
+{%- style -%}
+  .features-section {
+    padding: 128px 0;
+    background-color: #459361;
+  }
+
+  .features-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+  }
+
+  @media (min-width: 1024px) {
+    .features-container {
+      padding: 0 246px;
+    }
+  }
+
+  .features-title {
+    font-size: 40px;
+    line-height: 1.2;
+    font-weight: 700;
+    letter-spacing: 0.72px;
+    color: #FFFEF6;
+    font-family: 'Petrona', serif;
+    margin-bottom: 80px;
+    text-align: center;
+  }
+
+  @media (min-width: 1024px) {
+    .features-title {
+      font-size: 48px;
+    }
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 64px;
+  }
+
+  @media (min-width: 768px) {
+    .features-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .features-grid {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+
+  .feature-item {
+    text-align: center;
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .feature-item:nth-child(1) { animation-delay: 0.1s; }
+  .feature-item:nth-child(2) { animation-delay: 0.2s; }
+  .feature-item:nth-child(3) { animation-delay: 0.3s; }
+  .feature-item:nth-child(4) { animation-delay: 0.4s; }
+
+  .feature-icon {
+    margin-bottom: 24px;
+  }
+
+  .feature-icon svg {
+    width: 40px;
+    height: 40px;
+    color: #FFFEF6;
+    opacity: 0.9;
+    stroke-width: 1.5;
+  }
+
+  .feature-title {
+    font-size: 19.6px;
+    line-height: 24.5px;
+    font-weight: 700;
+    letter-spacing: 0.72px;
+    color: #FFFEF6;
+    font-family: 'Petrona', serif;
+    margin-bottom: 12px;
+  }
+
+  .feature-description {
+    font-size: 14.6px;
+    line-height: 28.8px;
+    letter-spacing: 0.6px;
+    color: rgba(255, 254, 246, 0.75);
+    font-family: 'Archivo', sans-serif;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+{%- endstyle -%}
+
+<section class="features-section">
+  <div class="features-container">
+    <h2 class="features-title">
+      {{ section.settings.title | default: 'Why Choose Cast & Grey' }}
+    </h2>
+
+    <div class="features-grid">
+      {% for block in section.blocks %}
+        <div class="feature-item">
+          <div class="feature-icon">
+            {% case block.settings.icon %}
+              {% when 'truck' %}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="1" y="3" width="15" height="13" rx="2"></rect>
+                  <polygon points="16,8 20,8 23,11 23,16 16,16 16,8"></polygon>
+                  <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                  <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                </svg>
+              {% when 'leaf' %}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5.64 16.77a6 6 0 1 0 8.49 8.49l6.11-6.11a6 6 0 0 0 0-8.49z"></path>
+                  <line x1="16" y1="8" x2="8" y2="16"></line>
+                  <line x1="8" y1="8" x2="16" y2="16"></line>
+                </svg>
+              {% when 'heart' %}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+                </svg>
+              {% when 'shield' %}
+                <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+            {% endcase %}
+          </div>
+
+          <h3 class="feature-title">
+            {{ block.settings.title }}
+          </h3>
+
+          <p class="feature-description">
+            {{ block.settings.description }}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Features",
+  "tag": "section",
+  "class": "features-section",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "feature",
+      "name": "Feature",
+      "settings": [
+        {
+          "type": "select",
+          "id": "icon",
+          "label": "Icon",
+          "options": [
+            { "value": "truck", "label": "Truck (Delivery)" },
+            { "value": "leaf", "label": "Leaf (Health)" },
+            { "value": "heart", "label": "Heart (Pet Safe)" },
+            { "value": "shield", "label": "Shield (Expert Care)" }
+          ],
+          "default": "truck"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Feature Title",
+          "default": "Local Delivery"
+        },
+        {
+          "type": "textarea",
+          "id": "description",
+          "label": "Feature Description",
+          "default": "Fast and careful delivery to your doorstep"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Features",
+      "blocks": [
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "truck",
+            "title": "Local Delivery",
+            "description": "Fast and careful delivery to your doorstep"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "leaf",
+            "title": "Plant Health Guarantee",
+            "description": "30-day guarantee on all plants"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "heart",
+            "title": "Pet-Safe Options",
+            "description": "Curated selection of pet-friendly plants"
+          }
+        },
+        {
+          "type": "feature",
+          "settings": {
+            "icon": "shield",
+            "title": "Expert Care Support",
+            "description": "Free consultation with every purchase"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

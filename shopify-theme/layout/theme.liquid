@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="{{ shop.locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="{{ settings.color_primary }}">
+
+  <title>
+    {{ page_title }}
+    {%- if current_tags -%}
+      {%- assign meta_tags = current_tags | join: ', ' -%} &ndash; {{ 'general.meta.tags' | t: tags: meta_tags -}}
+    {%- endif -%}
+    {%- if current_page != 1 -%} &ndash; {{ 'general.meta.page' | t: page: current_page }}{%- endif -%}
+    {%- unless page_title contains shop.name -%} &ndash; {{ shop.name }}{%- endunless -%}
+  </title>
+
+  {%- if page_description -%}
+    <meta name="description" content="{{ page_description | escape }}">
+  {%- endif -%}
+
+  <!-- 引入 Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Petrona:ital,wght@0,400;0,700;1,400&family=Archivo:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  {{ content_for_header }}
+
+  <!-- 主题样式 -->
+  {{ 'theme.css' | asset_url | stylesheet_tag }}
+
+  <!-- 动画样式 -->
+  <style>
+    /* 基础动画样式 */
+    .animate-fade-in {
+      animation: fadeIn 1s ease-out;
+    }
+
+    .animate-slide-up {
+      animation: slideUp 0.6s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @keyframes slideUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-[#FFFEF6] text-[#111111]">
+  {% section 'header' %}
+
+  <main role="main">
+    {{ content_for_layout }}
+  </main>
+
+  {% section 'footer' %}
+
+  <!-- 全局脚本 -->
+  <script>
+    // 页面加载动画和基础交互
+    document.addEventListener('DOMContentLoaded', function() {
+      // 头部滚动效果
+      const header = document.getElementById('site-header');
+      if (header) {
+        window.addEventListener('scroll', function() {
+          if (window.scrollY > 50) {
+            header.classList.add('scrolled');
+          } else {
+            header.classList.remove('scrolled');
+          }
+        });
+      }
+    });
+  </script>
+
+  {{ content_for_footer }}
+</body>
+</html>

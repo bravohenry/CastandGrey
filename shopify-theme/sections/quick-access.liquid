@@ -1,0 +1,193 @@
+{%- style -%}
+  .quick-access-section {
+    padding: 128px 0;
+    background-color: #FFFEF6;
+  }
+
+  .quick-access-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 50px;
+  }
+
+  @media (min-width: 768px) {
+    .quick-access-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .quick-access-grid {
+      grid-template-columns: repeat(4, 1fr);
+      padding: 0 246px;
+    }
+  }
+
+  .quick-access-tile {
+    position: relative;
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .quick-access-card {
+    position: relative;
+    aspect-ratio: 1;
+    background-color: #459361;
+    border: 2px solid #FFFEF6;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 6px 0px rgba(132, 132, 132, 0.9);
+    transition: all 0.2s ease;
+    cursor: pointer;
+  }
+
+  .quick-access-card:hover {
+    box-shadow: 0px 3px 0px rgba(132, 132, 132, 0.9);
+    transform: translateY(3px);
+  }
+
+  .quick-access-content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    text-align: center;
+  }
+
+  .quick-access-title {
+    font-size: 28.8px;
+    line-height: 36px;
+    font-weight: 700;
+    letter-spacing: 0.72px;
+    color: #FFFEF6;
+    font-family: 'Petrona', serif;
+    margin-bottom: 12px;
+  }
+
+  .quick-access-description {
+    font-size: 13px;
+    line-height: 18px;
+    letter-spacing: 0.7px;
+    color: rgba(255, 254, 246, 0.75);
+    font-family: 'Archivo', sans-serif;
+    text-transform: uppercase;
+    font-weight: 700;
+  }
+
+  .quick-access-hover-line {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: #FFFEF6;
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+    transform-origin: left;
+  }
+
+  .quick-access-tile:hover .quick-access-hover-line {
+    transform: scaleX(1);
+  }
+{%- endstyle -%}
+
+<section class="quick-access-section">
+  <div class="quick-access-grid">
+    {% for block in section.blocks %}
+      <a href="{{ block.settings.link }}" class="quick-access-tile">
+        <div class="quick-access-card">
+          <div class="quick-access-content">
+            <h3 class="quick-access-title">
+              {{ block.settings.title }}
+            </h3>
+            <p class="quick-access-description">
+              {{ block.settings.description }}
+            </p>
+          </div>
+          <div class="quick-access-hover-line"></div>
+        </div>
+      </a>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Quick Access",
+  "tag": "section",
+  "class": "quick-access-section",
+  "max_blocks": 4,
+  "blocks": [
+    {
+      "type": "tile",
+      "name": "Access Tile",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Tile Title",
+          "default": "Shop Plants"
+        },
+        {
+          "type": "text",
+          "id": "description",
+          "label": "Tile Description",
+          "default": "Explore our curated collection"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Tile Link",
+          "default": "/collections/plants"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Quick Access",
+      "blocks": [
+        {
+          "type": "tile",
+          "settings": {
+            "title": "Shop Plants",
+            "description": "Explore our curated collection",
+            "link": "/collections/plants"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "title": "Book Services",
+            "description": "Professional plant care",
+            "link": "/pages/services"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "title": "Plant Care",
+            "description": "Learn from our guides",
+            "link": "/blogs/plant-care"
+          }
+        },
+        {
+          "type": "tile",
+          "settings": {
+            "title": "Gift Cards",
+            "description": "Perfect for plant lovers",
+            "link": "/products/gift-card"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
