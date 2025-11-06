@@ -25,22 +25,22 @@ export function ProductDetail() {
     price: 45,
     compareAtPrice: null,
     images: [null, null, null], // Placeholder images
-    description: 'The Monstera Deliciosa, also known as the Swiss Cheese Plant, is a stunning tropical plant known for its large, glossy leaves with distinctive splits. Perfect for bringing a touch of the jungle to your home.',
-    longDescription: 'Native to the tropical forests of Central America, the Monstera Deliciosa is a fast-growing climbing plant that can reach impressive sizes indoors. Its iconic fenestrated leaves develop as the plant matures, creating a dramatic focal point in any room.',
-    badges: [{ label: 'Best Seller', type: 'new' }],
+    description: 'Our Monstera Deliciosa is a neighborhood favorite - lush, fenestrated foliage with the approachable care Cast & Grey is known for.',
+    longDescription: 'Grown for Savannah homes, this Monstera arrives with fresh soil and a detailed care card written by Emily. Expect generous, glossy leaves, steady growth, and lots of coaching on how to stake, prune, and style it so it becomes the quiet focal point of your space.',
+    badges: [{ label: 'Savannah Favorite', type: 'new' }],
     careTraits: {
-      light: 'Bright Indirect',
-      lightDetail: 'Thrives in bright, indirect light. Can tolerate some direct morning sun.',
-      water: 'Weekly',
-      waterDetail: 'Water when top 2 inches of soil are dry. About once per week in summer, less in winter.',
-      soil: 'Well-draining',
-      soilDetail: 'Use a well-draining potting mix with peat moss and perlite.',
+      light: 'Bright, filtered light',
+      lightDetail: 'Position near bright windows with sheer curtains or a few feet back from sunny exposures. Morning sun is welcome; shield from harsh afternoon rays.',
+      water: 'Every 7-10 days',
+      waterDetail: 'Water when the top third of soil feels dry. Expect weekly watering in summer and slower sips in cooler months.',
+      soil: 'Chunky aroid mix',
+      soilDetail: 'We pot in our airy mix of bark, perlite, and coco coir so roots stay buoyant and happy.',
       petSafe: false,
-      petSafeDetail: 'Toxic to cats and dogs if ingested. Keep out of reach of pets.'
+      petSafeDetail: 'Not pet-safe. Keep away from curious cats, dogs, and little ones or opt for our pet-safe collection instead.'
     },
     size: {
-      pot: '6 inch',
-      height: '12-18 inches'
+      pot: '6 inch nursery pot',
+      height: '18-24 inches tall'
     },
     inStock: true,
     sku: 'MON-DEL-001',
@@ -90,8 +90,8 @@ export function ProductDetail() {
   ]
 
   const careArticles = [
-    { title: 'Complete Monstera Care Guide', href: '/plant-care/monstera-guide' },
-    { title: 'How to Propagate Monstera', href: '/plant-care/monstera-propagation' }
+    { title: 'Monstera Care Checklist for Savannah', href: '/plant-care/monstera-guide' },
+    { title: 'Monstera Propagation Basics', href: '/plant-care/monstera-propagation' }
   ]
 
   return (

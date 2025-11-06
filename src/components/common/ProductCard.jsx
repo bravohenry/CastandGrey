@@ -125,17 +125,13 @@ export function ProductCard({ product }) {
 
 /**
  * ServiceCard 组件 - 服务卡片
- * 日本美学：留白、克制、精致
- * 完全使用设计系统
+ * 用于 Services 页面的服务展示
  */
 export function ServiceCard({ service }) {
   return (
-    <div
-      className="bg-[#FFFEF6] border-2 border-[#459361] rounded-[12px] overflow-hidden hover:border-[#459361] transition-all flex flex-col h-full"
-      style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
-    >
+    <div className="bg-white rounded-lg border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow">
       {/* Service Image */}
-      <div className="aspect-[16/9] bg-[rgba(69,147,97,0.05)] overflow-hidden border-b-2 border-[#459361]">
+      <div className="aspect-[16/9] bg-stone-100 overflow-hidden">
         {service.image ? (
           <img
             src={service.image}
@@ -143,56 +139,39 @@ export function ServiceCard({ service }) {
             className="w-full h-full object-cover"
           />
         ) : (
-          <div
-            className="w-full h-full flex items-center justify-center text-[14.6px] tracking-[0.6px] text-[rgba(69,147,97,0.4)]"
-            style={{ fontFamily: 'Archivo, sans-serif' }}
-          >
+          <div className="w-full h-full flex items-center justify-center text-stone-400">
             Service Image
           </div>
         )}
       </div>
 
-      {/* Service Info - 让内容区域占满剩余空间 */}
-      <div className="p-8 flex flex-col flex-grow">
-        <h3
-          className="text-[19.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-4"
-          style={{ fontFamily: 'Petrona, serif' }}
-        >
-          {service.name}
-        </h3>
-        <p
-          className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] mb-6 flex-grow"
-          style={{ fontFamily: 'Archivo, sans-serif' }}
-        >
-          {service.description}
-        </p>
+      {/* Service Info */}
+      <div className="p-6">
+        <h3 className="text-xl font-semibold text-stone-900 mb-2">{service.name}</h3>
+        <p className="text-stone-600 mb-4">{service.description}</p>
 
         {/* Details */}
-        <div className="space-y-3 mb-8 text-[13px] leading-[18px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]" style={{ fontFamily: 'Archivo, sans-serif' }}>
+        <div className="space-y-2 mb-6 text-sm text-stone-700">
           {service.price && (
-            <div className="flex justify-between items-center">
-              <span>Price:</span>
-              <span className="font-bold text-[#111111]">{service.price}</span>
+            <div className="flex justify-between">
+              <span className="text-stone-600">Price:</span>
+              <span className="font-semibold">{service.price}</span>
             </div>
           )}
           {service.duration && (
-            <div className="flex justify-between items-center">
-              <span>Duration:</span>
-              <span className="font-bold text-[#111111]">{service.duration}</span>
+            <div className="flex justify-between">
+              <span className="text-stone-600">Duration:</span>
+              <span className="font-semibold">{service.duration}</span>
             </div>
           )}
         </div>
 
-        {/* CTA - 固定在底部 */}
+        {/* CTA */}
         <Link
           to={service.bookingLink}
-          className="block w-full text-center bg-[#459361] text-[#FFFEF6] border-2 border-[#459361] px-6 py-4 rounded-[12px] hover:bg-[#3a7a51] transition-colors text-[13.6px] leading-[18.2px] tracking-[0.6px] font-bold uppercase mt-auto"
-          style={{
-            fontFamily: 'Archivo, sans-serif',
-            boxShadow: '0px 4px 0px rgba(132, 132, 132, 0.9)'
-          }}
+          className="block w-full text-center bg-green-600 text-white px-6 py-3 rounded-md hover:bg-green-700 transition-colors font-semibold"
         >
-          BOOK THIS SERVICE
+          Book This Service
         </Link>
       </div>
     </div>

@@ -17,54 +17,50 @@ export function FAQs() {
       category: 'Orders & Delivery',
       questions: [
         {
-          question: 'Do you offer same-day delivery?',
-          answer: 'Yes! For orders placed before 2 PM, we offer same-day local delivery within a 10-mile radius. Orders placed after 2 PM will be delivered the next business day.'
+          question: 'Do you ship orders?',
+          answer: 'We do not ship plants or products. Choose local delivery for our Monday routes or select in-store pickup during shop hours.'
         },
         {
-          question: 'What are the delivery fees?',
-          answer: 'Delivery fees vary based on distance: $10 for orders within 5 miles, $15 for 5-10 miles, and $20 for 10-15 miles. Free delivery on orders over $100.'
+          question: 'When do local deliveries happen and what do they cost?',
+          answer: 'Deliveries run every Monday. Savannah addresses are $5; Pooler, Garden City, Port Wentworth, Wilmington Island, Tybee Island, Richmond Hill, and Bloomingdale range from $10-$15. Large plants may incur an additional fee.'
         },
         {
-          question: 'Can I pick up my order in-store?',
-          answer: 'Absolutely! Select "Store Pickup" at checkout. We\'ll notify you when your order is ready, typically within 2 hours during business hours.'
-        },
-        {
-          question: 'Do you ship nationwide?',
-          answer: 'Currently, we only offer local delivery and in-store pickup. We\'re working on expanding our shipping options in the future.'
+          question: 'How do I send a gift?',
+          answer: 'Select "Ship" at checkout (that signals local delivery), enter the recipient\'s address, and add your gift message. Emily will email to confirm the Monday drop-off window.'
         }
       ]
     },
     {
-      category: 'Returns & Guarantees',
+      category: 'Returns & Policies',
       questions: [
         {
-          question: 'What is your return policy?',
-          answer: 'We offer a 30-day plant health guarantee. If your plant isn\'t thriving despite following our care instructions, bring it back with the original receipt and packaging for a replacement or full refund.'
+          question: 'What is your plant return policy?',
+          answer: 'All plant sales are final. If a plant leaves with a pest, let us know within seven days with the original Cast & Grey tag so we can make it right.'
         },
         {
-          question: 'What if my plant arrives damaged?',
-          answer: 'Please contact us within 24 hours with photos. We\'ll arrange for a replacement or full refund immediately, including any delivery fees.'
+          question: 'Can I return planters, tools, or gifts?',
+          answer: 'Unused merchandise can be exchanged or returned with a receipt. Please email hello@castandgrey.com to start the process.'
         },
         {
-          question: 'Can I return planters or tools?',
-          answer: 'Yes, unused planters, tools, and accessories can be returned within 30 days with receipt for a full refund or exchange.'
+          question: 'What if something arrives damaged?',
+          answer: 'Email photos the same day and we will take care of you. Delivery fees are refunded if the damage occurred in transit.'
         }
       ]
     },
     {
-      category: 'Plant Care',
+      category: 'Plant Care Support',
       questions: [
         {
-          question: 'How do I know how much to water my plant?',
-          answer: 'Each plant comes with specific care instructions. Generally, check the soil moisture by inserting your finger 2 inches deep. If it\'s dry, it\'s time to water. Visit our Plant Care Hub for detailed guides.'
+          question: 'Do purchases include care instructions?',
+          answer: 'Yes. Every plant leaves with a handwritten or printed care card and a link to our Cast & Grey Plant Care Library for deeper guidance.'
         },
         {
-          question: 'What should I do if my plant has yellow leaves?',
-          answer: 'Yellow leaves can indicate overwatering, underwatering, or nutrient deficiency. Check our troubleshooting guide or bring your plant to our store for a free consultation.'
+          question: 'Can I ask for help after I take a plant home?',
+          answer: 'Absolutely. Email photos and your questions to hello@castandgrey.com and we will troubleshoot with you during store hours.'
         },
         {
-          question: 'Do you offer plant care consultations?',
-          answer: 'Yes! Every purchase includes a free 15-minute consultation. We also offer in-home consultations starting at $75. Book online or call us to schedule.'
+          question: 'Do you have pet-safe options?',
+          answer: 'Our dedicated Pet-Safe Collection and plant tags highlight ASPCA-referenced varieties that are safer for curious pets.'
         }
       ]
     },
@@ -72,37 +68,37 @@ export function FAQs() {
       category: 'Services',
       questions: [
         {
-          question: 'What in-store services do you offer?',
-          answer: 'We offer repotting ($15-30), pot drilling ($10), plant health checks (free), and consultations. No appointment needed for quick services.'
+          question: 'How do in-home consultations work?',
+          answer: 'Consultations are $30 per hour with a one-hour minimum. Emily assesses lighting, recommends plants, and sends a written plan. The fee is credited toward follow-up services booked within 30 days.'
         },
         {
-          question: 'How does the in-home consultation work?',
-          answer: 'Our expert will visit your space to assess lighting, humidity, and your lifestyle. We\'ll recommend perfect plants and placement. Consultations start at $75 for up to 2 hours.'
+          question: 'Can I bring my own plants for repotting?',
+          answer: 'We ask that personal plants stay home. Book an in-home repotting visit and we will bring soil, tools, and a tidy setup.'
         },
         {
-          question: 'Can I cancel or reschedule a service?',
-          answer: 'Yes! Cancel or reschedule up to 24 hours before your appointment for no charge. Cancellations within 24 hours are subject to a 50% fee.'
+          question: 'Do you offer plant rentals?',
+          answer: 'Yes. Rentals start at $150 with a 50% of retail rate for up to 72 hours. Please allow at least three weeks to plan your event or photo shoot.'
+        },
+        {
+          question: 'What are your in-store potting fees?',
+          answer: 'For plants purchased at Cast & Grey, repotting ranges from $6-$30 depending on pot size, and planter drilling is a flat $10 for ceramic pots.'
         }
       ]
     },
     {
-      category: 'Products',
+      category: 'Products & Availability',
       questions: [
         {
-          question: 'How do I know if a plant is pet-safe?',
-          answer: 'All our plants are clearly labeled. Look for the "Pet Safe" badge online or ask our staff in-store. We also have a dedicated Pet-Safe Collection.'
+          question: 'How often do new plants arrive?',
+          answer: 'Our selection rotates frequently and includes beginner-friendly, low-light, pet-safe, and rare plants. Follow @castandgreybotanical for the latest arrivals.'
         },
         {
-          question: 'What sizes do your plants come in?',
-          answer: 'We offer plants in various pot sizes from 4" to 14". Product descriptions include both pot diameter and approximate plant height.'
+          question: 'Can you source a specific plant?',
+          answer: 'Send us an email with your wish list. While availability varies, we love hunting for special plants and will keep you updated.'
         },
         {
-          question: 'Do you sell gift cards?',
-          answer: 'Yes! Physical and digital gift cards are available in any amount from $25 to $500. They never expire and can be used for products or services.'
-        },
-        {
-          question: 'Can I request a specific plant variety?',
-          answer: 'Absolutely! Contact us with your request. While we can\'t guarantee availability, we\'ll do our best to source it for you.'
+          question: 'Do you carry locally made gifts?',
+          answer: 'Yes. Discover art, jewelry, candles, cards, and accessories crafted by Savannah makers—perfect for pairing with plant deliveries.'
         }
       ]
     },
@@ -110,16 +106,16 @@ export function FAQs() {
       category: 'Account & Payments',
       questions: [
         {
+          question: 'How do I get in touch?',
+          answer: 'Email is the best way to reach us: hello@castandgrey.com. We respond Tuesday through Saturday, 11am-6pm.'
+        },
+        {
           question: 'What payment methods do you accept?',
-          answer: 'We accept Visa, Mastercard, American Express, Discover, PayPal, Apple Pay, and Google Pay. In-store, we also accept cash.'
+          answer: 'American Express, Apple Pay, Diners Club, Discover, Mastercard, Shop Pay, and Visa are accepted. In-store, we also accept cash.'
         },
         {
           question: 'Do I need an account to shop?',
-          answer: 'No, you can checkout as a guest. However, creating an account lets you track orders, save favorites, and earn rewards points.'
-        },
-        {
-          question: 'Is my payment information secure?',
-          answer: 'Yes, we use industry-standard encryption and never store your full credit card information. All transactions are processed through secure payment gateways.'
+          answer: 'No account is required to check out. Creating one simply makes it easier to manage orders and delivery details.'
         }
       ]
     }

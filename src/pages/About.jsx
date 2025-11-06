@@ -14,80 +14,80 @@ export function About() {
   const values = [
     {
       icon: Leaf,
-      title: 'Sustainable Sourcing',
-      description: 'We partner with local growers and ethical suppliers to ensure our plants are sustainably grown.'
+      title: 'Approachable Expertise',
+      description: 'Friendly, reliable mentorship rooted in Emily\'s hands-on plant knowledge for Savannah\'s unique climate.'
     },
     {
       icon: Heart,
-      title: 'Customer First',
-      description: 'Your satisfaction is our priority. We provide ongoing support for every plant you purchase.'
+      title: 'Quiet Radiance',
+      description: 'Approachable aesthetics and everyday beauty curated for real homes, shops, and gifting moments.'
     },
     {
       icon: Users,
-      title: 'Community Driven',
-      description: 'We host workshops and events to build a thriving community of plant enthusiasts.'
+      title: 'Community Roots',
+      description: 'Woman-owned and Baldwin Park based, we exist to attract and serve our Savannah neighbors.'
     },
     {
       icon: Award,
-      title: 'Quality Guaranteed',
-      description: 'Every plant is inspected and comes with our 30-day health guarantee.'
+      title: 'Empowered Plant Owners',
+      description: 'Practical education, detailed resources, and services that transform plant anxiety into confident care.'
     }
   ]
 
   const awards = [
     {
-      year: '2025',
-      title: 'Best Local Plant Shop',
-      organization: 'City Magazine Readers\' Choice'
+      year: 'Since 2019',
+      title: 'Only woman-owned houseplant boutique in Savannah',
+      organization: 'Nestled between The Stacks Bookstore and Goodfortune Market on Waters Ave.'
     },
     {
-      year: '2024',
-      title: 'Green Business Certification',
-      organization: 'Sustainable Business Alliance'
+      year: 'Mondays',
+      title: 'Hand-delivered plant gifting & local delivery',
+      organization: 'Serving Savannah, Pooler, Wilmington Island, Tybee Island, and nearby communities.'
     },
     {
-      year: '2024',
-      title: 'Top-Rated Service Provider',
-      organization: 'Local Business Awards'
+      year: 'Education',
+      title: 'Savannah-specific plant care mentorship',
+      organization: 'In-home consultations, detailed write-ups, and an extensive plant care library.'
     }
   ]
 
   const reviews = [
     {
       rating: 5,
-      comment: 'This is hands down the best plant shop in the city. The staff is incredibly knowledgeable and the plant selection is outstanding.',
-      author: 'David Thompson',
-      date: 'October 2025'
+      comment: 'Emily is truly Savannah\'s plant fairy-godmother. She listens, teaches, and leaves me with a care plan that feels doable.',
+      author: 'Chelsea W.',
+      date: 'March 2024'
     },
     {
       rating: 5,
-      comment: 'I\'ve been a customer for over a year and every experience has been wonderful. They truly care about plants and their customers.',
-      author: 'Lisa Chen',
-      date: 'September 2025'
+      comment: 'The shop radiates warmth. Whether I need a pet-safe plant or a gift, I always leave feeling supported and inspired.',
+      author: 'Maggie W.',
+      date: 'February 2024'
     },
     {
       rating: 5,
-      comment: 'The workshops they host are amazing! I\'ve learned so much about plant care and met great people in the community.',
-      author: 'Marcus Williams',
-      date: 'September 2025'
+      comment: 'Their in-home consultation credited to potting fees was a game changer. My office plants are thriving—and so am I.',
+      author: 'Brian J.',
+      date: 'January 2024'
     }
   ]
 
   const pressFeatures = [
     {
-      outlet: 'Green Living Magazine',
-      headline: 'Cast & Grey: Bringing Botanical Beauty to Urban Spaces',
-      date: 'October 2025'
+      outlet: 'Customer Love',
+      headline: '"Cast & Grey is the jewel of the neighborhood—thoughtful, calming, and always ready to help."',
+      date: 'Baldwin Park Resident'
     },
     {
-      outlet: 'Local Business Journal',
-      headline: 'How This Plant Shop is Growing Community Connections',
-      date: 'September 2025'
+      outlet: 'Consultation Client',
+      headline: '"Emily removed all the guesswork. Her write-up made caring for my plants feel like second nature."',
+      date: 'In-Home Visit'
     },
     {
-      outlet: 'Home & Garden Daily',
-      headline: 'The New Standard in Plant Retail',
-      date: 'August 2025'
+      outlet: 'Workshop Guest',
+      headline: '"Approachable aesthetics, practical wisdom, and a community that cheers you on."',
+      date: 'Plant Care Class'
     }
   ]
 
@@ -118,7 +118,7 @@ export function About() {
             className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
             style={{ fontFamily: 'Archivo, sans-serif' }}
           >
-            Bringing nature into urban life with premium plants and expert care
+            Savannah&apos;s nurturing houseplant boutique, turning plant anxiety into the joy of confident care
           </p>
         </div>
       </section>
@@ -157,23 +157,19 @@ export function About() {
                   className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
                   style={{ fontFamily: 'Archivo, sans-serif' }}
                 >
-                  Cast & Grey began in 2020 with a simple mission: to make high-quality plants and
-                  expert botanical knowledge accessible to everyone in our urban community.
+                  Cast & Grey Botanical opened in 2019 as Emily Hinners&apos; answer to Savannah plant lovers who wanted more than a transactional shop. She envisioned a place where approachable aesthetics, practical education, and joyful community support all live under one canopy.
                 </p>
                 <p 
                   className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
                   style={{ fontFamily: 'Archivo, sans-serif' }}
                 >
-                  What started as a small corner shop has grown into a beloved destination for plant
-                  enthusiasts, beginners, and everyone in between. We've helped thousands of people
-                  bring the joy and benefits of plants into their homes and offices.
+                  Our boutique sits on Waters Ave., between The Stacks Bookstore and Goodfortune Market, with rotating vignettes of houseplants, planters, locally made gifts, and tools. Every display is curated for real Savannah homes, with pet-safe picks, low-light heroes, and statement foliage ready for gifting or in-home installs.
                 </p>
                 <p 
                   className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
                   style={{ fontFamily: 'Archivo, sans-serif' }}
                 >
-                  Today, we're proud to offer not just plants, but a complete plant care experience –
-                  from our carefully curated selection to our expert services and educational resources.
+                  Emily leads plants, operations, and customer care while Nate supports design and storytelling. Together they deliver one-on-one coaching, in-home consultations, Monday local deliveries, plant rentals, and an ever-growing plant care library designed to build confident, skilled plant parents across Savannah.
                 </p>
               </div>
             </motion.div>
@@ -182,7 +178,7 @@ export function About() {
       </section>
 
       {/* Mission & Vision - 精致卡片 */}
-      <section className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
+      <section id="mission" className="py-32 bg-[#459361] border-t-2 border-[#FFFEF6]">
         <div className="px-[50px] lg:px-[246px] max-w-6xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <div 
@@ -199,8 +195,7 @@ export function About() {
                 className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
                 style={{ fontFamily: 'Archivo, sans-serif' }}
               >
-                To inspire and enable people to live greener, healthier lives by providing
-                exceptional plants, expert guidance, and sustainable practices.
+                Attract and serve the Savannah community through approachable aesthetics and practical education that makes plant care feel welcoming.
               </p>
             </div>
 
@@ -218,8 +213,7 @@ export function About() {
                 className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
                 style={{ fontFamily: 'Archivo, sans-serif' }}
               >
-                To become the most trusted botanical partner for urban dwellers, creating a
-                world where everyone has access to the beauty and benefits of plants.
+                Empower people to share the joy of houseplant care by building confident, stable skills—one nurturing interaction at a time.
               </p>
             </div>
           </div>
@@ -276,7 +270,7 @@ export function About() {
             className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-20 text-center"
             style={{ fontFamily: 'Petrona, serif' }}
           >
-            Awards & Recognition
+            Neighborhood Highlights
           </h2>
 
           <div className="space-y-6">
@@ -322,7 +316,7 @@ export function About() {
             className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-20 text-center"
             style={{ fontFamily: 'Petrona, serif' }}
           >
-            In the Press
+            Community Voices
           </h2>
 
           <div className="space-y-6">
@@ -379,8 +373,7 @@ export function About() {
             className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] mb-12 max-w-2xl mx-auto"
             style={{ fontFamily: 'Archivo, sans-serif' }}
           >
-            Experience the Cast & Grey difference in person. Our knowledgeable team is ready to help
-            you find the perfect plants for your space.
+            Visit us Tuesday through Saturday, 11am-6pm at 2411 Waters Ave. Our team is ready with personalized guidance, cheerful gifting, and the resources you need to keep every plant thriving.
           </p>
           <Link to="/contact">
             <Button variant="primary" size="lg">

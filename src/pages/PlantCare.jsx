@@ -11,70 +11,71 @@ import { Button } from '../design-system'
 export function PlantCare() {
   const categories = [
     {
-      title: 'By Light Requirements',
+      title: 'Light & Placement',
       icon: Sun,
       items: [
-        { name: 'Low Light Plants', href: '/plant-care/low-light', count: 24 },
-        { name: 'Medium Light Plants', href: '/plant-care/medium-light', count: 38 },
-        { name: 'Bright Light Plants', href: '/plant-care/bright-light', count: 45 }
+        { name: 'North & Low Light Nooks', href: '/plant-care/low-light', count: 18 },
+        { name: 'Coastal Bright Light', href: '/plant-care/bright-light', count: 26 },
+        { name: 'Patio & Porch-Friendly', href: '/plant-care/outdoor', count: 12 }
       ]
     },
     {
-      title: 'By Care Level',
+      title: 'Care Level Playlists',
       icon: Droplets,
       items: [
-        { name: 'Easy Care', href: '/plant-care/easy-care', count: 56 },
-        { name: 'Moderate Care', href: '/plant-care/moderate-care', count: 32 },
-        { name: 'Advanced Care', href: '/plant-care/advanced-care', count: 19 }
+        { name: 'Confidence Builders (Beginner)', href: '/plant-care/easy-care', count: 34 },
+        { name: 'Busy Schedule Champions', href: '/plant-care/moderate-care', count: 22 },
+        { name: 'Statement Plants for Enthusiasts', href: '/plant-care/advanced-care', count: 14 }
       ]
     },
     {
-      title: 'By Safety',
+      title: 'Safety & Wellness',
       icon: AlertCircle,
       items: [
-        { name: 'Pet-Safe Plants', href: '/plant-care/pet-safe', count: 42 },
-        { name: 'Air-Purifying Plants', href: '/plant-care/air-purifying', count: 28 }
+        { name: 'Pet-Safe Plant Library', href: '/plant-care/pet-safe', count: 40 },
+        { name: 'Air-Purifying Favorites', href: '/plant-care/air-purifying', count: 18 },
+        { name: 'Low-Allergen Picks', href: '/plant-care/low-allergen', count: 9 }
       ]
     },
     {
-      title: 'Common Issues',
+      title: 'Troubleshooting Center',
       icon: Wind,
       items: [
-        { name: 'Yellow Leaves', href: '/plant-care/yellow-leaves' },
-        { name: 'Brown Tips', href: '/plant-care/brown-tips' },
-        { name: 'Pest Control', href: '/plant-care/pest-control' },
-        { name: 'Root Rot', href: '/plant-care/root-rot' }
+        { name: 'Yellow Leaves Decoder', href: '/plant-care/yellow-leaves' },
+        { name: 'Brown Tips Fixes', href: '/plant-care/brown-tips' },
+        { name: 'Pest Control Playbook', href: '/plant-care/pest-control' },
+        { name: 'Root Rot Rescue', href: '/plant-care/root-rot' }
       ]
     }
   ]
 
   const popularGuides = [
     {
-      title: 'Complete Repotting Guide',
-      description: 'Learn when and how to repot your plants for optimal growth',
-      image: null,
-      href: '/plant-care/repotting',
-      difficulty: 'Beginner'
-    },
-    {
-      title: 'Watering 101',
-      description: 'Master the art of watering different types of plants',
+      title: 'Savannah Watering Rhythm',
+      description: 'Seasonal watering schedules that balance our coastal humidity with indoor life.',
       image: null,
       href: '/plant-care/watering',
       difficulty: 'Beginner'
     },
     {
-      title: 'Propagation Techniques',
-      description: 'Grow new plants from cuttings and divisions',
+      title: 'Repotting Without the Mess',
+      description: 'Emily\'s checklist for timing, soil mixes, and tools to make repotting joyful.',
       image: null,
-      href: '/plant-care/propagation',
+      href: '/plant-care/repotting',
+      difficulty: 'Beginner'
+    },
+    {
+      title: 'Pet-Safe Plant Pairings',
+      description: 'Design vignettes that are beautiful, resilient, and ASPCA-approved.',
+      image: null,
+      href: '/plant-care/pet-safe',
       difficulty: 'Intermediate'
     },
     {
-      title: 'Pest Identification & Treatment',
-      description: 'Identify and eliminate common plant pests naturally',
+      title: 'Humidity Hacks for Coastal Homes',
+      description: 'How to support tropical plants through air conditioning, heat, and seasonal shifts.',
       image: null,
-      href: '/plant-care/pests',
+      href: '/plant-care/humidity',
       difficulty: 'Intermediate'
     }
   ]
@@ -106,7 +107,7 @@ export function PlantCare() {
             className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
             style={{ fontFamily: 'Archivo, sans-serif' }}
           >
-            Everything you need to keep your plants healthy and thriving
+            Savannah-specific plant care lessons, troubleshooting, and resources from your friendly neighborhood plant mentor
           </p>
         </div>
       </section>
@@ -220,20 +221,20 @@ export function PlantCare() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
             <TipCard
-              title="Watering Wisdom"
-              tip="Check soil moisture before watering. Stick your finger 2 inches deep – if it's dry, it's time to water!"
+              title="Water Deep, Drain Well"
+              tip="Check soil two inches down and water until excess runs through. Empty saucers so Savannah humidity doesn't invite pests."
             />
             <TipCard
-              title="Light Matters"
-              tip="Most houseplants prefer bright, indirect light. Rotate your plants weekly for even growth."
+              title="Match the Light"
+              tip="North windows are low light, east is gentle morning sun, west and south need a sheer curtain. Rotate plants weekly for balanced growth."
             />
             <TipCard
-              title="Humidity Help"
-              tip="Group plants together or use a pebble tray to increase humidity, especially in winter."
+              title="Humidity Helpers"
+              tip="Group plants, mist mindfully, and use pebble trays during heater season so leaves stay supple."
             />
             <TipCard
-              title="Feeding Schedule"
-              tip="Feed during growing season (spring/summer) every 2-4 weeks. Reduce or stop in fall/winter."
+              title="Feed With Intention"
+              tip="Fertilize March through September every 3-4 weeks. Pause in fall and winter to let plants rest."
             />
           </div>
         </div>
@@ -246,13 +247,13 @@ export function PlantCare() {
             className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-8"
             style={{ fontFamily: 'Petrona, serif' }}
           >
-            Ready to Start Your Plant Journey?
+            Ready to Feel Confident?
           </h2>
           <p 
             className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(255,254,246,0.9)] mb-12 max-w-2xl mx-auto"
             style={{ fontFamily: 'Archivo, sans-serif' }}
           >
-            Browse our collection of easy-care plants perfect for beginners, or explore our full catalog.
+            Pair these guides with our beginner-friendly plant collection or request a consultation to build a personalized care plan.
           </p>
           <div className="flex flex-wrap gap-6 justify-center">
             <Link to="/shop/easy-care">
@@ -355,4 +356,3 @@ function TipCard({ title, tip }) {
     </div>
   )
 }
-

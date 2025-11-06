@@ -48,24 +48,25 @@ export function Header() {
       type: 'mega',
       content: {
         categories: [
-          { name: 'Plants', href: '/shop/plants' },
-          { name: 'Tools', href: '/shop/tools' },
-          { name: 'Planters', href: '/shop/planters' },
-          { name: 'Soil', href: '/shop/soil' },
-          { name: 'Others', href: '/shop/others' }
+          { name: 'All Plants', href: '/shop/plants' },
+          { name: 'Planters & Vessels', href: '/shop/planters' },
+          { name: 'Tools & Supplies', href: '/shop/tools' },
+          { name: 'Soils & Amendments', href: '/shop/soil' },
+          { name: 'Gifts & Local Goods', href: '/shop/gifts' },
+          { name: 'Services & Workshops', href: '/services' }
         ],
         intents: [
-          { name: 'Best Sellers', href: '/shop/best-sellers' },
-          { name: 'Seasonal', href: '/shop/seasonal' },
-          { name: 'Low Maintenance', href: '/shop/low-maintenance' },
-          { name: 'Low Light', href: '/shop/low-light' },
-          { name: 'Pet Safe', href: '/shop/pet-safe' },
-          { name: 'Indoor/Outdoor', href: '/shop/indoor-outdoor' }
+          { name: 'Beginner-Friendly', href: '/shop/beginner-friendly' },
+          { name: 'Low-Light Heroes', href: '/shop/low-light' },
+          { name: 'Pet-Safe Plants', href: '/shop/pet-safe' },
+          { name: 'Statement Plants', href: '/shop/statement' },
+          { name: 'Ready-to-Gift', href: '/shop/gifts' },
+          { name: 'Plant Rentals', href: '/services/delivery-rentals' }
         ],
         promo: {
-          title: 'Winter Plant Sale',
-          subtitle: 'Up to 30% off select plants',
-          href: '/shop/winter-sale',
+          title: 'Monday Local Delivery',
+          subtitle: 'Hand-delivered across Savannah with handwritten notes upon request.',
+          href: '/shop',
           image: null
         }
       }
@@ -74,20 +75,20 @@ export function Header() {
       label: 'Services',
       type: 'dropdown',
       content: [
-        { name: 'In-Store Services', href: '/services/in-store' },
-        { name: 'In-Home Services', href: '/services/in-home' },
+        { name: 'In-Store Plant Bar', href: '/services/in-store' },
+        { name: 'In-Home Consultations', href: '/services/in-home' },
         { name: 'Delivery & Rentals', href: '/services/delivery-rentals' }
       ],
-      cta: { label: 'Book a Service', href: '/services' }
+      cta: { label: 'Request a Consultation', href: '/contact#form' }
     },
     plantCare: {
       label: 'Plant Care',
       type: 'dropdown',
       content: [
-        { name: 'Plant Info Hub', href: '/plant-care' },
-        { name: 'Guides & Articles', href: '/plant-care/guides' },
-        { name: 'Pet-Safe List', href: '/plant-care/pet-safe', badge: 'Popular' },
-        { name: 'Repotting Guide', href: '/plant-care/repotting' }
+        { name: 'Plant Care Library', href: '/plant-care' },
+        { name: 'Light & Placement Guides', href: '/plant-care/low-light' },
+        { name: 'Pet-Safe Collection', href: '/plant-care/pet-safe', badge: 'Popular' },
+        { name: 'Troubleshooting Center', href: '/plant-care/troubleshooting' }
       ]
     },
     about: {
@@ -95,9 +96,9 @@ export function Header() {
       type: 'dropdown',
       content: [
         { name: 'Our Story', href: '/about' },
-        { name: 'Mission & Vision', href: '/about#mission' },
-        { name: 'Reviews & Press', href: '/about#reviews' },
-        { name: 'Nominations', href: '/about#nominations' }
+        { name: 'Mission & Values', href: '/about#mission' },
+        { name: 'Community Voices', href: '/about#reviews' },
+        { name: 'Neighborhood Highlights', href: '/about#nominations' }
       ]
     },
     contact: {
@@ -106,7 +107,7 @@ export function Header() {
       content: [
         { name: 'Store Info & Map', href: '/contact' },
         { name: 'FAQs', href: '/faqs' },
-        { name: 'Contact Form', href: '/contact#form' }
+        { name: 'Service Request Form', href: '/contact#form' }
       ]
     }
   }
@@ -425,4 +426,3 @@ function MobileMenu({ navigation, onClose }) {
     </motion.div>
   )
 }
-

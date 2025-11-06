@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { MapPin, Phone, Mail, Clock, Facebook, Instagram, Twitter } from 'lucide-react'
+import { MapPin, Mail, Clock, Truck, Facebook, Instagram } from 'lucide-react'
 
 /**
  * Footer 组件 - 全局页脚
@@ -13,62 +13,60 @@ export function Footer() {
       title: 'Shop',
       links: [
         { name: 'All Plants', href: '/shop/plants' },
-        { name: 'Best Sellers', href: '/shop/best-sellers' },
-        { name: 'Pet-Safe Plants', href: '/shop/pet-safe' },
-        { name: 'Tools & Accessories', href: '/shop/tools' },
-        { name: 'Gift Cards', href: '/gift-cards' }
+        { name: 'Pet-Safe Collection', href: '/shop/pet-safe' },
+        { name: 'Planters & Vessels', href: '/shop/planters' },
+        { name: 'Tools & Supplies', href: '/shop/tools' },
+        { name: 'Local Gifts', href: '/shop/gifts' }
       ]
     },
     {
       title: 'Services',
       links: [
-        { name: 'In-Store Services', href: '/services/in-store' },
-        { name: 'In-Home Consultation', href: '/services/in-home' },
+        { name: 'In-Store Plant Bar', href: '/services/in-store' },
+        { name: 'In-Home Consultations', href: '/services/in-home' },
         { name: 'Delivery & Rentals', href: '/services/delivery-rentals' },
-        { name: 'Book a Service', href: '/services' }
+        { name: 'Request a Consultation', href: '/contact#form' }
       ]
     },
     {
       title: 'Plant Care',
       links: [
-        { name: 'Care Guides', href: '/plant-care/guides' },
-        { name: 'Pet-Safe List', href: '/plant-care/pet-safe' },
-        { name: 'Repotting Guide', href: '/plant-care/repotting' },
-        { name: 'Troubleshooting', href: '/plant-care/troubleshooting' }
+        { name: 'Plant Care Library', href: '/plant-care' },
+        { name: 'Light & Placement Guides', href: '/plant-care/low-light' },
+        { name: 'Troubleshooting Center', href: '/plant-care/troubleshooting' },
+        { name: 'Pet-Safe Resources', href: '/plant-care/pet-safe' }
       ]
     },
     {
       title: 'About',
       links: [
         { name: 'Our Story', href: '/about' },
-        { name: 'Contact Us', href: '/contact' },
-        { name: 'FAQs', href: '/faqs' },
-        { name: 'Reviews', href: '/about#reviews' }
+        { name: 'Mission & Values', href: '/about#mission' },
+        { name: 'Community Voices', href: '/about#reviews' },
+        { name: 'Contact', href: '/contact' }
       ]
     }
   ]
 
   const storeInfo = {
-    address: '123 Botanical Avenue, Green District, CA 90210',
-    phone: '(555) 123-4567',
+    address: '2411 Waters Ave., Savannah, GA 31404',
     email: 'hello@castandgrey.com',
     hours: [
-      { days: 'Monday - Friday', time: '9:00 AM - 7:00 PM' },
-      { days: 'Saturday', time: '10:00 AM - 6:00 PM' },
-      { days: 'Sunday', time: '11:00 AM - 5:00 PM' }
-    ]
+      { days: 'Tuesday - Saturday', time: '11:00 AM - 6:00 PM' },
+      { days: 'Sunday - Monday', time: 'Closed' }
+    ],
+    delivery: 'Local deliveries run every Monday across Savannah, Pooler, Garden City, Port Wentworth, Wilmington Island, Tybee Island, Richmond Hill, and Bloomingdale.'
   }
 
   const socialLinks = [
-    { name: 'Instagram', icon: Instagram, href: 'https://instagram.com/castandgrey' },
-    { name: 'Facebook', icon: Facebook, href: 'https://facebook.com/castandgrey' },
-    { name: 'Twitter', icon: Twitter, href: 'https://twitter.com/castandgrey' }
+    { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/castandgreybotanical' },
+    { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/castandgreybotanical' }
   ]
 
-  const paymentMethods = ['Visa', 'Mastercard', 'American Express', 'PayPal', 'Apple Pay']
+  const paymentMethods = ['American Express', 'Apple Pay', 'Diners Club', 'Discover', 'Mastercard', 'Shop Pay', 'Visa']
 
   const policies = [
-    { name: 'Shipping & Delivery', href: '/policies/shipping' },
+    { name: 'Local Delivery', href: '/faqs' },
     { name: 'Returns & Exchanges', href: '/policies/returns' },
     { name: 'Privacy Policy', href: '/policies/privacy' },
     { name: 'Terms of Service', href: '/policies/terms' }
@@ -86,14 +84,11 @@ export function Footer() {
             <div className="space-y-3 text-stone-600">
               <div className="flex gap-3">
                 <MapPin size={20} className="flex-shrink-0 text-green-600 mt-0.5" />
-                <address className="not-italic">{storeInfo.address}</address>
-              </div>
-              
-              <div className="flex gap-3">
-                <Phone size={20} className="flex-shrink-0 text-green-600" />
-                <a href={`tel:${storeInfo.phone}`} className="hover:text-stone-900 transition-colors">
-                  {storeInfo.phone}
-                </a>
+                <address className="not-italic">
+                  {storeInfo.address}
+                  <br />
+                  Between The Stacks Bookstore and Goodfortune Market
+                </address>
               </div>
               
               <div className="flex gap-3">
@@ -102,6 +97,17 @@ export function Footer() {
                   {storeInfo.email}
                 </a>
               </div>
+
+              <div className="flex gap-3">
+                <Truck size={20} className="flex-shrink-0 text-green-600" />
+                <p className="text-sm">
+                  {storeInfo.delivery}
+                </p>
+              </div>
+
+              <p className="text-xs text-stone-500">
+                We reply via email during store hours. No phone line—drop us a note anytime.
+              </p>
             </div>
 
             <div className="mt-6">
@@ -170,7 +176,7 @@ export function Footer() {
               <form className="flex gap-2" onSubmit={(e) => e.preventDefault()}>
                 <input
                   type="email"
-                  placeholder="Enter your email for updates"
+                  placeholder="Get Monday delivery + workshop updates"
                   className="flex-1 md:w-64 px-4 py-2 border border-stone-300 rounded-md focus:outline-none focus:ring-2 focus:ring-green-600 focus:border-transparent"
                   aria-label="Email address"
                 />
@@ -178,7 +184,7 @@ export function Footer() {
                   type="submit"
                   className="px-6 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors font-medium"
                 >
-                  Subscribe
+                  Join List
                 </button>
               </form>
             </div>
@@ -227,4 +233,3 @@ export function Footer() {
     </footer>
   )
 }
-

@@ -48,7 +48,7 @@ export function ContactForm() {
           Message Sent!
         </h3>
         <p className="text-stone-600">
-          We'll get back to you within 24 hours.
+          We reply Tuesday through Saturday, 11am-6pm.
         </p>
       </div>
     )
@@ -71,8 +71,9 @@ export function ContactForm() {
         >
           <option value="">Select a subject</option>
           <option value="general">General Inquiry</option>
-          <option value="order">Order Question</option>
-          <option value="service">Service Booking</option>
+          <option value="order">Order or Pickup Question</option>
+          <option value="delivery">Local Delivery Request</option>
+          <option value="service">Service or Consultation Booking</option>
           <option value="plant-care">Plant Care Help</option>
           <option value="feedback">Feedback</option>
           <option value="other">Other</option>
@@ -140,9 +141,8 @@ export function ContactForm() {
 
       {/* Response Policy */}
       <p className="text-sm text-stone-600 mt-4 text-center">
-        We typically respond within 24 hours during business days.
+        Messages are answered Tuesday through Saturday, 11am-6pm.
       </p>
     </form>
   )
 }
-

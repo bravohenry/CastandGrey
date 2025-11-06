@@ -12,26 +12,26 @@ import { Button } from '../design-system'
 export function Services() {
   const services = [
     {
-      name: 'In-Store Services',
-      description: 'Visit our store for quick plant care services including repotting, pot drilling, and consultations.',
-      price: 'From $15',
-      duration: '15-30 minutes',
+      name: 'In-Store Plant Bar',
+      description: 'Drop in for repotting, planter drilling, plant matchmaking, and quick troubleshooting with Emily.',
+      price: 'Repotting $6-$30 / Drilling $10',
+      duration: 'Available Tuesday-Saturday, 11am-6pm',
       bookingLink: '/services/in-store',
       image: null
     },
     {
-      name: 'In-Home Consultation',
-      description: 'Professional consultation at your home or office to help you choose and place plants perfectly.',
-      price: 'From $75',
-      duration: '1-2 hours',
+      name: 'In-Home Consultation & Repotting',
+      description: 'One-on-one coaching in your space with a write-up, lighting assessment, and optional on-the-spot repotting.',
+      price: '$30/hr + repotting fees (1-hour minimum, credited toward follow-up services)',
+      duration: '60 minutes minimum',
       bookingLink: '/services/in-home',
       image: null
     },
     {
-      name: 'Delivery & Installation',
-      description: 'Local delivery and professional installation service for your plants and planters.',
-      price: 'From $30',
-      duration: 'Same day',
+      name: 'Local Delivery & Plant Rentals',
+      description: 'Monday deliveries across Savannah plus curated rentals for events, staging, and photo shoots.',
+      price: 'Delivery $5-$15 / Rentals $150+ (50% of retail up to 72 hours)',
+      duration: 'Mondays for delivery / Rentals by appointment',
       bookingLink: '/services/delivery-rentals',
       image: null
     }
@@ -40,36 +40,36 @@ export function Services() {
   const reviews = [
     {
       rating: 5,
-      comment: 'The in-home consultation was worth every penny! They helped me transform my apartment into a green oasis.',
-      author: 'Jessica Wang',
-      date: 'October 2025'
+      comment: 'Emily&apos;s in-home consultation gave me a full lighting map, plant recommendations, and a follow-up email with everything in writing. Worth every penny.',
+      author: 'Lauren P.',
+      date: 'March 2024'
     },
     {
       rating: 5,
-      comment: 'Fast delivery and the installer was so careful with everything. Highly professional service!',
-      author: 'Robert Kim',
-      date: 'September 2025'
+      comment: 'The Monday delivery is legendary. Plants arrive secured, tagged, and with care notes—my clients think I have a plant concierge.',
+      author: 'Marcus H.',
+      date: 'February 2024'
     },
     {
       rating: 5,
-      comment: 'Got my plant repotted in-store and the team was amazing. Great expertise and friendly service.',
-      author: 'Maria Lopez',
-      date: 'September 2025'
+      comment: 'Repotting at the plant bar is so joyful. Emily drills planters, refreshes soil, and teaches as she works.',
+      author: 'Samantha D.',
+      date: 'January 2024'
     }
   ]
 
   const features = [
     {
-      title: 'Expert Team',
-      description: 'All our staff are trained horticulturists with years of experience'
+      title: 'Mentorship-First Approach',
+      description: 'Every service includes practical coaching and a written plan so you feel confident long after we pack up.'
     },
     {
-      title: 'Flexible Scheduling',
-      description: 'We work around your schedule with same-day and weekend availability'
+      title: 'Materials Included',
+      description: 'We bring the soil, tools, and planter know-how. You bring the plants and your questions.'
     },
     {
-      title: 'Satisfaction Guaranteed',
-      description: 'Not happy? We\'ll make it right or refund your service fee'
+      title: 'Savannah Logistics',
+      description: 'Monday delivery routes and flexible appointment windows keep your projects on schedule.'
     }
   ]
 
@@ -100,7 +100,7 @@ export function Services() {
             className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
             style={{ fontFamily: 'Archivo, sans-serif' }}
           >
-            Professional plant care and consultation services tailored to your needs
+            From in-store repotting to in-home consultations and Monday deliveries, we nurture confident plant care for Savannah homes and businesses
           </p>
         </div>
       </section>
@@ -176,25 +176,25 @@ export function Services() {
           <div className="space-y-12">
             <Step
               number="1"
-              title="Choose Your Service"
-              description="Select the service that best fits your needs from our three main offerings."
+              title="Share Your Plant Goals"
+              description="Tell us about your space, lighting, lifestyle, and any plant anxieties—we love the details."
             />
             <Step
               number="2"
-              title="Schedule a Time"
-              description="Pick a convenient time slot that works with your schedule. We offer same-day and weekend appointments."
+              title="Receive a Custom Plan"
+              description="We confirm your booking, outline pricing, and prepare the materials and recommendations you need."
             />
             <Step
               number="3"
-              title="Enjoy Expert Care"
-              description="Our team arrives on time and provides professional service with a smile. We'll answer all your questions!"
+              title="Relax While We Work"
+              description="We handle the repotting, placement, delivery, or rentals—then leave you with a clear, confidence-building care recap."
             />
           </div>
 
           <div className="mt-20 text-center">
             <Link to="/contact">
               <Button variant="primary" size="lg">
-                BOOK A SERVICE NOW
+                REQUEST A CONSULTATION
               </Button>
             </Link>
           </div>
@@ -227,16 +227,16 @@ export function Services() {
 
           <div className="space-y-6">
             <FAQItem
-              question="Do I need to be home for delivery?"
-              answer="For delivery services, yes. For in-store services, no appointment needed – just walk in during business hours!"
+              question="Can I bring plants from home to the shop for repotting?"
+              answer="We love getting our hands in soil, but we ask that personal plants stay at home. Book an in-home repotting appointment and we will bring the tools, soil, and expertise to you."
             />
             <FAQItem
-              question="What's included in the in-home consultation?"
-              answer="Our expert will assess your space, lighting, and lifestyle to recommend the perfect plants. We'll also provide care instructions and placement suggestions."
+              question="How do Monday deliveries work?"
+              answer={'Choose "Ship" at checkout (that signals local delivery), enter the recipient\'s address, and Emily will email from hello@castandgrey.com to confirm the Monday timeframe. We coordinate safe drop-offs if no one is home.'}
             />
             <FAQItem
-              question="Can I cancel or reschedule?"
-              answer="Yes! Cancel up to 24 hours before your appointment for a full refund. Rescheduling is always free."
+              question="Is my consultation fee applied to future services?"
+              answer="Absolutely. The $30 per hour consultation fee is credited toward any follow-up services—like repotting, installs, or plant sourcing—booked within 30 days."
             />
           </div>
 
@@ -312,4 +312,3 @@ function FAQItem({ question, answer }) {
     </div>
   )
 }
-

@@ -38,21 +38,21 @@ export function Search() {
     services: [
       {
         name: 'In-Home Consultation',
-        description: 'Professional consultation at your home or office',
+        description: 'One-on-one coaching with a lighting assessment, write-up, and optional repotting',
         price: 'From $75',
         href: '/services/in-home'
       }
     ],
     articles: [
       {
-        title: 'Complete Monstera Care Guide',
-        excerpt: 'Learn everything about caring for your Monstera Deliciosa...',
+        title: 'Savannah Watering Rhythm',
+        excerpt: 'Seasonal watering schedules tailored to our coastal humidity...',
         category: 'Plant Care',
         href: '/plant-care/monstera-guide'
       },
       {
-        title: 'Pet-Safe Plant List',
-        excerpt: 'A comprehensive guide to plants that are safe for cats and dogs...',
+        title: 'Pet-Safe Plant Pairings',
+        excerpt: 'Create beautiful vignettes that stay safe for curious pets and kids...',
         category: 'Plant Care',
         href: '/plant-care/pet-safe'
       }
@@ -95,7 +95,7 @@ export function Search() {
             className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
             style={{ fontFamily: 'Archivo, sans-serif' }}
           >
-            Find plants, services, and care guides
+            Explore plants, services, and Savannah-specific care guides from Cast & Grey
           </p>
         </div>
       </section>
@@ -141,7 +141,7 @@ export function Search() {
                 Popular searches:
               </p>
               <div className="flex flex-wrap gap-3">
-                {['Monstera', 'Pet-safe plants', 'Low light', 'Repotting guide'].map((term) => (
+                {['Local delivery', 'Pet-safe plant list', 'In-home consultation', 'Humidity hacks'].map((term) => (
                   <button
                     key={term}
                     onClick={() => setSearchQuery(term)}

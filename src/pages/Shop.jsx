@@ -243,7 +243,7 @@ export function Shop() {
             className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
             style={{ fontFamily: 'Archivo, sans-serif' }}
           >
-            Discover our curated collection of plants, tools, and accessories
+            Rotating houseplants, planters, tools, and locally made gifts curated for Savannah homes, patios, and gifting moments
           </p>
         </div>
       </section>
@@ -313,24 +313,20 @@ export function Shop() {
             className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-8"
             style={{ fontFamily: 'Petrona, serif' }}
           >
-            Premium Plants & Botanical Accessories
+            Savannah&apos;s Houseplant Boutique
           </h2>
           <div className="space-y-6">
             <p 
               className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(255,254,246,0.9)]"
               style={{ fontFamily: 'Archivo, sans-serif' }}
             >
-              Welcome to Cast & Grey's curated plant shop. We specialize in bringing the beauty of
-              nature into urban spaces with our carefully selected collection of indoor plants,
-              planters, tools, and accessories.
+              Every vignette you see in-store lives here too—beginner-friendly foliage, rare finds, coastal-tolerant plants, handcrafted planters, useful tools, and locally made gifts. Each item is selected for approachable aesthetics and real-world performance in Savannah&apos;s light and humidity.
             </p>
             <p 
               className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(255,254,246,0.9)]"
               style={{ fontFamily: 'Archivo, sans-serif' }}
             >
-              Every plant in our collection is hand-selected for quality and comes with detailed
-              care instructions. Whether you're a seasoned plant parent or just starting your
-              botanical journey, we have something perfect for your space.
+              We do not ship, but we do deliver every Monday. Choose local delivery at checkout, add a handwritten gift note, and explore our plant care library or pet-safe collection for confidence long after your plants arrive.
             </p>
           </div>
         </div>
@@ -338,4 +334,3 @@ export function Shop() {
     </div>
   )
 }
-

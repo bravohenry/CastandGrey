@@ -65,47 +65,47 @@ export function Home() {
   const reviews = [
     {
       rating: 5,
-      comment: 'Absolutely love my new Monstera! It arrived in perfect condition and the care instructions were so helpful. The team at Cast & Grey really knows their plants.',
-      author: 'Sarah Martinez',
+      comment: 'Emily turned my plant anxiety into confidence in one visit. She mapped the light in my apartment and left me with a step-by-step care plan that actually fits my routine.',
+      author: 'Addison R.',
       verified: true,
-      date: 'October 2025'
+      date: 'March 2024'
     },
     {
       rating: 5,
-      comment: 'The in-home consultation service was amazing. They helped me choose the perfect plants for my apartment and even potted them for me. Highly recommend!',
-      author: 'Michael Chen',
+      comment: 'The Monday delivery feels like a concierge service—plants arrive potted, labeled, and with personalized notes. It\'s the most thoughtful local gifting option in Savannah.',
+      author: 'Jared T.',
       verified: true,
-      date: 'October 2025'
+      date: 'February 2024'
     },
     {
       rating: 5,
-      comment: 'Best plant shop in the city! The staff is knowledgeable, the selection is incredible, and the prices are fair. My apartment has never looked better.',
-      author: 'Emma Johnson',
+      comment: 'Every time I walk into Cast & Grey I learn something new. Emily\'s calm coaching and practical tips make plant care feel joyful instead of overwhelming.',
+      author: 'Priya L.',
       verified: true,
-      date: 'September 2025'
+      date: 'January 2024'
     }
   ]
 
   const features = [
     {
       icon: Truck,
-      title: 'Local Delivery',
-      description: 'Fast and careful delivery to your doorstep'
+      title: 'Monday Local Delivery',
+      description: 'Hand-delivered across Savannah with updates from Emily every step of the way'
     },
     {
       icon: Leaf,
-      title: 'Plant Health Guarantee',
-      description: '30-day guarantee on all plants'
+      title: 'Savannah-Specific Mentorship',
+      description: 'Practical coaching tailored to our coastal climate and your exact light levels'
     },
     {
       icon: Heart,
-      title: 'Pet-Safe Options',
-      description: 'Curated selection of pet-friendly plants'
+      title: 'Woman-Owned Community Hub',
+      description: 'The neighborhood boutique where approachable aesthetics meets warm, dependable care'
     },
     {
       icon: Shield,
-      title: 'Expert Care Support',
-      description: 'Free consultation with every purchase'
+      title: 'Confidence-Building Resources',
+      description: 'Comprehensive plant care library, pet-safe lists, and troubleshooting plans'
     }
   ]
 
@@ -134,13 +134,13 @@ export function Home() {
               className="text-[56px] lg:text-[72px] leading-[1.1] font-bold tracking-[0.72px] text-[#FFFEF6] mb-8"
               style={{ fontFamily: 'Petrona, serif' }}
             >
-              Bring Nature Home
+              Savannah&apos;s Plant Fairy-Godmother
             </h1>
             <p 
-              className="text-[16px] leading-[32px] tracking-[0.8px] text-[#FFFEF6] max-w-2xl mx-auto mb-16 opacity-90"
+              className="text-[16px] leading-[32px] tracking-[0.8px] text-[#FFFEF6] max-w-3xl mx-auto mb-16 opacity-90"
               style={{ fontFamily: 'Archivo, sans-serif' }}
             >
-              Premium plants, expert care, and personalized service for urban plant lovers
+              Cast & Grey Botanical is the only woman-owned, houseplant-focused, community-building boutique in Savannah—pairing approachable aesthetics with practical education so every neighbor can feel confident caring for plants.
             </p>
             
             {/* CTA Buttons - 使用设计系统 */}
@@ -152,7 +152,7 @@ export function Home() {
               </Link>
               <Link to="/services">
                 <Button variant="secondary" size="lg">
-                  BOOK A SERVICE
+                  BOOK A CONSULTATION
                 </Button>
               </Link>
             </div>
@@ -165,23 +165,23 @@ export function Home() {
         <div className="px-[50px] lg:px-[246px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <QuickAccessTile
-              title="Shop Plants"
-              description="Explore our curated collection"
+              title="Shop the Collection"
+              description="Rotating plants, planters, and local gifts"
               href="/shop/plants"
             />
             <QuickAccessTile
-              title="Book Services"
-              description="Professional plant care"
+              title="Schedule Services"
+              description="Repotting, consults, delivery & rentals"
               href="/services"
             />
             <QuickAccessTile
-              title="Plant Care"
-              description="Learn from our guides"
+              title="Explore Plant Care"
+              description="Savannah-specific guides & resources"
               href="/plant-care"
             />
             <QuickAccessTile
-              title="Gift Cards"
-              description="Perfect for plant lovers"
+              title="Send a Gift"
+              description="Handwritten notes with every delivery"
               href="/gift-cards"
             />
           </div>
@@ -197,13 +197,13 @@ export function Home() {
               className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#111111] mb-4"
               style={{ fontFamily: 'Petrona, serif' }}
             >
-              Best Sellers
+              Community Favorites
             </h2>
             <p 
               className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
               style={{ fontFamily: 'Archivo, sans-serif' }}
             >
-              Our most loved plants
+              Beloved picks our Savannah neighbors can&apos;t stop raving about
             </p>
           </div>
 
@@ -291,7 +291,7 @@ export function Home() {
               className="text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(69,147,97,0.75)] uppercase font-bold"
               style={{ fontFamily: 'Archivo, sans-serif' }}
             >
-              Rated 4.9/5 from over 500 reviews
+              Loved by Savannah plant parents
             </p>
           </div>
 
@@ -307,20 +307,20 @@ export function Home() {
         <div className="px-[50px] lg:px-[246px]">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <CTABlock
-              title="Shop Now"
-              description="Browse our full collection of plants and accessories"
+              title="Discover the Shop"
+              description="Browse rotating plants, planters, tools, and locally made gifts curated for Savannah spaces"
               href="/shop"
               buttonText="Explore Shop"
             />
             <CTABlock
-              title="Book Service"
-              description="Get professional help with plant care and installation"
+              title="Plan a Service"
+              description="Invite the plant bar to your home or book in-store repotting, delivery, or event rentals"
               href="/services"
               buttonText="View Services"
             />
             <CTABlock
-              title="Learn Plant Care"
-              description="Access our comprehensive plant care guides"
+              title="Study the Plant Library"
+              description="Dive into Savannah-specific plant care guides, pet-safe lists, and troubleshooting tips"
               href="/plant-care"
               buttonText="Read Guides"
             />
@@ -401,4 +401,3 @@ function CTABlock({ title, description, href, buttonText }) {
     </div>
   )
 }
-

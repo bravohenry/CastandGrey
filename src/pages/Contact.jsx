@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-import { MapPin, Phone, Mail, Clock } from 'lucide-react'
+import { MapPin, Mail, Clock, Truck } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { ContactForm } from '../components/common/ContactForm'
 import storePhoto from '../assets/Cast & Grey Botanical Bkg_files/storepicture.jpg'
@@ -12,32 +12,31 @@ import storePhoto from '../assets/Cast & Grey Botanical Bkg_files/storepicture.j
  */
 export function Contact() {
   const storeInfo = {
-    address: '123 Botanical Avenue, Green District, CA 90210',
-    phone: '(555) 123-4567',
+    address: '2411 Waters Ave., Savannah, GA 31404',
     email: 'hello@castandgrey.com',
     hours: [
-      { days: 'Monday - Friday', time: '9:00 AM - 7:00 PM' },
-      { days: 'Saturday', time: '10:00 AM - 6:00 PM' },
-      { days: 'Sunday', time: '11:00 AM - 5:00 PM' }
-    ]
+      { days: 'Tuesday - Saturday', time: '11:00 AM - 6:00 PM' },
+      { days: 'Sunday - Monday', time: 'Closed' }
+    ],
+    delivery: 'Local deliveries run on Mondays across Savannah, Pooler, Garden City, Port Wentworth, Wilmington Island, Tybee Island, Richmond Hill, and Bloomingdale.'
   }
 
   const faqs = [
     {
-      question: 'Do you offer same-day delivery?',
-      answer: 'Yes! For orders placed before 2 PM, we offer same-day local delivery within a 10-mile radius.'
+      question: 'Do you offer shipping?',
+      answer: 'We do not ship plants or products. Select local delivery at checkout for Monday drop-offs, or choose in-store pickup during shop hours.'
     },
     {
       question: 'What is your return policy?',
-      answer: 'We offer a 30-day plant health guarantee. If your plant isn\'t thriving, bring it back with the original receipt for a replacement or refund.'
+      answer: 'All plant sales are final. If a plant leaves with a pest, let us know within seven days with your Cast & Grey tag. Defective merchandise can be exchanged with a receipt.'
     },
     {
-      question: 'Do I need an appointment for in-store services?',
-      answer: 'Walk-ins are welcome for quick services like repotting. For in-home consultations, please book an appointment online or call us.'
+      question: 'Can I bring my own plants for repotting?',
+      answer: 'We kindly ask that personal plants stay home. Book an in-home repotting appointment and we will bring soil, tools, and expertise to you.'
     },
     {
-      question: 'Are all your plants pet-safe?',
-      answer: 'We carry both pet-safe and non-pet-safe plants. All plants are clearly labeled in-store and online. Check out our Pet-Safe Collection for safe options.'
+      question: 'How do I book a consultation or service?',
+      answer: 'Email hello@castandgrey.com or use the contact form below with your goals, timeline, and location. We reply during store hours to confirm details.'
     }
   ]
 
@@ -68,7 +67,7 @@ export function Contact() {
             className="text-[16px] leading-[32px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] max-w-2xl"
             style={{ fontFamily: 'Archivo, sans-serif' }}
           >
-            We'd love to hear from you. Visit us, call, or send us a message.
+            We respond via email during shop hours. Visit the boutique, send a note, or schedule a service—whatever helps you feel confident with your plants.
           </p>
         </div>
       </section>
@@ -122,28 +121,9 @@ export function Contact() {
                       style={{ fontFamily: 'Archivo, sans-serif' }}
                     >
                       {storeInfo.address}
+                      <br />
+                      Between The Stacks Bookstore and Goodfortune Market
                     </address>
-                  </div>
-                </div>
-
-                <div className="flex gap-6">
-                  <div className="flex-shrink-0 w-14 h-14 bg-[rgba(69,147,97,0.1)] rounded-[12px] flex items-center justify-center">
-                    <Phone size={24} className="text-[#459361]" strokeWidth={1.5} />
-                  </div>
-                  <div>
-                    <h3 
-                      className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-2"
-                      style={{ fontFamily: 'Petrona, serif' }}
-                    >
-                      Phone
-                    </h3>
-                    <a
-                      href={`tel:${storeInfo.phone}`}
-                      className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] hover:text-[#459361] transition-colors"
-                      style={{ fontFamily: 'Archivo, sans-serif' }}
-                    >
-                      {storeInfo.phone}
-                    </a>
                   </div>
                 </div>
 
@@ -156,7 +136,7 @@ export function Contact() {
                       className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-2"
                       style={{ fontFamily: 'Petrona, serif' }}
                     >
-                      Email
+                      Email Us
                     </h3>
                     <a
                       href={`mailto:${storeInfo.email}`}
@@ -165,6 +145,32 @@ export function Contact() {
                     >
                       {storeInfo.email}
                     </a>
+                    <p 
+                      className="text-[13px] leading-[24px] tracking-[0.6px] text-[rgba(69,147,97,0.6)] mt-2"
+                      style={{ fontFamily: 'Archivo, sans-serif' }}
+                    >
+                      We reply during store hours. No phone line—email is the best way to reach us.
+                    </p>
+                  </div>
+                </div>
+
+                <div className="flex gap-6">
+                  <div className="flex-shrink-0 w-14 h-14 bg-[rgba(69,147,97,0.1)] rounded-[12px] flex items-center justify-center">
+                    <Truck size={24} className="text-[#459361]" strokeWidth={1.5} />
+                  </div>
+                  <div>
+                    <h3 
+                      className="text-[15.6px] leading-[24.5px] font-bold tracking-[0.72px] text-[#111111] mb-2"
+                      style={{ fontFamily: 'Petrona, serif' }}
+                    >
+                      Local Delivery
+                    </h3>
+                    <p 
+                      className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
+                      style={{ fontFamily: 'Archivo, sans-serif' }}
+                    >
+                      {storeInfo.delivery}
+                    </p>
                   </div>
                 </div>
 
@@ -220,7 +226,7 @@ export function Contact() {
                       className="text-[14.6px] leading-[28.8px] tracking-[0.6px] text-[rgba(69,147,97,0.75)]"
                       style={{ fontFamily: 'Archivo, sans-serif' }}
                     >
-                      123 Botanical Avenue
+                      2411 Waters Ave., Savannah, GA 31404
                     </p>
                   </div>
                 </div>
