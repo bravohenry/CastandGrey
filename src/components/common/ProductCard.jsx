@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom'
 import { Heart, ShoppingCart } from 'lucide-react'
 import { useState } from 'react'
+import placeholderPlant from '../../assets/placeholders/product-plant.svg'
+import placeholderService from '../../assets/placeholders/service-generic.svg'
 
 /**
  * ProductCard 组件 - 产品卡片
@@ -13,17 +15,11 @@ export function ProductCard({ product }) {
     <div className="group relative bg-white rounded-lg overflow-hidden border border-stone-200 hover:shadow-lg transition-shadow">
       {/* Product Image */}
       <Link to={`/products/${product.handle}`} className="block relative aspect-square overflow-hidden bg-stone-100">
-        {product.image ? (
-          <img
-            src={product.image}
-            alt={product.name}
-            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-stone-400">
-            Product Image
-          </div>
-        )}
+        <img
+          src={product.image || placeholderPlant}
+          alt={product.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+        />
 
         {/* Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">
@@ -132,17 +128,11 @@ export function ServiceCard({ service }) {
     <div className="bg-white rounded-lg border border-stone-200 overflow-hidden hover:shadow-lg transition-shadow">
       {/* Service Image */}
       <div className="aspect-[16/9] bg-stone-100 overflow-hidden">
-        {service.image ? (
-          <img
-            src={service.image}
-            alt={service.name}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div className="w-full h-full flex items-center justify-center text-stone-400">
-            Service Image
-          </div>
-        )}
+        <img
+          src={service.image || placeholderService}
+          alt={service.name}
+          className="w-full h-full object-cover"
+        />
       </div>
 
       {/* Service Info */}
@@ -177,4 +167,3 @@ export function ServiceCard({ service }) {
     </div>
   )
 }
-

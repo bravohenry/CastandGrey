@@ -5,6 +5,7 @@ import { ProductCard } from '../components/common/ProductCard'
 import { ReviewGrid } from '../components/common/ReviewCarousel'
 import { Heart, ShoppingCart, Share2, Droplets, Sun, Wind, Shield } from 'lucide-react'
 import { Button } from '../design-system'
+import placeholderPlant from '../assets/placeholders/product-plant.svg'
 
 /**
  * ProductDetail 页面 - 产品详情页
@@ -133,20 +134,11 @@ export function ProductDetail() {
                 animate={{ opacity: 1 }}
                 transition={{ duration: 0.6 }}
               >
-                {product.images[selectedImage] ? (
-                  <img
-                    src={product.images[selectedImage]}
-                    alt={product.name}
-                    className="w-full h-full object-cover"
-                  />
-                ) : (
-                  <div 
-                    className="w-full h-full flex items-center justify-center text-[14.6px] tracking-[0.6px] text-[rgba(69,147,97,0.4)]"
-                    style={{ fontFamily: 'Archivo, sans-serif' }}
-                  >
-                    Product Image
-                  </div>
-                )}
+                <img
+                  src={product.images[selectedImage] || placeholderPlant}
+                  alt={product.name}
+                  className="w-full h-full object-cover"
+                />
               </motion.div>
 
               {/* Thumbnail Gallery */}
@@ -160,16 +152,7 @@ export function ProductDetail() {
                     }`}
                     style={{ boxShadow: selectedImage === index ? '0px 4px 0px rgba(132, 132, 132, 0.9)' : 'none' }}
                   >
-                    {img ? (
-                      <img src={img} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />
-                    ) : (
-                      <div 
-                        className="w-full h-full flex items-center justify-center text-[13px] tracking-[0.6px] text-[rgba(69,147,97,0.4)] font-bold"
-                        style={{ fontFamily: 'Archivo, sans-serif' }}
-                      >
-                        {index + 1}
-                      </div>
-                    )}
+                    <img src={img || placeholderPlant} alt={`${product.name} ${index + 1}`} className="w-full h-full object-cover" />
                   </button>
                 ))}
               </div>

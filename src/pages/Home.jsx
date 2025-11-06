@@ -4,7 +4,7 @@ import { Hero } from '../components/common/Hero'
 import { ProductCard } from '../components/common/ProductCard'
 import { ReviewCarousel } from '../components/common/ReviewCarousel'
 import { Button } from '../design-system'
-import { Truck, Heart, Shield, Leaf } from 'lucide-react'
+import { Truck, Heart, Shield, Leaf, MapPin, Clock, Mail } from 'lucide-react'
 import storepicture from '../assets/Cast & Grey Botanical Bkg_files/storepicture.jpg'
 import photo2634 from '../assets/Cast & Grey Botanical Bkg_files/photo-2634.jpg'
 
@@ -117,10 +117,18 @@ export function Home() {
         <div className="absolute inset-0">
           <img
             src={storepicture}
-            alt=""
+            alt="Cast & Grey Botanical storefront in Savannah"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
+          {/* Subtle scrim for legibility (very light) */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/12 to-black/24" />
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                'radial-gradient(1200px 500px at 50% 50%, rgba(0,0,0,0.18) 0%, rgba(0,0,0,0.10) 45%, rgba(0,0,0,0.04) 75%, rgba(0,0,0,0.00) 100%)'
+            }}
+          />
         </div>
 
         {/* Content - 精致排版 */}
@@ -130,21 +138,28 @@ export function Home() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, ease: 'easeOut' }}
           >
+            {/* Kicker */}
+            <p 
+              className="text-[12.5px] leading-[18px] tracking-[0.6px] text-[rgba(255,254,246,0.88)] uppercase font-bold mb-3"
+              style={{ fontFamily: 'Archivo, sans-serif', textShadow: '0 1px 6px rgba(0,0,0,0.28)' }}
+            >
+              Savannah • Houseplant Boutique
+            </p>
             <h1 
               className="text-[56px] lg:text-[72px] leading-[1.1] font-bold tracking-[0.72px] text-[#FFFEF6] mb-8"
-              style={{ fontFamily: 'Petrona, serif' }}
+              style={{ fontFamily: 'Petrona, serif', textShadow: '0 3px 14px rgba(0,0,0,0.45)' }}
             >
               Savannah&apos;s Plant Fairy-Godmother
             </h1>
             <p 
-              className="text-[16px] leading-[32px] tracking-[0.8px] text-[#FFFEF6] max-w-3xl mx-auto mb-16 opacity-90"
-              style={{ fontFamily: 'Archivo, sans-serif' }}
+              className="text-[15px] leading-[28px] tracking-[0.4px] text-[rgba(255,254,246,0.92)] max-w-2xl mx-auto mb-10"
+              style={{ fontFamily: 'Archivo, sans-serif', textShadow: '0 1px 8px rgba(0,0,0,0.35)' }}
             >
-              Cast & Grey Botanical is the only woman-owned, houseplant-focused, community-building boutique in Savannah—pairing approachable aesthetics with practical education so every neighbor can feel confident caring for plants.
+              Approachable aesthetics. Practical plant care. For Savannah homes.
             </p>
             
             {/* CTA Buttons - 使用设计系统 */}
-            <div className="flex flex-wrap gap-6 justify-center">
+            <div className="flex flex-wrap gap-5 justify-center">
               <Link to="/shop/plants">
                 <Button variant="onDark" size="lg">
                   SHOP PLANTS
@@ -152,16 +167,24 @@ export function Home() {
               </Link>
               <Link to="/services">
                 <Button variant="secondary" size="lg">
-                  BOOK A CONSULTATION
+                  SERVICES
                 </Button>
               </Link>
             </div>
+
+            {/* Hero Meta - condensed single line */}
+            <p 
+              className="mt-6 text-[13px] leading-[20px] tracking-[0.4px] inline-block px-3 py-1 rounded-full bg-[rgba(0,0,0,0.18)] text-[rgba(255,254,246,0.92)]"
+              style={{ fontFamily: 'Archivo, sans-serif', backdropFilter: 'blur(2px)' }}
+            >
+              Tue–Sat 11:00–18:00 · 2411 Waters Ave · Local Delivery Mon · hello@castandgrey.com
+            </p>
           </motion.div>
         </div>
       </section>
 
       {/* Quick Access - 极简网格，大量留白 */}
-      <section className="py-32 bg-[#FFFEF6]">
+      <section className="py-24 bg-[#FFFEF6]">
         <div className="px-[50px] lg:px-[246px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             <QuickAccessTile
@@ -234,7 +257,7 @@ export function Home() {
             className="text-[40px] lg:text-[48px] leading-[1.2] font-bold tracking-[0.72px] text-[#FFFEF6] mb-20 text-center"
             style={{ fontFamily: 'Petrona, serif' }}
           >
-            Why Choose Cast & Grey
+            Why Neighbors Choose Cast & Grey
           </h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
@@ -342,26 +365,26 @@ function QuickAccessTile({ title, description, href }) {
     >
       {/* 卡片容器 - 使用设计系统的边框和阴影 */}
       <motion.div
-        className="relative aspect-square bg-[#459361] border-2 border-[#FFFEF6] rounded-[12px] overflow-hidden"
+        className="relative aspect-square bg-[#FFFEF6] border border-[rgba(69,147,97,0.25)] rounded-[12px] overflow-hidden"
         style={{
-          boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)'
+          boxShadow: '0 1px 0 rgba(17,17,17,0.06)'
         }}
         whileHover={{ 
-          boxShadow: '0px 3px 0px rgba(132, 132, 132, 0.9)',
-          y: 3
+          boxShadow: '0 2px 0 rgba(17,17,17,0.08)',
+          y: 2
         }}
         transition={{ duration: 0.2 }}
       >
         {/* 内容 - 居中排版 */}
         <div className="absolute inset-0 flex flex-col items-center justify-center p-8 text-center">
           <h3 
-            className="text-[28.8px] leading-[36px] font-bold tracking-[0.72px] text-[#FFFEF6] mb-3"
+            className="text-[24px] leading-[32px] font-bold tracking-[0.72px] text-[#111111] mb-2"
             style={{ fontFamily: 'Petrona, serif' }}
           >
             {title}
           </h3>
           <p 
-            className="text-[13px] leading-[18px] tracking-[0.7px] text-[rgba(255,254,246,0.75)] uppercase font-bold"
+            className="text-[13px] leading-[18px] tracking-[0.6px] text-[rgba(69,147,97,0.75)] uppercase font-bold"
             style={{ fontFamily: 'Archivo, sans-serif' }}
           >
             {description}
@@ -369,7 +392,7 @@ function QuickAccessTile({ title, description, href }) {
         </div>
 
         {/* Hover 装饰线 */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-[#FFFEF6] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+        <div className="absolute bottom-0 left-0 right-0 h-[2px] bg-[#459361] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
       </motion.div>
     </Link>
   )
@@ -400,4 +423,50 @@ function CTABlock({ title, description, href, buttonText }) {
       </Link>
     </div>
   )
+}
+
+/**
+ * InfoPill 组件 - 顶部信息条小卡片
+ */
+function InfoPill({ icon: Icon, title, text }) {
+  return (
+    <div 
+      className="flex items-center gap-4 bg-white border border-stone-200 rounded-[10px] px-5 py-4"
+      style={{ boxShadow: '0 1px 0 rgba(17,17,17,0.06)' }}
+    >
+      <div className="w-9 h-9 rounded-[9px] flex items-center justify-center bg-[rgba(69,147,97,0.08)]">
+        <Icon size={20} className="text-[#459361]" strokeWidth={1.5} />
+      </div>
+      <div>
+        <p 
+          className="text-[12.5px] leading-[18px] tracking-[0.6px] text-[rgba(69,147,97,0.8)] uppercase font-bold"
+          style={{ fontFamily: 'Archivo, sans-serif' }}
+        >
+          {title}
+        </p>
+        <p 
+          className="text-[14px] leading-[22px] tracking-[0.4px] text-[#111111]"
+          style={{ fontFamily: 'Archivo, sans-serif' }}
+        >
+          {text}
+        </p>
+      </div>
+    </div>
+  )
+}
+
+/**
+ * HeroMeta & Separator - 极简信息点（图标+文本）
+ */
+function HeroMeta({ icon: Icon, label }) {
+  return (
+    <span className="inline-flex items-center gap-2 px-3 py-2 rounded-full bg-[rgba(255,255,255,0.12)] text-[rgba(255,254,246,0.95)]">
+      <Icon size={16} className="opacity-90" />
+      <span className="text-[13px] tracking-[0.4px]" style={{ fontFamily: 'Archivo, sans-serif' }}>{label}</span>
+    </span>
+  )
+}
+
+function SeparatorDot() {
+  return <span className="text-[rgba(255,254,246,0.6)]">•</span>
 }

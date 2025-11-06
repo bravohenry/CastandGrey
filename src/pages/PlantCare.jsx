@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Droplets, Sun, Wind, AlertCircle, Search } from 'lucide-react'
 import { Button } from '../design-system'
+import placeholderGuide from '../assets/placeholders/guide-generic.svg'
 
 /**
  * PlantCare 页面 - 植物护理教育中心
@@ -290,20 +291,11 @@ function GuideCard({ guide }) {
       style={{ boxShadow: '0px 6px 0px rgba(132, 132, 132, 0.9)' }}
     >
       <div className="aspect-video bg-[rgba(69,147,97,0.1)] overflow-hidden">
-        {guide.image ? (
-          <img
-            src={guide.image}
-            alt={guide.title}
-            className="w-full h-full object-cover"
-          />
-        ) : (
-          <div 
-            className="w-full h-full flex items-center justify-center text-[13px] tracking-[0.6px] text-[rgba(69,147,97,0.4)]"
-            style={{ fontFamily: 'Archivo, sans-serif' }}
-          >
-            Guide Image
-          </div>
-        )}
+        <img
+          src={guide.image || placeholderGuide}
+          alt={guide.title}
+          className="w-full h-full object-cover"
+        />
       </div>
 
       <div className="p-6">
